@@ -1,5 +1,5 @@
---- a/check_smartmon
-+++ b/check_smartmon
+--- check_smartmon
++++ check_smartmon
 @@ -59,7 +59,7 @@ def parseCmdLine(args):
                          metavar="LEVEL", help="set verbosity level to LEVEL; defaults to 0 (quiet), \
                                          possible values go up to 3")
