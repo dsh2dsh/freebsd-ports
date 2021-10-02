@@ -13,15 +13,22 @@ COMMENT?=	Nagios / Icinga performance data collector and grapher
 LICENSE=	GPLv2
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/rrdtool:databases/rrdtool
-RUN_DEPENDS?=	${LOCALBASE}/bin/rrdtool:databases/rrdtool \
-		nagios:net-mgmt/nagios
+RUN_DEPENDS?=	${LOCALBASE}/bin/rrdtool:databases/rrdtool
 
 MAKE_JOBS_UNSAFE=	yes
 USES=		dos2unix perl5 php php:web
 
 OPTIONS_DEFINE=	PDF EXAMPLES
+OPTIONS_SINGLE=	NAGIOS
+OPTIONS_SINGLE_NAGIOS=	NAGIOS35 NAGIOS4
 OPTIONS_DEFAULT=	PDF
 PDF_DESC=	Use built-in fpdf library to produce PDF views
+
+NAGIOS35_DESC=		Install for nagios-3.5.x (net-mgmt/nagios)
+NAGIOS35_RUN_DEPENDS=	${LOCALBASE}/bin/nagios:net-mgmt/nagios
+
+NAGIOS4_DESC=		Install for nagios-4.0.x (net-mgmt/nagios4)
+NAGIOS4_RUN_DEPENDS=	${LOCALBASE}/bin/nagios:net-mgmt/nagios4
 
 PDF_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-disable-pdf
 
