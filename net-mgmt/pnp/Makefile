@@ -21,7 +21,7 @@ USES=		dos2unix perl5 php php:web
 OPTIONS_DEFINE=	PDF EXAMPLES
 OPTIONS_SINGLE=	NAGIOS
 OPTIONS_SINGLE_NAGIOS=	NAGIOS35 NAGIOS4
-OPTIONS_DEFAULT=	PDF
+OPTIONS_DEFAULT=	NAGIOS35 PDF
 PDF_DESC=	Use built-in fpdf library to produce PDF views
 
 NAGIOS35_DESC=		Install for nagios-3.5.x (net-mgmt/nagios)
