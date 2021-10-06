@@ -7,7 +7,7 @@ CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/pnp4nagios/PNP-0.6
 DISTNAME=	pnp4nagios-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
-MAINTAINER?=	joneum@FreeBSD.org
+MAINTAINER?=	dsh@bamus.cz
 COMMENT?=	Nagios / Icinga performance data collector and grapher
 
 LICENSE=	GPLv2
