@@ -18,10 +18,10 @@ RUN_DEPENDS=	${LOCALBASE}/sbin/smartctl:sysutils/smartmontools
 USES=		python shebangfix
 USE_PYTHON=	concurrent
 
-NO_BUILD=	yes
-NO_ARCH=	yes
-
 SHEBANG_FILES=	check_smartmon
+
+NO_ARCH=	yes
+NO_BUILD=	yes
 
 PLIST_FILES=	libexec/nagios/check_smartmon
 
