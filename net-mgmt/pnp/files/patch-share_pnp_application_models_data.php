@@ -1,6 +1,6 @@
---- share/pnp/application/models/data.php.orig	2017-08-21 15:52:37 UTC
-+++ share/pnp/application/models/data.php
-@@ -45,11 +45,11 @@ class Data_Model extends System_Model
+--- share/pnp/application/models/data.php.orig	2022-01-30 15:29:15.274687000 +0100
++++ share/pnp/application/models/data.php	2022-01-30 15:29:36.944013000 +0100
+@@ -45,11 +45,11 @@
                  }
              }
          }
@@ -15,7 +15,7 @@
          }
      }
  
-@@ -97,7 +97,9 @@ class Data_Model extends System_Model
+@@ -97,7 +97,9 @@
                      throw new Kohana_User_Exception('Perfdata Dir', "Can not open $path");
                 }
             }
@@ -26,7 +26,7 @@
              # Obtain a list of columns
              foreach ($hosts as $key => $row) {
                  $sort[$key]  = $row['sort'];
-@@ -105,8 +107,6 @@ class Data_Model extends System_Model
+@@ -105,8 +107,6 @@
              # Sort the data with volume descending, edition ascending
              # Add $data as the last parameter, to sort by the common key
              array_multisort($sort, SORT_ASC, $hosts);
@@ -35,7 +35,7 @@
          }
          return $hosts;
      }
-@@ -147,7 +147,7 @@ class Data_Model extends System_Model
+@@ -147,7 +147,7 @@
          }else{
              throw new Kohana_Exception('error.perfdata-dir-for-host', $path, $hostname );
          }
@@ -44,7 +44,7 @@
              # Obtain a list of columns
              foreach ($services as $key => $row) {
                  $sort[$key]  = $row['name'];
-@@ -205,7 +205,7 @@ class Data_Model extends System_Model
+@@ -205,7 +205,7 @@
              $i++;
          }
          #print Kohana::debug($services);
@@ -53,7 +53,7 @@
              # Obtain a list of columns
              foreach ($services as $key => $row) {
                  $sort[$key]  = $row['sort'];
-@@ -214,7 +214,7 @@ class Data_Model extends System_Model
+@@ -214,7 +214,7 @@
              # Add $data as the last parameter, to sort by the common key
              array_multisort($sort, SORT_STRING, $services);
          }        
@@ -62,7 +62,7 @@
              array_unshift($services, $host[0]);
          }
          return $services;
-@@ -232,7 +232,7 @@ class Data_Model extends System_Model
+@@ -232,7 +232,7 @@
                  break;
              }
          }
@@ -71,7 +71,7 @@
              throw new Kohana_Exception('error.get-first-service', $hostname );
          }
          return $srv['name'];
-@@ -250,7 +250,7 @@ class Data_Model extends System_Model
+@@ -250,7 +250,7 @@
                  break;
              }
          }
@@ -80,7 +80,16 @@
              throw new Kohana_Exception('error.get-first-host');
          }
          return $host['name'];
-@@ -693,7 +693,7 @@ class Data_Model extends System_Model
+@@ -266,7 +266,7 @@
+         $xml         = array();
+         if (file_exists($xmlfile)) {
+             libxml_use_internal_errors(TRUE);
+-            libxml_clear_errors(TRUE);
++            libxml_clear_errors();
+             if(! $xml = simplexml_load_file($xmlfile) ){;
+                 if( $throw_exception == TRUE ){
+                     $errors = '<br>';
+@@ -693,7 +693,7 @@
          }
          
             $view=intval( pnp::clean($view) );
@@ -89,7 +98,7 @@
                 $view = 1;
             }
  
-@@ -735,7 +735,7 @@ class Data_Model extends System_Model
+@@ -735,7 +735,7 @@
             $timerange['f_end']   = date($this->config->conf['date_fmt'],$end);
             $timerange['cmd']     = " --start $start --end $end ";
             $timerange['type']    = "views";
@@ -98,7 +107,7 @@
                 $timerange[$i]['title']   = $this->config->views[$i]['title'];
                 $timerange[$i]['start']   = $end - $this->config->views[$i]['start'];
                 $timerange[$i]['f_start'] = date($this->config->conf['date_fmt'],$end - $this->config->views[$i]['start']);
-@@ -747,7 +747,7 @@ class Data_Model extends System_Model
+@@ -747,7 +747,7 @@
      }
  
      public function buildBasketStruct($basket,$view = NULL){
@@ -107,7 +116,7 @@
  	    if($view == ""){
                   $views = array_keys($this->config->views);
              }else{
-@@ -757,9 +757,9 @@ class Data_Model extends System_Model
+@@ -757,9 +757,9 @@
                  foreach($basket as $item){
                      # explode host::service::source
                      $slices = explode("::",$item);
@@ -119,7 +128,7 @@
                          $this->buildDataStruct($slices[0], $slices[1], $view, $slices[2]);
                  }
                  # break on custom time ranges
-@@ -806,12 +806,12 @@ class Data_Model extends System_Model
+@@ -806,12 +806,12 @@
              }
          }
          #print Kohana::debug($servicelist);
@@ -135,7 +144,7 @@
          }
      }
  
-@@ -962,11 +962,11 @@ class Data_Model extends System_Model
+@@ -962,11 +962,11 @@
                  die("Cannot open directory:  $path");
              }
          }
@@ -150,7 +159,7 @@
          }
          return $pages;
      }
-@@ -976,10 +976,10 @@ class Data_Model extends System_Model
+@@ -976,10 +976,10 @@
      */
      public function getFirstPage(){
          $pages = $this->getPages();
@@ -164,7 +173,7 @@
          }
      }
  
-@@ -1093,7 +1093,7 @@ class Data_Model extends System_Model
+@@ -1093,7 +1093,7 @@
              }
          }
  
@@ -173,7 +182,7 @@
              throw new Kohana_Exception('error.tpl-no-hosts-found', $hostregex);
          }
  
-@@ -1101,7 +1101,7 @@ class Data_Model extends System_Model
+@@ -1101,7 +1101,7 @@
          $new_services = array();
          foreach($new_hosts as $host){
              $services = $this->getRawServices($host);
@@ -182,7 +191,7 @@
                  throw new Kohana_Exception('error.tpl-no-services-found', $serviceregex);
              }
              foreach($services as $service){
-@@ -1115,7 +1115,7 @@ class Data_Model extends System_Model
+@@ -1115,7 +1115,7 @@
              }
          }
  
