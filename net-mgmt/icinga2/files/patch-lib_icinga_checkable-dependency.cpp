@@ -7,7 +7,7 @@
 +
 +                        Host::Ptr    parentHost;
 +                        Service::Ptr parentService;
-+                        tie(parentHost, parentService) = dep->GetHostService(dep->GetParent());
++                        tie(parentHost, parentService) = GetHostService(dep->GetParent());
 +                        if (parentService)
 +                          return false;
  		}
