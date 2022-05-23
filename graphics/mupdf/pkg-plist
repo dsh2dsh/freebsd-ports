@@ -17,6 +17,7 @@ include/mupdf/fitz/crypt.h
 include/mupdf/fitz/device.h
 include/mupdf/fitz/display-list.h
 include/mupdf/fitz/document.h
+include/mupdf/fitz/export.h
 include/mupdf/fitz/filter.h
 include/mupdf/fitz/font.h
 include/mupdf/fitz/geometry.h
@@ -63,7 +64,6 @@ include/mupdf/pdf/interpret.h
 include/mupdf/pdf/javascript.h
 include/mupdf/pdf/name-table.h
 include/mupdf/pdf/object.h
-include/mupdf/pdf/output-pdf.h
 include/mupdf/pdf/page.h
 include/mupdf/pdf/parse.h
 include/mupdf/pdf/resource.h
@@ -109,9 +109,13 @@ man/man1/mutool.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-create.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-draw.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-extract.html
+%%PORTDOCS%%%%DOCSDIR%%/manual-mutool-info.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-merge.html
+%%PORTDOCS%%%%DOCSDIR%%/manual-mutool-pages.html
+%%PORTDOCS%%%%DOCSDIR%%/manual-mutool-poster.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-run.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-show.html
+%%PORTDOCS%%%%DOCSDIR%%/manual-mutool-sign.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-trace.html
 %%PORTDOCS%%%%DOCSDIR%%/style.css
 %%PORTDOCS%%%%DOCSDIR%%/template.html
