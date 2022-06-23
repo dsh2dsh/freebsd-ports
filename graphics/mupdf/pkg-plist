@@ -45,6 +45,7 @@ include/mupdf/fitz/text.h
 include/mupdf/fitz/track-usage.h
 include/mupdf/fitz/transition.h
 include/mupdf/fitz/tree.h
+include/mupdf/fitz/types.h
 include/mupdf/fitz/util.h
 include/mupdf/fitz/version.h
 include/mupdf/fitz/write-pixmap.h
@@ -78,14 +79,14 @@ man/man1/mutool.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/CHANGES
 %%PORTDOCS%%%%DOCSDIR%%/COPYING
 %%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%%%DOCSDIR%%/android-sdk.html
+%%PORTDOCS%%%%DOCSDIR%%/android-library.html
 %%PORTDOCS%%%%DOCSDIR%%/artifex-logo.png
 %%PORTDOCS%%%%DOCSDIR%%/building.html
 %%PORTDOCS%%%%DOCSDIR%%/coding-overview.html
 %%PORTDOCS%%%%DOCSDIR%%/coding-progressive.html
 %%PORTDOCS%%%%DOCSDIR%%/coding-style.html
+%%PORTDOCS%%%%DOCSDIR%%/ecosystem.css
 %%PORTDOCS%%%%DOCSDIR%%/ecosystem.html
-%%PORTDOCS%%%%DOCSDIR%%/ecosystem.png
 %%PORTDOCS%%%%DOCSDIR%%/examples/bbox-device.js
 %%PORTDOCS%%%%DOCSDIR%%/examples/create-thumbnail.js
 %%PORTDOCS%%%%DOCSDIR%%/examples/draw-device.js
@@ -103,6 +104,7 @@ man/man1/mutool.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/examples/pdf-trace.js
 %%PORTDOCS%%%%DOCSDIR%%/examples/trace-device.js
 %%PORTDOCS%%%%DOCSDIR%%/index.html
+%%PORTDOCS%%%%DOCSDIR%%/library.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mupdf-gl.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-clean.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-convert.html
@@ -117,6 +119,7 @@ man/man1/mutool.1.gz
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-show.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-sign.html
 %%PORTDOCS%%%%DOCSDIR%%/manual-mutool-trace.html
+%%PORTDOCS%%%%DOCSDIR%%/mutool.html
 %%PORTDOCS%%%%DOCSDIR%%/style.css
-%%PORTDOCS%%%%DOCSDIR%%/template.html
 %%PORTDOCS%%%%DOCSDIR%%/thirdparty.html
+%%PORTDOCS%%%%DOCSDIR%%/viewers.html
