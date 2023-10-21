@@ -1,18 +1,20 @@
 --- config/config.go.orig
 +++ config/config.go
-@@ -421,6 +421,11 @@ type LoggingOutletCommon struct {
+@@ -421,6 +421,13 @@ type LoggingOutletCommon struct {
  	Format string `yaml:"format"`
  }
  
 +type FileLoggingOutlet struct {
 +	LoggingOutletCommon `yaml:",inline"`
 +	FileName            string `yaml:"filename"`
++	Time                bool   `yaml:"time,default=true"`
++	LogLevel            bool   `yaml:"log_level,default=true"`
 +}
 +
  type StdoutLoggingOutlet struct {
  	LoggingOutletCommon `yaml:",inline"`
  	Time                bool `yaml:"time,default=true"`
-@@ -582,6 +587,7 @@ func (t *SnapshottingEnum) UnmarshalYAML(u func(interface{}, bool) error) (err e
+@@ -582,6 +589,7 @@ func (t *SnapshottingEnum) UnmarshalYAML(u func(interface{}, bool) error) (err e
  
  func (t *LoggingOutletEnum) UnmarshalYAML(u func(interface{}, bool) error) (err error) {
  	t.Ret, err = enumUnmarshal(u, map[string]interface{}{
@@ -36,7 +38,7 @@
  	default:
  		panic(v)
  	}
-@@ -301,3 +307,18 @@ func parseSyslogOutlet(in *config.SyslogLoggingOutlet, formatter EntryFormatter)
+@@ -301,3 +307,27 @@ func parseSyslogOutlet(in *config.SyslogLoggingOutlet, formatter EntryFormatter)
  	out.RetryInterval = in.RetryInterval
  	return out, nil
  }
@@ -44,6 +46,15 @@
 +func parseFileOutlet(
 +	in *config.FileLoggingOutlet, formatter EntryFormatter,
 +) (*FileOutlet, error) {
++	flags := MetadataNone
++	if in.Time {
++		flags |= MetadataTime
++	}
++	if in.LogLevel {
++		flags |= MetadataLevel
++	}
++
++	formatter.SetMetadataFlags(flags)
 +	outlet := FileOutlet{
 +		filename:  in.FileName,
 +		formatter: formatter,
