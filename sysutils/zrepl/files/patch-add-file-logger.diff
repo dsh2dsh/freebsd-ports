@@ -1,0 +1,144 @@
+--- config/config.go.orig
++++ config/config.go
+@@ -421,6 +421,11 @@ type LoggingOutletCommon struct {
+ 	Format string `yaml:"format"`
+ }
+ 
++type FileLoggingOutlet struct {
++	LoggingOutletCommon `yaml:",inline"`
++	FileName            string `yaml:"filename"`
++}
++
+ type StdoutLoggingOutlet struct {
+ 	LoggingOutletCommon `yaml:",inline"`
+ 	Time                bool `yaml:"time,default=true"`
+@@ -582,6 +587,7 @@ func (t *SnapshottingEnum) UnmarshalYAML(u func(interface{}, bool) error) (err e
+ 
+ func (t *LoggingOutletEnum) UnmarshalYAML(u func(interface{}, bool) error) (err error) {
+ 	t.Ret, err = enumUnmarshal(u, map[string]interface{}{
++		"file":   &FileLoggingOutlet{},
+ 		"stdout": &StdoutLoggingOutlet{},
+ 		"syslog": &SyslogLoggingOutlet{},
+ 		"tcp":    &TCPLoggingOutlet{},
+
+--- daemon/logging/build_logging.go.orig
++++ daemon/logging/build_logging.go
+@@ -234,6 +234,12 @@ func ParseOutlet(in config.LoggingOutletEnum) (o logger.Outlet, level logger.Lev
+ 			break
+ 		}
+ 		o, err = parseSyslogOutlet(v, f)
++	case *config.FileLoggingOutlet:
++		level, f, err = parseCommon(v.LoggingOutletCommon)
++		if err != nil {
++			break
++		}
++		o, err = parseFileOutlet(v, f)
+ 	default:
+ 		panic(v)
+ 	}
+@@ -301,3 +307,18 @@ func parseSyslogOutlet(in *config.SyslogLoggingOutlet, formatter EntryFormatter)
+ 	out.RetryInterval = in.RetryInterval
+ 	return out, nil
+ }
++
++func parseFileOutlet(
++	in *config.FileLoggingOutlet, formatter EntryFormatter,
++) (*FileOutlet, error) {
++	outlet := FileOutlet{
++		filename:  in.FileName,
++		formatter: formatter,
++	}
++
++	if err := outlet.Open(); err != nil {
++		return nil, err
++	}
++
++	return &outlet, nil
++}
+
+--- daemon/logging/logging_outlets.go.orig
++++ daemon/logging/logging_outlets.go
+@@ -4,9 +4,12 @@ import (
+ 	"bytes"
+ 	"context"
+ 	"crypto/tls"
++	"fmt"
+ 	"io"
+ 	"log/syslog"
+ 	"net"
++	"os"
++	"syscall"
+ 	"time"
+ 
+ 	"github.com/pkg/errors"
+@@ -170,5 +173,70 @@ func (o *SyslogOutlet) WriteEntry(entry logger.Entry) error {
+ 	default:
+ 		return o.writer.Err(s) // write as error as reaching this case is in fact an error
+ 	}
++}
++
++type FileOutlet struct {
++	file      *os.File
++	filename  string
++	formatter EntryFormatter
++	writer    io.Writer
++}
++
++func (self *FileOutlet) WriteEntry(entry logger.Entry) error {
++	bytes, err := self.formatter.Format(&entry)
++	if err != nil {
++		return err
++	}
++
++	if err := self.ReOpenIfNotExists(); err != nil {
++		return nil
++	}
++
++	if _, err = self.writer.Write(bytes); err != nil {
++		return fmt.Errorf("failed write to %q: %w", self.filename, err)
++	}
++
++	if _, err = self.writer.Write([]byte("\n")); err != nil {
++		return fmt.Errorf("failed write to %q: %w", self.filename, err)
++	}
++
++	return nil
++}
++
++func (self *FileOutlet) ReOpenIfNotExists() error {
++	finfo, err := self.file.Stat()
++	if err != nil {
++		return fmt.Errorf("failed stat of %q: %w", self.filename, err)
++	}
++
++	nlink := uint64(0)
++	if finfo.Sys() != nil {
++		if stat, ok := finfo.Sys().(*syscall.Stat_t); ok {
++			nlink = stat.Nlink
++		}
++	}
++	if nlink > 0 {
++		return nil
++	}
++
++	return self.ReOpen()
++}
++
++func (self *FileOutlet) ReOpen() error {
++	if err := self.file.Close(); err != nil {
++		return fmt.Errorf("failed close %q: %w", self.filename, err)
++	}
++
++	return self.Open()
++}
++
++func (self *FileOutlet) Open() error {
++	f, err := os.OpenFile(self.filename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
++	if err != nil {
++		return fmt.Errorf("file outlet: %w", err)
++	}
++	self.file = f
++	self.writer = f
+ 
++	return nil
+ }
