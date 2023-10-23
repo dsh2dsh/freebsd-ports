@@ -1,8 +1,22 @@
 diff --git config/config.go config/config.go
-index 6c56cc3..9406a2a 100644
+index 6c56cc3..bd2cc37 100644
 --- config/config.go
 +++ config/config.go
-@@ -421,6 +421,14 @@ type LoggingOutletCommon struct {
+@@ -146,9 +146,10 @@ type PlaceholderRecvOptions struct {
+ 
+ type PushJob struct {
+ 	ActiveJob    `yaml:",inline"`
+-	Snapshotting SnapshottingEnum  `yaml:"snapshotting"`
+-	Filesystems  FilesystemsFilter `yaml:"filesystems"`
+-	Send         *SendOptions      `yaml:"send,fromdefaults,optional"`
++	Interval     *PositiveDurationOrManual `yaml:"interval,optional"`
++	Snapshotting SnapshottingEnum          `yaml:"snapshotting"`
++	Filesystems  FilesystemsFilter         `yaml:"filesystems"`
++	Send         *SendOptions              `yaml:"send,fromdefaults,optional"`
+ }
+ 
+ func (j *PushJob) GetFilesystems() FilesystemsFilter { return j.Filesystems }
+@@ -421,6 +422,14 @@ type LoggingOutletCommon struct {
  	Format string `yaml:"format"`
  }
  
@@ -17,7 +31,7 @@ index 6c56cc3..9406a2a 100644
  type StdoutLoggingOutlet struct {
  	LoggingOutletCommon `yaml:",inline"`
  	Time                bool `yaml:"time,default=true"`
-@@ -582,6 +590,7 @@ func (t *SnapshottingEnum) UnmarshalYAML(u func(interface{}, bool) error) (err e
+@@ -582,6 +591,7 @@ func (t *SnapshottingEnum) UnmarshalYAML(u func(interface{}, bool) error) (err e
  
  func (t *LoggingOutletEnum) UnmarshalYAML(u func(interface{}, bool) error) (err error) {
  	t.Ret, err = enumUnmarshal(u, map[string]interface{}{
@@ -25,7 +39,7 @@ index 6c56cc3..9406a2a 100644
  		"stdout": &StdoutLoggingOutlet{},
  		"syslog": &SyslogLoggingOutlet{},
  		"tcp":    &TCPLoggingOutlet{},
-@@ -665,7 +674,6 @@ var ConfigFileDefaultLocations = []string{
+@@ -665,7 +675,6 @@ var ConfigFileDefaultLocations = []string{
  }
  
  func ParseConfig(path string) (i *Config, err error) {
@@ -157,6 +171,64 @@ index eccd59d..9bc58b5 100644
  	}
  
  	for tc := range tcs {
+diff --git daemon/job/active.go daemon/job/active.go
+index b857aea..1e3e62d 100644
+--- daemon/job/active.go
++++ daemon/job/active.go
+@@ -102,6 +102,7 @@ type modePush struct {
+ 	senderConfig  *endpoint.SenderConfig
+ 	plannerPolicy *logic.PlannerPolicy
+ 	snapper       snapper.Snapper
++	interval      *config.PositiveDurationOrManual
+ }
+ 
+ func (m *modePush) ConnectEndpoints(ctx context.Context, connecter transport.Connecter) {
+@@ -132,8 +133,32 @@ func (m *modePush) Type() Type { return TypePush }
+ 
+ func (m *modePush) PlannerPolicy() logic.PlannerPolicy { return *m.plannerPolicy }
+ 
+-func (m *modePush) RunPeriodic(ctx context.Context, wakeUpCommon chan<- struct{}) {
+-	m.snapper.Run(ctx, wakeUpCommon)
++func (m *modePush) RunPeriodic(
++	ctx context.Context, wakeUpCommon chan<- struct{},
++) {
++	if m.interval == nil {
++		m.snapper.Run(ctx, wakeUpCommon)
++		return
++	}
++
++	t := time.NewTicker(m.interval.Interval)
++	defer t.Stop()
++
++	for {
++		select {
++		case <-t.C:
++			select {
++			case wakeUpCommon <- struct{}{}:
++			default:
++				GetLogger(ctx).
++					WithField("push_interval", m.interval).
++					Warn("push job took longer than push interval")
++				wakeUpCommon <- struct{}{} // block anyways, to queue up the wakeup
++			}
++		case <-ctx.Done():
++			return
++		}
++	}
+ }
+ 
+ func (m *modePush) SnapperReport() *snapper.Report {
+@@ -153,6 +178,10 @@ func modePushFromConfig(g *config.Global, in *config.PushJob, jobID endpoint.Job
+ 	m := &modePush{}
+ 	var err error
+ 
++	if _, ok := in.Snapshotting.Ret.(*config.SnapshottingManual); ok {
++		m.interval = in.Interval
++	}
++
+ 	m.senderConfig, err = buildSenderConfig(in, jobID)
+ 	if err != nil {
+ 		return nil, errors.Wrap(err, "sender config")
 diff --git daemon/job/build_jobs.go daemon/job/build_jobs.go
 index be630e9..dc2de92 100644
 --- daemon/job/build_jobs.go
@@ -410,11 +482,30 @@ index b18172f..2765a1b 100644
 +    tank/bar/a/foo   => 4    true
 +    tank/bar/b       => 4    false
 +    tank/bar/b/foo   => 4    true
+diff --git docs/configuration/jobs.rst docs/configuration/jobs.rst
+index 523e534..5b932ca 100644
+--- docs/configuration/jobs.rst
++++ docs/configuration/jobs.rst
+@@ -24,8 +24,13 @@ Job Type ``push``
+       - |connect-transport|
+     * - ``filesystems``
+       - |filter-spec| for filesystems to be snapshotted and pushed to the sink
++    * - ``interval``
++      - | Interval at which to push to the sink (e.g. ``10m``) if
++        | ``snapshotting`` configured as ``manual``. This field is optional and
++        | if not defined, than ``snapshotting`` does the job. Also this field
++        | ignored if ``snapshotting`` isn't ``manual``.
+     * - ``send``
+-      - |send-options| 
++      - |send-options|
+     * - ``snapshotting``
+       - |snapshotting-spec|
+     * - ``pruning``
 diff --git docs/configuration/logging.rst docs/configuration/logging.rst
-index aeed2ba..c5172f1 100644
+index aeed2ba..e57e787 100644
 --- docs/configuration/logging.rst
 +++ docs/configuration/logging.rst
-@@ -106,6 +106,36 @@ Outlets
+@@ -106,6 +106,54 @@ Outlets
  
  Outlets are the destination for log entries.
  
@@ -441,10 +532,28 @@ index aeed2ba..c5172f1 100644
 +      - include log level into output (``true`` or ``false``). Default is ``true``.
 +    * - ``filename``
 +      - path of the log file
++    * - ``template``
++      - format output by Go template string
 +
 +Writes all log entries with minimum level ``level`` formatted by ``format`` to
 +file from ``filename``. This outlet automatically detects the log file was
 +rotated and reopens it.
++
++If ``template`` configured, log entries formatted by this template. For instance
++this configuration
++
++::
++
++    - type: "file"
++      level:  "info"
++      format: "human"
++      filename: "/var/log/zrepl.log"
++      time: false
++      template: '{{formatTime .Time "Jan _2 15:04:05"}} zrepl[{{.Pid}}]: {{.Message}}'
++
++formats log entries like ::
++
++  ``Oct 22 21:51:02 zrepl[29094]: [INFO][job-name][job][abcd$dcab$abcd.dcab]: wait for wakeups``.
 +
 +Can be specified many times with different ``filename``.
 +
