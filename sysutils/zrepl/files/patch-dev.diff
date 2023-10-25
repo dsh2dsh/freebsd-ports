@@ -671,7 +671,7 @@ index 4283e3e..17e7394 100644
  			expDestroy: map[string]bool{
  				"b1": true,
 diff --git zfs/zfs.go zfs/zfs.go
-index a8bf86d..965d6df 100644
+index a8bf86d..bb7365e 100644
 --- zfs/zfs.go
 +++ zfs/zfs.go
 @@ -930,8 +930,9 @@ var ErrEncryptedSendNotSupported = fmt.Errorf("raw sends which are required for
@@ -690,7 +690,7 @@ index a8bf86d..965d6df 100644
  		Stderr: stderrBuf,
  	})
  
-+	pipeReader, err := cmd.Pipe(ctx, stdoutReader, stderrBuf, pipeCmds...)
++	pipeReader, err := cmd.Pipe(stdoutReader, stderrBuf, pipeCmds...)
 +	if err != nil {
 +		cancel()
 +		stdoutWriter.Close()
@@ -732,7 +732,7 @@ index a8bf86d..965d6df 100644
  		return err
  	}
  
-+	pipeReader, err := cmd.Pipe(ctx, stdin, stderr, pipeCmds...)
++	pipeReader, err := cmd.WithLeftPipe().Pipe(stdin, stderr, pipeCmds...)
 +	if err != nil {
 +		stdinWriter.Close()
 +		stdin.Close()
@@ -813,7 +813,7 @@ index a8bf86d..965d6df 100644
  
  	if copierErr == nil && waitErr == nil {
 diff --git zfs/zfscmd/zfscmd.go zfs/zfscmd/zfscmd.go
-index 094f310..8125871 100644
+index 094f310..d11bd9f 100644
 --- zfs/zfscmd/zfscmd.go
 +++ zfs/zfscmd/zfscmd.go
 @@ -7,6 +7,7 @@ package zfscmd
@@ -824,15 +824,17 @@ index 094f310..8125871 100644
  	"io"
  	"os"
  	"os/exec"
-@@ -20,6 +21,7 @@ import (
- 
- type Cmd struct {
- 	cmd                                      *exec.Cmd
-+	pipeCmds                                 []*exec.Cmd
- 	ctx                                      context.Context
+@@ -24,6 +25,9 @@ type Cmd struct {
  	mtx                                      sync.RWMutex
  	startedAt, waitStartedAt, waitReturnedAt time.Time
-@@ -72,7 +74,17 @@ func (c *Cmd) SetStdio(stdio Stdio) {
+ 	waitReturnEndSpanCb                      trace.DoneFunc
++
++	pipeCmds []*exec.Cmd
++	pipeLeft bool
+ }
+ 
+ func CommandContext(ctx context.Context, name string, arg ...string) *Cmd {
+@@ -72,7 +76,26 @@ func (c *Cmd) SetStdio(stdio Stdio) {
  }
  
  func (c *Cmd) String() string {
@@ -842,16 +844,25 @@ index 094f310..8125871 100644
 +	}
 +
 +	var s strings.Builder
-+	s.WriteString(strings.Join(c.cmd.Args, " "))
-+	for _, cmd := range c.pipeCmds {
-+		s.WriteString(" | ")
-+		s.WriteString(strings.Join(cmd.Args, " "))
++	if c.pipeLeft {
++		for _, cmd := range c.pipeCmds {
++			s.WriteString(strings.Join(cmd.Args, " "))
++			s.WriteString(" | ")
++		}
++		s.WriteString(strings.Join(c.cmd.Args, " "))
++	} else {
++		s.WriteString(strings.Join(c.cmd.Args, " "))
++		for _, cmd := range c.pipeCmds {
++			s.WriteString(" | ")
++			s.WriteString(strings.Join(cmd.Args, " "))
++		}
 +	}
++
 +	return s.String()
  }
  
  func (c *Cmd) log() Logger {
-@@ -88,7 +100,7 @@ func (c *Cmd) log() Logger {
+@@ -88,7 +111,7 @@ func (c *Cmd) log() Logger {
  // If this method returns an error, the Cmd instance is invalid. Start must not be called repeatedly.
  func (c *Cmd) Start() (err error) {
  	c.startPre(true)
@@ -860,7 +871,7 @@ index 094f310..8125871 100644
  	c.startPost(err)
  	return err
  }
-@@ -109,7 +121,7 @@ func (c *Cmd) Process() *os.Process {
+@@ -109,7 +132,7 @@ func (c *Cmd) Process() *os.Process {
  // Only call this method after a successful call to .Start().
  func (c *Cmd) Wait() (err error) {
  	c.waitPre()
@@ -869,15 +880,15 @@ index 094f310..8125871 100644
  	c.waitPost(err)
  	return err
  }
-@@ -213,3 +225,63 @@ func (c *Cmd) Runtime() time.Duration {
+@@ -213,3 +236,68 @@ func (c *Cmd) Runtime() time.Duration {
  func (c *Cmd) TestOnly_ExecCmd() *exec.Cmd {
  	return c.cmd
  }
 +
 +func (c *Cmd) Pipe(
-+	ctx context.Context, stdin io.ReadCloser, stderr io.Writer, cmds ...[]string,
++	stdin io.ReadCloser, stderr io.Writer, cmds ...[]string,
 +) (io.ReadCloser, error) {
-+	for _, pipeCmd := range c.buildPipeCmds(ctx, cmds) {
++	for _, pipeCmd := range c.buildPipeCmds(cmds) {
 +		r, err := pipeCmd.StdoutPipe()
 +		if err != nil {
 +			return nil, fmt.Errorf(
@@ -891,7 +902,7 @@ index 094f310..8125871 100644
 +	return stdin, nil
 +}
 +
-+func (c *Cmd) buildPipeCmds(ctx context.Context, cmds [][]string) []*exec.Cmd {
++func (c *Cmd) buildPipeCmds(cmds [][]string) []*exec.Cmd {
 +	pipeCmds := make([]*exec.Cmd, len(cmds))
 +	for i := range cmds {
 +		name := cmds[i][0]
@@ -899,7 +910,7 @@ index 094f310..8125871 100644
 +		if len(cmds[i]) > 1 {
 +			args = cmds[i][1:]
 +		}
-+		pipeCmds[i] = exec.CommandContext(ctx, name, args...)
++		pipeCmds[i] = exec.CommandContext(c.ctx, name, args...)
 +	}
 +	return pipeCmds
 +}
@@ -933,11 +944,16 @@ index 094f310..8125871 100644
 +	}
 +	return firstErr
 +}
++
++func (c *Cmd) WithLeftPipe() *Cmd {
++	c.pipeLeft = true
++	return c
++}
 diff --git zfs/zfscmd/zfscmd_platform_test.go zfs/zfscmd/zfscmd_platform_test.go
-index 1a33ba5..c710bf4 100644
+index 1a33ba5..26a99ba 100644
 --- zfs/zfscmd/zfscmd_platform_test.go
 +++ zfs/zfscmd/zfscmd_platform_test.go
-@@ -121,5 +121,75 @@ func TestSigpipe(t *testing.T) {
+@@ -121,5 +121,87 @@ func TestSigpipe(t *testing.T) {
  
  	err = cmd.Wait()
  	require.EqualError(t, err, "exit status 23")
@@ -950,6 +966,7 @@ index 1a33ba5..c710bf4 100644
 +		name         string
 +		cmd          *Cmd
 +		pipeCmds     [][]string
++		pipeLeft     bool
 +		wantCmdStr   string
 +		waitErr      bool
 +		assertStdout func(t *testing.T, b []byte)
@@ -962,6 +979,13 @@ index 1a33ba5..c710bf4 100644
 +			assertStdout: func(t *testing.T, b []byte) {
 +				assert.Equal(t, "FOOBAR", strings.TrimSpace(string(b)))
 +			},
++		},
++		{
++			name:       "pipe on the left side",
++			cmd:        CommandContext(ctx, "echo", "foobar"),
++			pipeCmds:   [][]string{{"true"}},
++			pipeLeft:   true,
++			wantCmdStr: "true | echo foobar",
 +		},
 +		{
 +			name:       "cmd error",
@@ -990,7 +1014,11 @@ index 1a33ba5..c710bf4 100644
 +				Stderr: &stderr,
 +			})
 +
-+			stdout, err := tt.cmd.Pipe(ctx, r, &stderr, tt.pipeCmds...)
++			if tt.pipeLeft {
++				assert.Same(t, tt.cmd, tt.cmd.WithLeftPipe())
++			}
++
++			stdout, err := tt.cmd.Pipe(r, &stderr, tt.pipeCmds...)
 +			require.NoError(t, err)
 +			assert.Equal(t, tt.wantCmdStr, tt.cmd.String())
 +			require.NoError(t, tt.cmd.startPipe())
