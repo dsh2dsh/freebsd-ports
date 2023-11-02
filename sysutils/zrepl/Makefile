@@ -1,6 +1,6 @@
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.1
+DISTVERSION=	0.6.2
 CATEGORIES=	sysutils
 
 MAINTAINER=	driesm@FreeBSD.org
@@ -13,9 +13,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		go:modules ncurses
 USE_RC_SUBR=	zrepl
 USE_GITHUB=	nodefault
-GH_TUPLE=	golang:sys:v0.6.0:sys
+GH_ACCOUNT=	dsh2dsh
 
-GO_MODULE=	github.com/${PORTNAME}/${PORTNAME}
+GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "\
 		${STRIP} -w\
 		-X ${GO_MODULE}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
