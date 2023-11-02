@@ -14,6 +14,7 @@ USES=		go:modules ncurses
 USE_RC_SUBR=	zrepl
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	dsh2dsh
+GH_TUPLE=	golang:sys:v0.13.0:sys
 
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "\
