@@ -1,6 +1,6 @@
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.3
+DISTVERSION=	0.6.4
 CATEGORIES=	sysutils
 
 MAINTAINER=	driesm@FreeBSD.org
@@ -19,7 +19,7 @@ GH_TUPLE=	golang:sys:v0.13.0:sys
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "\
 		${STRIP} -w\
-		-X ${GO_MODULE}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
+		-X github.com/${PORTNAME}/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
 
 SUB_FILES=	pkg-message 500.zrepl
 
