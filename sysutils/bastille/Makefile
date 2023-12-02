@@ -16,8 +16,10 @@ NO_BUILD=	yes
 NO_ARCH=	yes
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' \
-		${WRKSRC}/usr/local/etc/rc.d/${PORTNAME}
+	@${REINPLACE_CMD} \
+		-e 's|/usr/local/etc/bastille|${ETCDIR}|g' \
+		-e 's|/usr/local|${PREFIX}|g' \
+		${WRKSRC}/usr/local/etc/rc.d/bastille
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/usr/local/bin/bastille ${STAGEDIR}${PREFIX}/bin
