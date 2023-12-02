@@ -20,6 +20,7 @@ etc/rc.d/bastille
 %%DATADIR%%/list.sh
 %%DATADIR%%/mount.sh
 %%DATADIR%%/pkg.sh
+%%DATADIR%%/rcp.sh
 %%DATADIR%%/rdr.sh
 %%DATADIR%%/rename.sh
 %%DATADIR%%/restart.sh
