@@ -39,8 +39,7 @@ GH_ACCOUNT=	golang
 GH_TAGNAME=	c19c4c566c63818dfd059b352e52c4710eecf14d
 .endif
 
-SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
-		src/net/http/cgi/testdata/test.cgi
+SHEBANG_FILES=	misc/wasm/go_js_wasm_exec
 SHEBANG_GLOB=	*.bash *.pl *.sh
 
 # Upstream archive contains files with UTF-8 names
