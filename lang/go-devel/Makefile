@@ -20,6 +20,7 @@ IGNORE=		fails to build with qemu-user-static
 
 ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 riscv64
 
+BUILD_DEPENDS=	bash:shells/bash
 RUN_DEPENDS=	${RUN_DEPENDS_${ARCH}}
 # ld.bfd from devel/binutils is needed for working cgo on aarch64
 RUN_DEPENDS_aarch64=	binutils>0:devel/binutils
@@ -104,7 +105,7 @@ do-build:
 		GOARM=${GOARM_${ARCH}} \
 		GOAMD64=${GOAMD64} \
 		CC=${CC} \
-		${SH} make.bash -v
+		${bash_CMD} make.bash -v
 
 do-install:
 	@cd ${WRKSRC} ; \
@@ -130,7 +131,7 @@ do-test:
 		GOARM=${GOARM_${ARCH}} \
 		GOAMD64=${GOAMD64} \
 		CC=${CC} \
-		${SH} run.bash -no-rebuild
+		${bash_CMD} run.bash -no-rebuild
 
 .if !defined(_GO_MAKESUM_GUARD)
 makesum:
