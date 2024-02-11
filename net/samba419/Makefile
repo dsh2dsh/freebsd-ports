@@ -658,6 +658,14 @@ post-install-fix-manpages:
 				${MV} ${STAGEDIR}${PREFIX}/share/man/man1/${f} ${STAGEDIR}${PREFIX}/share/man/man1/samba-${f}
 .	endfor
 .endif
+
+.if defined(SAMBA4_BUNDLED_TALLOC) && ${SAMBA4_BUNDLED_TALLOC} == yes
+.  for f in talloc.3
+	${MV} ${STAGEDIR}${PREFIX}/share/man/man3/${f} \
+		${STAGEDIR}${PREFIX}/share/man/man3/samba-${f}
+.  endfor
+.endif
+
 .if defined(SAMBA4_BUNDLED_TDB) && ${SAMBA4_BUNDLED_TDB} == yes
 .	for f in tdbbackup.8 tdbdump.8 tdbrestore.8 tdbtool.8
 				${MV} ${STAGEDIR}${PREFIX}/share/man/man8/${f} ${STAGEDIR}${PREFIX}/share/man/man8/samba-${f}
