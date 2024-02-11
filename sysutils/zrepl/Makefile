@@ -1,6 +1,6 @@
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.6
+DISTVERSION=	0.6.7
 CATEGORIES=	sysutils
 
 MAINTAINER=	driesm@FreeBSD.org
@@ -14,7 +14,7 @@ USES=		go:modules ncurses
 USE_RC_SUBR=	zrepl
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	dsh2dsh
-GH_TUPLE=	golang:sys:v0.13.0:sys
+GH_TUPLE=	golang:sys:v0.17.0:sys
 
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "\

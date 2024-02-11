@@ -1,7 +1,7 @@
-TIMESTAMP = 1699115560
-SHA256 (go/sysutils_zrepl/zrepl-v0.6.6/v0.6.6.mod) = b0692db00d63fb2222cabd819498a3bfa36e31bb55bad54a52c93ee8a79db6d4
-SIZE (go/sysutils_zrepl/zrepl-v0.6.6/v0.6.6.mod) = 3300
-SHA256 (go/sysutils_zrepl/zrepl-v0.6.6/v0.6.6.zip) = 5398d61726c0f51180c78e7f79debc856558103e8614e326eb268b212049f02c
-SIZE (go/sysutils_zrepl/zrepl-v0.6.6/v0.6.6.zip) = 594451
-SHA256 (go/sysutils_zrepl/zrepl-v0.6.6/golang-sys-v0.13.0_GH0.tar.gz) = 8877d20a8f1b2533ddef00e65b6b3b9cebbcbffa319ed525df0bc229f583e2b6
-SIZE (go/sysutils_zrepl/zrepl-v0.6.6/golang-sys-v0.13.0_GH0.tar.gz) = 1442250
+TIMESTAMP = 1707666712
+SHA256 (go/sysutils_zrepl/zrepl-v0.6.7/v0.6.7.mod) = 5fdbc2875e20327bca077333fd86250966dfeeea4c820299827a8cd3c5495eb7
+SIZE (go/sysutils_zrepl/zrepl-v0.6.7/v0.6.7.mod) = 3270
+SHA256 (go/sysutils_zrepl/zrepl-v0.6.7/v0.6.7.zip) = 962039d7b435d7c26a8add8e35c78c37312ecb9955f8d49885645eaf6c0d2b96
+SIZE (go/sysutils_zrepl/zrepl-v0.6.7/v0.6.7.zip) = 597003
+SHA256 (go/sysutils_zrepl/zrepl-v0.6.7/golang-sys-v0.17.0_GH0.tar.gz) = ac396e3c66940e34fdd1d422a9628ab2a5118249118f2a36f65082d32e709e7a
+SIZE (go/sysutils_zrepl/zrepl-v0.6.7/golang-sys-v0.17.0_GH0.tar.gz) = 1446309
