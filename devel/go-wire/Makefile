@@ -11,7 +11,7 @@ WWW=		https://github.com/google/wire
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.21,modules
 
 GO_MODULE=	github.com/google/wire
 GO_TARGET=	./cmd/wire
