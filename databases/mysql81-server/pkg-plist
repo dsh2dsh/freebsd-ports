@@ -247,7 +247,7 @@ libexec/mysqld
 %%DATADIR%%/ukrainian/errmsg.sys
 %%DATADIR%%/uninstall_rewriter.sql
 %%DATADIR%%router/docs/sample_mysqlrouter.conf
-@dir %%ETCDIR%%/keyring
 @dir lib/mysql/plugin/debug
-@dir %%MY_SECDIR%%
-@dir %%MY_TMPDIR%%
+@dir(mysql,mysql,0750) %%ETCDIR%%/keyring
+@dir(mysql,mysql,0750) %%MY_SECDIR%%
+@dir(mysql,mysql,0750) %%MY_TMPDIR%%
