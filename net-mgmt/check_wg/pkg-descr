@@ -1,0 +1,1 @@
+Icinga2 health check of wireguard peers, using output of wg(8).
