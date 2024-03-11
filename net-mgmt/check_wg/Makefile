@@ -1,6 +1,7 @@
 PORTNAME=	         check_wg
 DISTVERSIONPREFIX= v
 DISTVERSION=       0.0.1
+PORTREVISION=      1
 CATEGORIES=        net-mgmt
 
 MAINTAINER=        dsh@bamus.cz
@@ -15,6 +16,11 @@ USES=              go:modules
 GO_MODULE=         github.com/dsh2dsh/${PORTNAME}
 GO_BUILDFLAGS=     -ldflags="-s -w"
 
-PLIST_FILES=       bin/${PORTNAME}
+PLIST_FILES=       libexec/nagios/${PORTNAME}
+
+do-install:
+	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/nagios
+	${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/${PORTNAME} \
+		${STAGEDIR}${PREFIX}/libexec/nagios/
 
 .include <bsd.port.mk>
