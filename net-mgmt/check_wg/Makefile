@@ -1,7 +1,6 @@
 PORTNAME=	         check_wg
 DISTVERSIONPREFIX= v
-DISTVERSION=       0.0.1
-PORTREVISION=      1
+DISTVERSION=       0.0.2
 CATEGORIES=        net-mgmt
 
 MAINTAINER=        dsh@bamus.cz
