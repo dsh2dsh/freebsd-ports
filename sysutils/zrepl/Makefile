@@ -1,27 +1,24 @@
-PORTNAME=	zrepl
-DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.10
-CATEGORIES=	sysutils
+PORTNAME=          zrepl
+DISTVERSIONPREFIX= v
+DISTVERSION=       0.6.11
+CATEGORIES=        sysutils
 
-MAINTAINER=	driesm@FreeBSD.org
-COMMENT=	ZFS dataset replication tool
-WWW=		https://zrepl.github.io/
+MAINTAINER=        dsh@bamus.cz
+COMMENT=           ZFS dataset replication tool
+WWW=               https://github.com/dsh2dsh/${PORTNAME}
 
-LICENSE=	MIT
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=           MIT
+LICENSE_FILE=      ${WRKSRC}/LICENSE
 
-GH_ACCOUNT=	dsh2dsh
-USES=		go:modules ncurses
-USE_RC_SUBR=	zrepl
+USES=              go:modules ncurses
+USE_RC_SUBR=       ${PORTNAME}
 
-GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags "\
-		${STRIP} -w\
-		-X github.com/${PORTNAME}/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
+GO_MODULE=         github.com/dsh2dsh/${PORTNAME}
+GO_BUILDFLAGS=     -ldflags "${STRIP} -w -X github.com/${PORTNAME}/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
 
-SUB_FILES=	pkg-message 500.zrepl
+SUB_FILES=         pkg-message 500.zrepl
 
-OPTIONS_DEFINE=		EXAMPLES
+OPTIONS_DEFINE=    EXAMPLES
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
@@ -29,7 +26,8 @@ post-install:
 		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d \
 		${STAGEDIR}${PREFIX}/etc/syslog.d \
 		${STAGEDIR}/var/run/zrepl
-	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf ${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
+	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
+		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
 	${INSTALL_DATA} ${FILESDIR}/syslog.conf ${STAGEDIR}${EXAMPLESDIR}/syslog.conf
 	${INSTALL_DATA} ${FILESDIR}/zrepl.yml ${STAGEDIR}${ETCDIR}/zrepl.yml.sample
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/weekly
@@ -38,7 +36,9 @@ post-install:
 
 post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/hooks
-	(cd ${WRKSRC}/config/samples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-	${INSTALL_DATA} ${WRKSRC}/dist/grafana/grafana-prometheus-zrepl.json ${STAGEDIR}${EXAMPLESDIR}
+	(cd ${WRKSRC}/config/samples && \
+		${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
+	${INSTALL_DATA} ${WRKSRC}/dist/grafana/grafana-prometheus-zrepl.json \
+		${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
