@@ -35,7 +35,7 @@ EXTRAS_GH_PROJECT=	MMD-Support:support
 EXTRAS_GH_SUBDIR=	Support:support
 EXTRAS_GH_TAGNAME=	685c95c:support
 
-HELPERS_CONFLICTS_INSTALL=	mtools-*
+HELPERS_CONFLICTS_INSTALL=	discount-* mtools-*
 
 post-patch:
 	@${REINPLACE_CMD} -e "s,/usr/local,${PREFIX},g" ${WRKSRC}/scripts/*

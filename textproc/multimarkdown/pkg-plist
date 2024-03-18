@@ -1,5 +1,5 @@
-bin/markdown
 bin/multimarkdown
+%%HELPERS%%bin/markdown
 %%HELPERS%%bin/mmd
 %%HELPERS%%bin/mmd2all
 %%HELPERS%%bin/mmd2epub
