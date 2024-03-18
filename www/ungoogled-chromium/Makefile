@@ -122,6 +122,9 @@ GN_ARGS+=	enable_widevine=true \
 		extra_ldflags="${LDFLAGS}" \
 		ffmpeg_branding="${FFMPEG_BRAND}"
 
+# https://chromium.googlesource.com/chromium/src.git/+/master/docs/ccache_mac.md#use-with-gn
+GN_ARGS+= cc_wrapper="${SETENV} CCACHE_SLOPPINESS=time_macros ${CCACHE_BIN}"
+
 # sync with flags.gni
 GN_ARGS+=	build_with_tflite_lib=false \
 		chrome_pgo_phase=0 \
