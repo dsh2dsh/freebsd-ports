@@ -1,11 +1,11 @@
 PORTNAME=	         check_wg
 DISTVERSIONPREFIX= v
-DISTVERSION=       0.0.3
+DISTVERSION=       0.0.4
 CATEGORIES=        net-mgmt
 
 MAINTAINER=        dsh@bamus.cz
 COMMENT=           Icinga2 health check of wireguard peers, using output of wg(8)
-WWW=               https://github.com/dsh2dsh/check_wg
+WWW=               https://github.com/dsh2dsh/${PORTNAME}
 
 LICENSE=           MIT
 LICENSE_FILE=      ${WRKSRC}/LICENSE
