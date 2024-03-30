@@ -1,0 +1,5 @@
+TIMESTAMP = 1711824753
+SHA256 (go/net-mgmt_check_syncthing/check_syncthing-v0.0.2/v0.0.2.mod) = 5c2eb7d17f97893caa140e54409ac1ca9efb9f6aec8723c333e05da6b843d02a
+SIZE (go/net-mgmt_check_syncthing/check_syncthing-v0.0.2/v0.0.2.mod) = 575
+SHA256 (go/net-mgmt_check_syncthing/check_syncthing-v0.0.2/v0.0.2.zip) = 9e1cc1c59a5f4967cd9b225032c703bf1b0c7ac23fc685696000155bb685f46d
+SIZE (go/net-mgmt_check_syncthing/check_syncthing-v0.0.2/v0.0.2.zip) = 29783
