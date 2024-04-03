@@ -16,8 +16,14 @@ BUILD_DEPENDS=	${LOCALBASE}/share/ECM/cmake/ECMConfig.cmake:devel/kf5-extra-cmak
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
 		libboost_regex.so:devel/boost-libs
 
-USES=		cmake:insource compiler:c++11-lang desktop-file-utils iconv \
-		kde:5 perl5 qt:5
+FLAVORS= qt6 qt5
+FLAVOR?= ${FLAVORS:[1]}
+
+qt5_CONFLICTS_INSTALL= ${PORTNAME}-qt6
+qt6_PKGNAMESUFFIX=     -qt6
+qt6_CONFLICTS_INSTALL= ${PORTNAME}
+
+USES=		cmake:insource compiler:c++11-lang desktop-file-utils iconv perl5
 
 USE_GITHUB=	nodefault
 GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/../syncthingtray \
@@ -27,12 +33,18 @@ GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
 		Martchus:subdirs:0ad32a0:subdirs/../subdirs
 
+USE_QT=  declarative location svg webchannel doc:build
+.if ${FLAVOR} == qt5
+USES+=   kde:5 qt:5
+USE_QT+= concurrent core dbus gui network printsupport qdbus quickcontrols2 \
+	widgets x11extras buildtools:build linguist:build qmake:build testlib:build
+.else
+USES+=   kde:6 qt:6
+USE_QT+= base
+.endif
+
 USE_KDE=	plasma-framework
 USE_PERL5=	build
-USE_QT=		concurrent core dbus declarative gui location network \
-		printsupport qdbus quickcontrols2 svg webchannel widgets \
-		x11extras buildtools:build doc:build linguist:build \
-		qmake:build testlib:build
 
 CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
 		-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
