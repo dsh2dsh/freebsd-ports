@@ -36,6 +36,7 @@ GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/
 USE_QT=  declarative location svg webchannel doc:build
 .if ${FLAVOR} == qt5
 USES+=   kde:5 qt:5
+USE_KDE= plasma-framework
 USE_QT+= concurrent core dbus gui network printsupport qdbus quickcontrols2 \
 	widgets x11extras buildtools:build linguist:build qmake:build testlib:build
 .else
@@ -43,7 +44,6 @@ USES+=   kde:6 qt:6
 USE_QT+= base
 .endif
 
-USE_KDE=	plasma-framework
 USE_PERL5=	build
 
 CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
