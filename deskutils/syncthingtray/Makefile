@@ -25,6 +25,11 @@ qt6_CONFLICTS_INSTALL= ${PORTNAME}
 
 USES=		cmake:insource compiler:c++11-lang desktop-file-utils iconv perl5
 
+CMAKE_ARGS= -DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
+	-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
+CMAKE_OFF=  SYSTEMD_SUPPORT USE_STANDARD_FILESYSTEM
+CMAKE_SOURCE_PATH= ${WRKDIR}/subdirs/syncthingtray
+
 USE_GITHUB=	nodefault
 GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/../syncthingtray \
 		Martchus:cpp-utilities:v5.24.7:cpputilities/../c++utilities \
@@ -33,36 +38,31 @@ GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
 		Martchus:subdirs:0ad32a0:subdirs/../subdirs
 
-USE_QT=  declarative location svg webchannel doc:build
+USE_QT=      declarative location svg webchannel doc:build
 .if ${FLAVOR} == qt5
-USES+=   kde:5 qt:5
-USE_KDE= plasma-framework
-USE_QT+= concurrent core dbus gui network printsupport qdbus quickcontrols2 \
+USES+=       kde:5 qt:5
+USE_KDE=     plasma-framework
+USE_QT+=     concurrent core dbus gui network printsupport qdbus quickcontrols2 \
 	widgets x11extras buildtools:build linguist:build qmake:build testlib:build
 .else
-USES+=   kde:6 qt:6
-USE_QT+= base
+CMAKE_ARGS+= DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
+USES+=       kde:6 qt:6
+USE_QT+=     base
 .endif
 
-USE_PERL5=	build
+OPTIONS_DEFINE=  WEBENGINE
+OPTIONS_DEFAULT= WEBENGINE
 
-CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
-		-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
-CMAKE_OFF=	SYSTEMD_SUPPORT USE_STANDARD_FILESYSTEM
-CMAKE_SOURCE_PATH=	${WRKDIR}/subdirs/syncthingtray
+WEBENGINE_DESC=      Built-in web view (webengine dependency)
+WEBENGINE_USE=       QT=webengine
+WEBENGINE_CMAKE_ON=  WEBVIEW_PROVIDER:STRING=webengine
+WEBENGINE_CMAKE_OFF= WEBVIEW_PROVIDER:STRING=none
+
+USE_PERL5=	build
 
 BUILD_WRKSRC=		${WRKDIR}
 CONFIGURE_WRKSRC=	${WRKDIR}
 INSTALL_WRKSRC=		${WRKDIR}
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == amd64 || ${ARCH} == i386
-USE_QT+=	webengine
-.else
-CMAKE_ARGS+=	-DWEBVIEW_PROVIDER=webkit
-USE_QT+=	webkit
-.endif
 
 post-install:
 	${RM} -r \
@@ -103,4 +103,4 @@ post-install:
 		${STAGEDIR}${QT_PLUGINDIR} \
 		${STAGEDIR}${QT_LIBDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
