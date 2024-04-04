@@ -47,6 +47,7 @@ USE_QT+=     concurrent core dbus gui network printsupport qdbus quickcontrols2 
 .else
 CMAKE_ARGS+= -DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
 USES+=       kde:6 qt:6
+USE_KDE=     libplasma
 USE_QT+=     base
 .endif
 
