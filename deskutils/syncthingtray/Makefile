@@ -48,7 +48,7 @@ USE_QT+=     concurrent core dbus gui network printsupport qdbus quickcontrols2 
 CMAKE_ARGS+= -DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6 \
 	-DNO_PLASMOID:BOOL=ON
 USES+=       kde:6 qt:6
-#USE_KDE=     libplasma
+USE_KDE=     kio #libplasma
 USE_QT+=     base
 .endif
 
