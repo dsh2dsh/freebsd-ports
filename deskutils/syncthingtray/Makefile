@@ -16,8 +16,9 @@ BUILD_DEPENDS=	${LOCALBASE}/share/ECM/cmake/ECMConfig.cmake:devel/kf5-extra-cmak
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
 		libboost_regex.so:devel/boost-libs
 
-FLAVORS= qt5 qt6
-FLAVOR?= ${FLAVORS:[1]}
+FLAVORS=     qt5 qt6
+FLAVOR?=     ${FLAVORS:[1]}
+FLAVORS_SUB= yes
 
 qt5_CONFLICTS_INSTALL= ${PORTNAME}-qt6
 qt6_PKGNAMESUFFIX=     -qt6
