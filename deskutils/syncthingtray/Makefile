@@ -45,7 +45,7 @@ USE_KDE=     plasma-framework
 USE_QT+=     concurrent core dbus gui network printsupport qdbus quickcontrols2 \
 	widgets x11extras buildtools:build linguist:build qmake:build testlib:build
 .else
-CMAKE_ARGS+= DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
+CMAKE_ARGS+= -DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
 USES+=       kde:6 qt:6
 USE_QT+=     base
 .endif
@@ -55,8 +55,8 @@ OPTIONS_DEFAULT= WEBENGINE
 
 WEBENGINE_DESC=      Built-in web view (webengine dependency)
 WEBENGINE_USE=       QT=webengine
-WEBENGINE_CMAKE_ON=  WEBVIEW_PROVIDER:STRING=webengine
-WEBENGINE_CMAKE_OFF= WEBVIEW_PROVIDER:STRING=none
+WEBENGINE_CMAKE_ON=  -DWEBVIEW_PROVIDER:STRING=webengine
+WEBENGINE_CMAKE_OFF= -DWEBVIEW_PROVIDER:STRING=none
 
 USE_PERL5=	build
 
