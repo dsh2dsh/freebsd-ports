@@ -24,7 +24,7 @@ qt5_CONFLICTS_INSTALL= ${PORTNAME}-qt6
 qt6_PKGNAMESUFFIX=     -qt6
 qt6_CONFLICTS_INSTALL= ${PORTNAME}
 
-USES=		cmake:insource compiler:c++11-lang desktop-file-utils iconv perl5
+USES= cmake:insource compiler:c++11-lang desktop-file-utils iconv perl5
 
 CMAKE_ARGS= -DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
 	-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
@@ -46,9 +46,9 @@ USE_KDE=     plasma-framework
 USE_QT+=     concurrent core dbus gui network printsupport qdbus quickcontrols2 \
 	widgets x11extras buildtools:build linguist:build qmake:build testlib:build
 .else
-CMAKE_ARGS+= -DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6 \
-	-DNO_PLASMOID:BOOL=ON
+CMAKE_ARGS+= -DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
 USES+=       kde:6 qt:6
+USE_GCC=     yes
 USE_KDE=     kio #libplasma
 USE_QT+=     base
 .endif
