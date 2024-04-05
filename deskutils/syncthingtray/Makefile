@@ -46,10 +46,10 @@ USE_KDE=     plasma-framework
 USE_QT+=     concurrent core dbus gui network printsupport qdbus quickcontrols2 \
 	widgets x11extras buildtools:build linguist:build qmake:build testlib:build
 .else
-CMAKE_ARGS+= -DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6 \
-	-DNO_PLASMOID:BOOL=ON
-USES+=       kde:6 qt:6
-USE_KDE=     kio #libplasma
+CMAKE_ARGS+= -DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
+USES+=       gl kde:6 qt:6
+USE_GL=      opengl
+USE_KDE=     libplasma
 USE_QT+=     base
 .endif
 
@@ -63,9 +63,10 @@ WEBENGINE_CMAKE_OFF= -DWEBVIEW_PROVIDER:STRING=none
 
 USE_PERL5=	build
 
-BUILD_WRKSRC=		${WRKDIR}
-CONFIGURE_WRKSRC=	${WRKDIR}
-INSTALL_WRKSRC=		${WRKDIR}
+BUILD_WRKSRC=     ${WRKDIR}
+CONFIGURE_WRKSRC= ${WRKDIR}
+INSTALL_WRKSRC=   ${WRKDIR}
+PATCH_WRKSRC=     ${WRKDIR}
 
 post-install:
 	${RM} -r \
