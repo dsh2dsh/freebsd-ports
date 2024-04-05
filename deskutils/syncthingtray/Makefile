@@ -24,7 +24,7 @@ qt5_CONFLICTS_INSTALL= ${PORTNAME}-qt6
 qt6_PKGNAMESUFFIX=     -qt6
 qt6_CONFLICTS_INSTALL= ${PORTNAME}
 
-USES=		cmake:insource compiler:c++11-lang desktop-file-utils iconv perl5
+USES=		cmake:insource compiler:c++17-lang desktop-file-utils iconv perl5
 
 CMAKE_ARGS= -DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
 	-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
