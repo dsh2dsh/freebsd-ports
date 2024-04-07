@@ -16,20 +16,20 @@ BUILD_DEPENDS=	${LOCALBASE}/share/ECM/cmake/ECMConfig.cmake:devel/kf5-extra-cmak
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
 		libboost_regex.so:devel/boost-libs
 
-FLAVORS=     qt5 qt6
-FLAVOR?=     ${FLAVORS:[1]}
-FLAVORS_SUB= yes
+FLAVORS=	qt5 qt6
+FLAVOR?=	${FLAVORS:[1]}
+FLAVORS_SUB=	yes
 
-qt5_CONFLICTS_INSTALL= ${PORTNAME}-qt6
-qt6_PKGNAMESUFFIX=     -qt6
-qt6_CONFLICTS_INSTALL= ${PORTNAME}
+qt5_CONFLICTS_INSTALL=	${PORTNAME}-qt6
+qt6_PKGNAMESUFFIX=	-qt6
+qt6_CONFLICTS_INSTALL=	${PORTNAME}
 
-USES= cmake:insource compiler:c++17-lang desktop-file-utils iconv perl5
+USES=		cmake:insource compiler:c++17-lang iconv perl5
 
-CMAKE_ARGS= -DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
-	-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
-CMAKE_OFF=  SYSTEMD_SUPPORT USE_STANDARD_FILESYSTEM
-CMAKE_SOURCE_PATH= ${WRKDIR}/subdirs/syncthingtray
+CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
+		-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
+CMAKE_OFF=	SYSTEMD_SUPPORT USE_STANDARD_FILESYSTEM
+CMAKE_SOURCE_PATH=	${WRKDIR}/subdirs/syncthingtray
 
 USE_GITHUB=	nodefault
 GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/../syncthingtray \
@@ -39,34 +39,37 @@ GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
 		Martchus:subdirs:0ad32a0:subdirs/../subdirs
 
-USE_QT=      declarative location svg webchannel doc:build
+USE_QT=		declarative svg doc:build
+USE_XORG+=	x11
 .if ${FLAVOR} == qt5
-USES+=       kde:5 qt:5
-USE_KDE=     plasma-framework
-USE_QT+=     concurrent core dbus gui network printsupport qdbus quickcontrols2 \
-	widgets x11extras buildtools:build linguist:build qmake:build testlib:build
+USES+=		kde:5 qt:5
+USE_KDE=	plasma-framework:build
+USE_QT+=	concurrent core dbus gui location network qdbus \
+		quickcontrols2:build widgets x11extras:build buildtools:build \
+		linguist:build qmake:build testlib:build
+WEBENGINE_USE=	QT=printsupport,webchannel,webengine
 .else
-CMAKE_ARGS+= -DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
-USES+=       gl kde:6 qt:6
-USE_GL=      opengl
-USE_KDE=     libplasma
-USE_QT+=     base
+CMAKE_ARGS+=	-DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
+USES+=		gl kde:6 qt:6
+USE_GL=		opengl
+USE_KDE=	libplasma:build
+USE_QT+=	base positioning:build
+WEBENGINE_USE=	QT=webchannel,webengine
 .endif
 
-OPTIONS_DEFINE=  WEBENGINE
-OPTIONS_DEFAULT= WEBENGINE
+OPTIONS_DEFINE=		WEBENGINE
+OPTIONS_DEFAULT=	WEBENGINE
 
-WEBENGINE_DESC=      Built-in web view (webengine dependency)
-WEBENGINE_USE=       QT=webengine
-WEBENGINE_CMAKE_ON=  -DWEBVIEW_PROVIDER:STRING=webengine
-WEBENGINE_CMAKE_OFF= -DWEBVIEW_PROVIDER:STRING=none
+WEBENGINE_DESC=		Built-in web view (webengine dependency)
+WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
+WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
 
 USE_PERL5=	build
 
-BUILD_WRKSRC=     ${WRKDIR}
-CONFIGURE_WRKSRC= ${WRKDIR}
-INSTALL_WRKSRC=   ${WRKDIR}
-PATCH_WRKSRC=     ${WRKDIR}
+BUILD_WRKSRC=		${WRKDIR}
+CONFIGURE_WRKSRC=	${WRKDIR}
+INSTALL_WRKSRC=		${WRKDIR}
+PATCH_WRKSRC=		${WRKDIR}
 
 post-install:
 	${RM} -r \
