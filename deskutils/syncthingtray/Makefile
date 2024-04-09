@@ -1,10 +1,10 @@
 PORTNAME=	syncthingtray
-PORTVERSION=	1.5.1
 DISTVERSIONPREFIX=	v
+DISTVERSION=	1.5.1
 CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
-COMMENT=	Qt 5-based Syncthing tray application
+COMMENT=	Qt ${FLAVOR:S/qt//}-based Syncthing tray application
 WWW=		https://github.com/Martchus/syncthingtray
 
 LICENSE=	GPLv2
@@ -24,7 +24,7 @@ qt5_CONFLICTS_INSTALL=	${PORTNAME}-qt6
 qt6_PKGNAMESUFFIX=	-qt6
 qt6_CONFLICTS_INSTALL=	${PORTNAME}
 
-USES=		cmake:insource compiler:c++17-lang iconv perl5
+USES=		cmake:insource iconv perl5 xorg
 
 CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
 		-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
@@ -40,7 +40,7 @@ GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/
 		Martchus:subdirs:0ad32a0:subdirs/../subdirs
 
 USE_QT=		declarative svg doc:build
-USE_XORG+=	x11
+USE_XORG=	x11
 .if ${FLAVOR} == qt5
 USES+=		kde:5 qt:5
 USE_KDE=	plasma-framework:build
@@ -53,7 +53,7 @@ CMAKE_ARGS+=	-DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
 USES+=		gl kde:6 qt:6
 USE_GL=		opengl
 USE_KDE=	libplasma:build
-USE_QT+=	base positioning:build
+USE_QT+=	base positioning
 WEBENGINE_USE=	QT=webchannel,webengine
 .endif
 
