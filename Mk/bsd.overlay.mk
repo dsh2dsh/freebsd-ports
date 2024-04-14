@@ -2,13 +2,22 @@
 _DSH_OVERLAY_INCLUDED=	yes
 
 .if defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
+# From bsd.ccache.mk, because it isn't included yet. The system includes
+# bsd.ccache.mk after bsd.overlay.mk.
+.  if defined(CCACHE_WRAPPER_PATH)
+CCACHE_PKG_PREFIX=	${CCACHE_WRAPPER_PATH:C,/libexec/ccache$,,}
+.  endif
+CCACHE_PKG_PREFIX?=	${LOCALBASE}
+CCACHE_WRAPPER_PATH?=	${CCACHE_PKG_PREFIX}/libexec/ccache
+CCACHE_BIN?=		${CCACHE_PKG_PREFIX}/bin/ccache
+
 .  if ${.CURDIR:M*/www/firefox}
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=224471
-MOZ_OPTIONS+=	--with-ccache
+MOZ_OPTIONS+=	--with-ccache=${CCACHE_BIN}
 
 .  elif ${.CURDIR:M*/www/ungoogled-chromium}
 # https://chromium.googlesource.com/chromium/src.git/+/master/docs/ccache_mac.md#use-with-gn
-GN_ARGS+= cc_wrapper="${SETENV} CCACHE_SLOPPINESS=time_macros ${CCACHE_BIN}"
+GN_ARGS+=	cc_wrapper="${SETENV} CCACHE_SLOPPINESS=time_macros ${CCACHE_BIN}"
 
 .  endif
 .endif # defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
