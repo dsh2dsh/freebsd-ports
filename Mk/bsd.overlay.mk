@@ -13,7 +13,7 @@ CCACHE_BIN?=		${CCACHE_PKG_PREFIX}/bin/ccache
 
 .  if ${.CURDIR:M*/www/firefox}
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=224471
-MOZ_OPTIONS+=	--with-ccache=${CCACHE_BIN}
+MOZ_OPTIONS+=	--with-ccache="${CCACHE_BIN}"
 
 .  elif ${.CURDIR:M*/www/ungoogled-chromium}
 # https://chromium.googlesource.com/chromium/src.git/+/master/docs/ccache_mac.md#use-with-gn
