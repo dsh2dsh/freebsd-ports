@@ -1,5 +1,7 @@
-TIMESTAMP = 1711824753
-SHA256 (go/net-mgmt_check_syncthing/check_syncthing-v0.0.2/v0.0.2.mod) = 5c2eb7d17f97893caa140e54409ac1ca9efb9f6aec8723c333e05da6b843d02a
-SIZE (go/net-mgmt_check_syncthing/check_syncthing-v0.0.2/v0.0.2.mod) = 575
-SHA256 (go/net-mgmt_check_syncthing/check_syncthing-v0.0.2/v0.0.2.zip) = 9e1cc1c59a5f4967cd9b225032c703bf1b0c7ac23fc685696000155bb685f46d
-SIZE (go/net-mgmt_check_syncthing/check_syncthing-v0.0.2/v0.0.2.zip) = 29783
+TIMESTAMP = 1713210410
+SHA256 (go/net-mgmt_check_syncthing/dsh2dsh-check_syncthing-v0.0.3_GH0/v0.0.3.mod) = 76fb3e5b2ec5b5cc4c1717b9a7d5a4d730aa8f73710763e1bbb371d528d5f6ce
+SIZE (go/net-mgmt_check_syncthing/dsh2dsh-check_syncthing-v0.0.3_GH0/v0.0.3.mod) = 575
+SHA256 (go/net-mgmt_check_syncthing/dsh2dsh-check_syncthing-v0.0.3_GH0/v0.0.3.zip) = 34c62dee09c35467abcf89526bf154ac1e4c3f999d451dd6d7dc0add2cb3aa34
+SIZE (go/net-mgmt_check_syncthing/dsh2dsh-check_syncthing-v0.0.3_GH0/v0.0.3.zip) = 37257
+SHA256 (go/net-mgmt_check_syncthing/dsh2dsh-check_syncthing-v0.0.3_GH0/dsh2dsh-check_syncthing-v0.0.3_GH0.tar.gz) = a853dc9f2fc15da85eed58cb7970fb1038f5c6febfd663d6756ff0cc34e9c846
+SIZE (go/net-mgmt_check_syncthing/dsh2dsh-check_syncthing-v0.0.3_GH0/dsh2dsh-check_syncthing-v0.0.3_GH0.tar.gz) = 25617
