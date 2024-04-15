@@ -1,23 +1,23 @@
-PORTNAME=	         check_syncthing
-DISTVERSIONPREFIX= v
-DISTVERSION=       0.0.3
-CATEGORIES=        net-mgmt
+PORTNAME=	check_syncthing
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.0.3
+CATEGORIES=	net-mgmt
 
-MAINTAINER=        dsh@bamus.cz
-COMMENT=           Icinga2 monitoring plugin for [syncthing] daemon
+MAINTAINER=	dsh@bamus.cz
+COMMENT=	Icinga2 monitoring plugin for [syncthing] daemon
 
-LICENSE=           MIT
-LICENSE_FILE=      ${WRKSRC}/LICENSE
+LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=              go:modules
+USES=		go:modules
 
-USE_GITHUB=        yes
-GH_ACCOUNT=        dsh2dsh
+USE_GITHUB=	yes
+GH_ACCOUNT=	dsh2dsh
 
-GO_MODULE=         github.com/dsh2dsh/${PORTNAME}
-GO_BUILDFLAGS=     -ldflags="-s -w"
+GO_MODULE=	github.com/dsh2dsh/${PORTNAME}
+GO_BUILDFLAGS=	-ldflags="-s -w"
 
-PLIST_FILES=       libexec/nagios/${PORTNAME}
+PLIST_FILES=	libexec/nagios/${PORTNAME}
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/nagios
