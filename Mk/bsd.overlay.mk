@@ -22,4 +22,9 @@ GN_ARGS+=	cc_wrapper="${SETENV} CCACHE_SLOPPINESS=time_macros ${CCACHE_BIN}"
 .  endif
 .endif # defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
 
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=274142
+.if ${.CURDIR:M*/www/firefox}
+MAKE_ENV+=	CARGO_BUILD_JOBS=${MAKE_JOBS_NUMBER}
+.endif
+
 .endif # !defined(_DSH_OVERLAY_INCLUDED)
