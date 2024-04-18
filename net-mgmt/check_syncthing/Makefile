@@ -1,6 +1,6 @@
 PORTNAME=	check_syncthing
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.3
+DISTVERSION=	0.0.4
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	dsh@bamus.cz
