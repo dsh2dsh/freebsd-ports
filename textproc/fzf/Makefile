@@ -1,13 +1,11 @@
 PORTNAME=	fzf
-DISTVERSION=	0.42.0
-PORTREVISION=	4
+DISTVERSION=	0.48.1
 CATEGORIES=	textproc
 MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 DISTFILES=	go.mod:gomod
 
 MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Blazing fast command-line fuzzy finder
-WWW=		https://github.com/junegunn/fzf/
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -21,15 +19,11 @@ GH_PROJECT=	fzf
 GO_MODULE=	github.com/junegunn/fzf
 GO_BUILDFLAGS=	-ldflags="-X main.revision=${COMMIT_ID} -s -w"
 
-COMMIT_ID=	2023012
+COMMIT_ID=	d579e33
 
-SUB_FILES=	pkg-message
 PLIST_FILES=	bin/fzf share/man/man1/fzf.1.gz
-PORTEXAMPLES=	shell/completion.bash shell/completion.zsh \
-		shell/key-bindings.bash shell/key-bindings.fish \
-		shell/key-bindings.zsh
 
-OPTIONS_DEFINE=		EXAMPLES TMUX
+OPTIONS_DEFINE=		TMUX
 OPTIONS_DEFAULT=	TMUX
 
 TMUX_DESC=	Install fzf-tmux (depends on BASH)
@@ -39,9 +33,6 @@ TMUX_PLIST_FILES=	bin/fzf-tmux share/man/man1/fzf-tmux.1.gz
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf.1 ${STAGEDIR}${PREFIX}/share/man/man1
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	(cd ${WRKSRC} && \
-	    ${COPYTREE_SHARE} shell ${STAGEDIR}${EXAMPLESDIR})
 
 post-install-TMUX-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/${PORTNAME}-tmux ${STAGEDIR}${PREFIX}/bin

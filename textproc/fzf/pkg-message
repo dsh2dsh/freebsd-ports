@@ -1,0 +1,24 @@
+[
+{ type: install
+  message: <<EOM
+Shell integration scripts are now embedded in the fzf binary. This simplifies
+the distribution, and the users are less likely to have problems caused by using
+incompatible scripts and binaries.
+
+    bash
+
+    # Set up fzf key bindings and fuzzy completion
+    eval "$(fzf --bash)"
+
+    zsh
+
+    # Set up fzf key bindings and fuzzy completion
+    eval "$(fzf --zsh)"
+
+    fish
+
+    # Set up fzf key bindings
+    fzf --fish | source
+EOM
+}
+]
