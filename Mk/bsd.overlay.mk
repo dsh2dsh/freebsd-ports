@@ -11,6 +11,13 @@ CCACHE_PKG_PREFIX?=	${LOCALBASE}
 CCACHE_WRAPPER_PATH?=	${CCACHE_PKG_PREFIX}/libexec/ccache
 CCACHE_BIN?=		${CCACHE_PKG_PREFIX}/bin/ccache
 
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=246245
+MAKE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
+TEST_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
+CONFIGURE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
+CFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
+CXXFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
+
 .  if ${.CURDIR:M*/www/firefox}
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=224471
 MOZ_OPTIONS+=	--with-ccache="${CCACHE_BIN}"
