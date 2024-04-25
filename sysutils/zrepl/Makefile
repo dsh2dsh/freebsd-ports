@@ -1,6 +1,6 @@
 PORTNAME=          zrepl
 DISTVERSIONPREFIX= v
-DISTVERSION=       0.6.11
+DISTVERSION=       0.6.13
 CATEGORIES=        sysutils
 
 MAINTAINER=        dsh@bamus.cz
