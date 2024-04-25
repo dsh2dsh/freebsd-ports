@@ -3,9 +3,13 @@
 #
 global:
   logging:
-    - type: "stdout"
-      level:  "error"
-      format: "human"
+    - type: "file"
+      format: "text"            # or "json"
+      time: false               # don't prepend with date and time
+      hide_fields:
+        - "span"                # don't log "span" field
+      level:  "error"           # log errors only
+      # without filename logs to stderr
     - type: "syslog"
       level:  "info"
       format: "logfmt"
