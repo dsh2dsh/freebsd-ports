@@ -15,7 +15,7 @@ USES=              go:modules ncurses
 USE_RC_SUBR=       ${PORTNAME}
 
 GO_MODULE=         github.com/dsh2dsh/${PORTNAME}
-GO_BUILDFLAGS=     -ldflags "${STRIP} -w -X github.com/${PORTNAME}/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
+GO_BUILDFLAGS=     -ldflags "${STRIP} -w -X github.com/dsh2dsh/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
 
 SUB_FILES=         pkg-message 500.zrepl
 
