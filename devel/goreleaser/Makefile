@@ -1,6 +1,6 @@
 PORTNAME=	goreleaser
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.26.0
+DISTVERSION=	1.26.1
 CATEGORIES=	devel
 
 MAINTAINER=	fuz@FreeBSD.org
@@ -10,7 +10,7 @@ WWW=		https://goreleaser.com/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-USES=		go,modules
+USES=		go:modules
 GO_MODULE=	github.com/goreleaser/goreleaser
 GO_BUILDFLAGS=	-ldflags="-X main.version=${PKGVERSION} -X 'main.builtBy=FreeBSD ports' ${STRIP}"
 
