@@ -6,16 +6,14 @@ Messages from sysutils/zrepl:
 SETUP BEFORE FIRST USE:
 - Create the log file /var/log/zrepl.log:
   # service newsyslog restart
-- Teach syslogd to redirect facility local0 to the zrepl.log file:
-  # service syslogd reload
 - Modify the %%PREFIX%%/etc/zrepl/zrepl.yml configuration file
-- For remote backups, create the SSH key pair and authorized_keys file
 - Enable the zrepl daemon to start automatically at boot:
   # sysrc zrepl_enable="YES"
 - Start the zrepl daemon:
   # service zrepl start
-  
-Documentation: https://zrepl.github.io/
+
+Documentation: https://github.com/dsh2dsh/zrepl?tab=readme-ov-file#changes-from-upstream
+               https://zrepl.github.io/
 Changelog:     https://zrepl.github.io/master/changelog.html
 
 DANGER - SNAPSHOT PRUNING REQUIRES EXPLICIT KEEP RULES:
