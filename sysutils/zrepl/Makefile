@@ -25,11 +25,9 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
 		${STAGEDIR}${ETCDIR} \
 		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d \
-		${STAGEDIR}${PREFIX}/etc/syslog.d \
 		${STAGEDIR}/var/run/zrepl
 	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
 		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
-	${INSTALL_DATA} ${FILESDIR}/syslog.conf ${STAGEDIR}${EXAMPLESDIR}/syslog.conf
 	${INSTALL_DATA} ${FILESDIR}/zrepl.yml ${STAGEDIR}${ETCDIR}/zrepl.yml.sample
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/weekly
 	${INSTALL_SCRIPT} ${WRKDIR}/500.zrepl \

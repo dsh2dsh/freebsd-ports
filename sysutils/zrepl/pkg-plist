@@ -20,7 +20,5 @@ etc/periodic/weekly/500.zrepl
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/snap_cron.yml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/source.yml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/source_ssh.yml
-@sample %%EXAMPLESDIR%%/syslog.conf etc/syslog.d/zrepl.conf
 @dir etc/newsyslog.conf.d
-@dir etc/syslog.d
 @dir(root,wheel,0750) /var/run/zrepl
