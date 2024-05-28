@@ -35,7 +35,6 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		libicutu.so:devel/icu \
 		liblz4.so:archivers/liblz4 \
 		libhidapi.so:comms/hidapi \
-		libfido2.so:security/libfido2 \
 		${LIB_DEPENDS_${ARCH}}
 LIB_DEPENDS_aarch64=	libunwind.so:devel/libunwind
 LIB_DEPENDS_amd64=	libunwind.so:devel/libunwind
