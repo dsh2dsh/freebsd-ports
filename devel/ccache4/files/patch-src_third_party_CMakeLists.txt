@@ -1,0 +1,10 @@
+--- src/third_party/CMakeLists.txt.orig	2024-05-30 16:46:34.095901000 +0200
++++ src/third_party/CMakeLists.txt	2024-05-30 21:58:40.626470000 +0200
+@@ -13,3 +13,7 @@
+ if(NOT TARGET dep_tlexpected)
+   add_subdirectory(tl-expected)
+ endif()
++if(NOT TARGET dep_fmt)
++  add_subdirectory(fmt)
++  add_library(dep_fmt ALIAS fmt)
++endif()

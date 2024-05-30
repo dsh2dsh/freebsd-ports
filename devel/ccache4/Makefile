@@ -23,10 +23,6 @@ SUB_FILES=	world-ccache ccache-update-links.sh ccache_clean
 # Prevent infinite recursion.
 NO_CCACHE_DEPEND=	yes
 
-LIB_DEPENDS+=	libzstd.so:archivers/zstd \
-		libfmt.so:devel/libfmt \
-		libxxhash.so:devel/xxhash
-
 # /bin/bash -> /bin/sh to reduce tests dep.
 SHEBANG_FILES=	test/*
 SHEBANG_GLOB=	*.sh *.bash
@@ -50,6 +46,12 @@ DOCS_CMAKE_BOOL=	ENABLE_DOCUMENTATION
 CLANGLINK_DESC=	Create clang compiler links if clang is installed
 LLVMLINK_DESC=	Create llvm compiler links if llvm is installed
 
+STATIC_GH_TUPLE=	fmtlib:fmt:e69e5f9:libfmt/src/third_party/fmt
+STATIC_BUILD_DEPENDS=	${LOCALBASE}/lib/libzstd.a:archivers/zstd \
+			${LOCALBASE}/lib/libxxhash.a:devel/xxhash
+STATIC_LIB_DEPENDS_OFF=	libzstd.so:archivers/zstd \
+			libfmt.so:devel/libfmt \
+			libxxhash.so:devel/xxhash
 STATIC_LDFLAGS=	-static
 STATIC_CMAKE_BOOL=	STATIC_LINK
 
@@ -99,5 +101,12 @@ post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${BUILD_WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/*.adoc ${STAGEDIR}${DOCSDIR}
+
+post-install-STATIC-on:
+	${RM} -r \
+		${STAGEDIR}${PREFIX}/include/fmt \
+		${STAGEDIR}${PREFIX}/lib/cmake \
+		${STAGEDIR}${PREFIX}/lib/libfmt.a \
+		${STAGEDIR}${PREFIX}/libdata/pkgconfig/fmt.pc
 
 .include <bsd.port.post.mk>
