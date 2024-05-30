@@ -1,6 +1,6 @@
 PORTNAME=	ccache
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.10
+DISTVERSION=	4.9.1
 CATEGORIES=	devel
 PKGNAMESUFFIX=	4
 
@@ -23,9 +23,7 @@ SUB_FILES=	world-ccache ccache-update-links.sh ccache_clean
 # Prevent infinite recursion.
 NO_CCACHE_DEPEND=	yes
 
-LIB_DEPENDS+=	libzstd.so:archivers/zstd \
-		libfmt.so:devel/libfmt \
-		libxxhash.so:devel/xxhash
+LIB_DEPENDS+=	libzstd.so:archivers/zstd
 
 # /bin/bash -> /bin/sh to reduce tests dep.
 SHEBANG_FILES=	test/*
@@ -34,9 +32,9 @@ bash_CMD=	/bin/sh
 
 CMAKE_OFF=	WARNINGS_AS_ERRORS \
 		ENABLE_IPO \
+		ZSTD_FROM_INTERNET \
 		ENABLE_TRACING \
 		REDIS_STORAGE_BACKEND
-CMAKE_ARGS+=	-D DEPS=LOCAL
 
 OPTIONS_DEFINE=	DOCS CLANGLINK LLVMLINK STATIC TEST
 OPTIONS_DEFAULT=CLANGLINK LLVMLINK
