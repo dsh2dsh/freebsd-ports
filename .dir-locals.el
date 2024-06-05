@@ -1,4 +1,4 @@
 ;;; Directory Local Variables            -*- no-byte-compile: t -*-
 ;;; For more information see (info "(emacs) Directory Variables")
 
-((makefile-mode . ((tab-width . 8))))
+((makefile-mode . ((tab-width . 4))))
