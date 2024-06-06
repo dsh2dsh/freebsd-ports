@@ -1,5 +1,5 @@
 PORTNAME=	fzf
-DISTVERSION=	0.52.1
+DISTVERSION=	0.53.0
 CATEGORIES=	textproc
 MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 DISTFILES=	go.mod:gomod
@@ -19,7 +19,7 @@ GH_PROJECT=	fzf
 GO_MODULE=	github.com/junegunn/fzf
 GO_BUILDFLAGS=	-ldflags="-X main.revision=${COMMIT_ID} ${STRIP} -w"
 
-COMMIT_ID=	bcda25a
+COMMIT_ID=	c4a9ccd
 
 PLIST_FILES=	bin/fzf share/man/man1/fzf.1.gz
 
