@@ -1,26 +1,26 @@
-PORTNAME=          zrepl
-DISTVERSIONPREFIX= v
-DISTVERSION=       0.7.7
-DISTVERSIONSUFFIX= -0.20240607181835-70696e6629bf
+PORTNAME=		zrepl
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.7.7
+DISTVERSIONSUFFIX=	-0.20240607181835-70696e6629bf
 
-CATEGORIES=        sysutils
+CATEGORIES=		sysutils
 
-MAINTAINER=        dsh@bamus.cz
-COMMENT=           ZFS dataset replication tool
-WWW=               https://github.com/dsh2dsh/${PORTNAME}
+MAINTAINER=		dsh@bamus.cz
+COMMENT=		ZFS dataset replication tool
+WWW=			https://github.com/dsh2dsh/${PORTNAME}
 
-LICENSE=           MIT
-LICENSE_FILE=      ${WRKSRC}/LICENSE
+LICENSE=		MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=              go:modules ncurses
-USE_RC_SUBR=       ${PORTNAME}
+USES=			go:modules ncurses
+USE_RC_SUBR=	${PORTNAME}
 
-GO_MODULE=         github.com/dsh2dsh/${PORTNAME}
-GO_BUILDFLAGS=     -ldflags "${STRIP} -w -X github.com/dsh2dsh/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
+GO_MODULE=		github.com/dsh2dsh/${PORTNAME}
+GO_BUILDFLAGS=	-ldflags "${STRIP} -w -X github.com/dsh2dsh/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
 
-SUB_FILES=         pkg-message 500.zrepl
+SUB_FILES=		pkg-message 500.zrepl
 
-OPTIONS_DEFINE=    EXAMPLES
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
