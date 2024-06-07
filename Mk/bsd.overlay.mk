@@ -22,6 +22,8 @@ CONFIGURE_ENV+=	CCACHE_DISABLE=yes
 CFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
 CXXFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
 
+_USES_configure+=	250:ccache-update-links
+
 .  if ${.CURDIR:M*/www/firefox}
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=224471
 MOZ_OPTIONS+=	--with-ccache="${CCACHE_BIN}"
@@ -37,5 +39,9 @@ GN_ARGS+=	cc_wrapper="${CCACHE_BIN}"
 .if ${.CURDIR:M*/www/firefox}
 MAKE_ENV+=	CARGO_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 .endif
+
+ccache-update-links:
+	@${ECHO_MSG} "==> ccache-update-links"
+	ccache-update-links -v
 
 .endif # !defined(_DSH_OVERLAY_INCLUDED)
