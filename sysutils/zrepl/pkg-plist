@@ -2,7 +2,6 @@ bin/zrepl
 etc/periodic/weekly/500.zrepl
 @sample %%ETCDIR%%/zrepl.yml.sample
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/bandwidth_limit.yml
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/empty.yml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/grafana-prometheus-zrepl.json
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/hooks/template.sh
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/local.yml
