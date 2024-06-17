@@ -1,4 +1,5 @@
 #!/bin/sh
+#-*- indent-tabs-mode: t -*-
 #
 # MAINTAINER: portmgr@FreeBSD.org
 
@@ -135,10 +136,15 @@ for _file in "${@}"; do
 						;;
 					*)
 						mkdir -p "${file%/*}"
-						early_args="-o ${file}"
+						tmp_file=$(mktemp "$file.XXXXXXXXXX")
+						early_args="-o ${tmp_file}"
 						;;
 				esac
 			;;
+			*)
+				tmp_file=$(mktemp "$file.XXXXXXXXXX")
+				early_args="-o ${tmp_file}"
+				;;
 		esac
 		args="${early_args:+${early_args} }${site}${file}"
 		_fetch_cmd="${dp_FETCH_CMD} ${dp_FETCH_BEFORE_ARGS}"
@@ -150,6 +156,9 @@ for _file in "${@}"; do
 			do-fetch|makesum)
 				${dp_ECHO_MSG} "=> Attempting to fetch ${site}${file}"
 				if env -S "${dp_FETCH_ENV}" ${_fetch_cmd}; then
+					[ "$tmp_file" ] && [ -f "$tmp_file" ] && \
+						mv -f "$tmp_file" "$file" && chmod 644 "$file"
+					unset tmp_file
 					actual_size=$(stat -f %z "${file}")
 					if [ -n "${dp_DISABLE_SIZE}" ] || [ -z "${CKSIZE}" ] || [ "${actual_size}" -eq "${CKSIZE}" ]; then
 						continue 2
@@ -161,6 +170,7 @@ for _file in "${@}"; do
 						fi
 					fi
 				fi
+				unset tmp_file
 				;;
 			fetch-list)
 				echo -n "env $(escape "${_fetch_cmd}") || "
