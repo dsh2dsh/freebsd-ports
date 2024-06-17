@@ -12,7 +12,6 @@ LICENSE=		MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=			go:modules ncurses
-CGO_ENABLED=	0
 USE_RC_SUBR=	${PORTNAME}
 
 GO_MODULE=		github.com/dsh2dsh/${PORTNAME}
