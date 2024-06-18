@@ -157,7 +157,7 @@ for _file in "${@}"; do
 				${dp_ECHO_MSG} "=> Attempting to fetch ${site}${file}"
 				if env -S "${dp_FETCH_ENV}" ${_fetch_cmd}; then
 					[ "$tmp_file" ] && [ -f "$tmp_file" ] && \
-						mv -f "$tmp_file" "$file" && chmod 644 "$file"
+						chmod 644 "$tmp_file" && mv -f "$tmp_file" "$file"
 					unset tmp_file
 					actual_size=$(stat -f %z "${file}")
 					if [ -n "${dp_DISABLE_SIZE}" ] || [ -z "${CKSIZE}" ] || [ "${actual_size}" -eq "${CKSIZE}" ]; then
@@ -170,7 +170,6 @@ for _file in "${@}"; do
 						fi
 					fi
 				fi
-				unset tmp_file
 				;;
 			fetch-list)
 				echo -n "env $(escape "${_fetch_cmd}") || "
@@ -179,6 +178,8 @@ for _file in "${@}"; do
 				echo ${args}
 				;;
 		esac
+		[ "$tmp_file" ] && [ -f "$tmp_file" ] && rm -f "$tmp_file"
+		unset tmp_file
 	done
 	case ${dp_TARGET} in
 		do-fetch|makesum)
