@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	zrepl
 
-USES=			go:modules ncurses
+USES=			go:1.22,modules ncurses
 USE_RC_SUBR=	zrepl
 
 GO_MODULE=		github.com/dsh2dsh/zrepl
