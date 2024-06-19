@@ -1,21 +1,23 @@
-PORTNAME=		zrepl
+PORTNAME=		zrepl-dsh2dsh
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.7.8
 
 CATEGORIES=		sysutils
 
 MAINTAINER=		dsh@bamus.cz
-COMMENT=		ZFS dataset replication tool
-WWW=			https://github.com/dsh2dsh/${PORTNAME}
+COMMENT=		ZFS dataset replication tool (fork with more features)
+WWW=			https://github.com/dsh2dsh/zrepl
 
 LICENSE=		MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=			go:modules ncurses
-USE_RC_SUBR=	${PORTNAME}
+CONFLICTS_INSTALL=	zrepl
 
-GO_MODULE=		github.com/dsh2dsh/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags "${STRIP} -w -X github.com/dsh2dsh/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
+USES=			go:modules ncurses
+USE_RC_SUBR=	zrepl
+
+GO_MODULE=		github.com/dsh2dsh/zrepl
+GO_BUILDFLAGS=	-ldflags "${STRIP} -w -X github.com/dsh2dsh/zrepl/version.zreplVersion=${DISTVERSIONFULL}"
 
 SUB_FILES=		pkg-message 500.zrepl
 
