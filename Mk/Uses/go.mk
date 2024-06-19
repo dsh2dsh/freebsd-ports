@@ -1,3 +1,20 @@
+.if !defined(_INCLUDE_USES_GO_MK)
+
+# If a port USES specific go version and DEFAULT_VERSIONS specifies higher
+# version, use it, instead of lower go version from USES. Example:
+#
+#   DEFAULT_VERSIONS+=	go=1.22
+#   USES=	go:1.21
+#
+# In this example a port builded with lang/go122 instead of lang/go121, because
+# DEFAULT_VERSIONS specifies higher version of go.
+GO_VERSION=	${go_ARGS:M[1-9].*:U${GO_DEFAULT}}
+.  if ${GO_VERSION:N*-devel} && ${GO_VERSION} < ${GO_DEFAULT}
+go_ARGS:=	${go_ARGS:S/${GO_VERSION}/${GO_DEFAULT}/1}
+.  endif
+
+.endif # !defined(_INCLUDE_USES_GO_MK)
+
 .include "${USESDIR}/go.mk"
 
 .if !defined(_DSH_INCLUDE_USES_GO_MK)
