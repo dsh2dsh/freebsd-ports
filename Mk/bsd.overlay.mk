@@ -29,6 +29,8 @@ _USES_configure+=	250:ccache-update-links
 MOZ_OPTIONS+=	--with-ccache="${CCACHE_BIN}"
 
 .  elif ${.CURDIR:M*/www/ungoogled-chromium}
+# Use separate CCACHE_DIR
+CCACHE_DIR:=	${CCACHE_DIR}/chromium
 # https://chromium.googlesource.com/chromium/src.git/+/master/docs/ccache_mac.md#use-with-gn
 GN_ARGS+=	cc_wrapper="${CCACHE_BIN}"
 
