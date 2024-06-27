@@ -1,5 +1,5 @@
-TIMESTAMP = 1719501735
-SHA256 (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.1/v0.2.1.mod) = 129907e59a4b38574840931f568eea72386f1691bee98c014d6230389fc34dcb
-SIZE (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.1/v0.2.1.mod) = 2737
-SHA256 (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.1/v0.2.1.zip) = 1f17338aa96c359d4b14d5372cc52aa1c0ca837fb61d07a72aa42fb718f4dfb8
-SIZE (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.1/v0.2.1.zip) = 15410
+TIMESTAMP = 1719503492
+SHA256 (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.2/v0.2.2.mod) = 129907e59a4b38574840931f568eea72386f1691bee98c014d6230389fc34dcb
+SIZE (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.2/v0.2.2.mod) = 2737
+SHA256 (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.2/v0.2.2.zip) = 890b3f5f70841b4d37a6bb7fd62f2d6f978e9c9755c56c49f0f8d154091adb89
+SIZE (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.2/v0.2.2.zip) = 15437
