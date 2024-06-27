@@ -1,6 +1,6 @@
 PORTNAME=		expx-dbcopy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.2.0
+DISTVERSION=	0.2.1
 CATEGORIES=		sysutils
 
 MAINTAINER=		dsh@bamus.cz
