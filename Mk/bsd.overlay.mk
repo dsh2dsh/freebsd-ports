@@ -24,12 +24,8 @@ CCACHE_DIR:=	${CCACHE_DIR}/${CCACHE_SUBDIR}
 
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=246245
 MAKE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
-# Disable ccache for test: reduce possible error surface.
-TEST_ENV+=	CCACHE_DISABLE=yes
-# Disable ccache for configure:
-# 1. Performance profit is negative.
-# 2. CMake have some issues and may miss /usr/local/include in some cases.
-CONFIGURE_ENV+=	CCACHE_DISABLE=yes
+TEST_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
+CONFIGURE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
 CFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
 CXXFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
 
