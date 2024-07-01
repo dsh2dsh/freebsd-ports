@@ -1,6 +1,6 @@
 PORTNAME=	ccache
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.10
+DISTVERSION=	4.10.1
 CATEGORIES=	devel
 PKGNAMESUFFIX=	4
 
@@ -23,6 +23,9 @@ SUB_FILES=	world-ccache ccache-update-links.sh ccache_clean
 # Prevent infinite recursion.
 NO_CCACHE_DEPEND=	yes
 
+LIB_DEPENDS+=	libzstd.so:archivers/zstd \
+		libxxhash.so:devel/xxhash
+
 # /bin/bash -> /bin/sh to reduce tests dep.
 SHEBANG_FILES=	test/*
 SHEBANG_GLOB=	*.sh *.bash
@@ -32,7 +35,7 @@ CMAKE_OFF=	WARNINGS_AS_ERRORS \
 		ENABLE_IPO \
 		ENABLE_TRACING \
 		REDIS_STORAGE_BACKEND
-CMAKE_ARGS+=	-D DEPS=LOCAL
+CMAKE_ARGS+=	-D DEPS=LOCAL -D DEP_FMT=BUNDLED
 
 OPTIONS_DEFINE=	DOCS CLANGLINK LLVMLINK STATIC TEST
 OPTIONS_DEFAULT=CLANGLINK LLVMLINK
@@ -46,12 +49,6 @@ DOCS_CMAKE_BOOL=	ENABLE_DOCUMENTATION
 CLANGLINK_DESC=	Create clang compiler links if clang is installed
 LLVMLINK_DESC=	Create llvm compiler links if llvm is installed
 
-STATIC_GH_TUPLE=	fmtlib:fmt:e69e5f9:libfmt/src/third_party/fmt
-STATIC_BUILD_DEPENDS=	${LOCALBASE}/lib/libzstd.a:archivers/zstd \
-			${LOCALBASE}/lib/libxxhash.a:devel/xxhash
-STATIC_LIB_DEPENDS_OFF=	libzstd.so:archivers/zstd \
-			libfmt.so:devel/libfmt \
-			libxxhash.so:devel/xxhash
 STATIC_LDFLAGS=	-static
 STATIC_CMAKE_BOOL=	STATIC_LINK
 
@@ -67,7 +64,7 @@ PLIST_SUB+=		CCLINKDIR="${CCLINKDIR}"
 CCACHE_COMPILERS+=	icc icpc
 .endif
 
-GNU_COMPILERS+=		48 8 9 10 11 12 13
+GNU_COMPILERS+=		10 11 12 13 14
 CCACHE_COMPILERS+=	cc c++ CC gcc g++ ${GNU_COMPILERS:S|^|gcc|} \
 			${GNU_COMPILERS:S|^|g++|} \
 			${GNU_COMPILERS:S|^|cpp|}
@@ -101,12 +98,5 @@ post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${BUILD_WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/*.adoc ${STAGEDIR}${DOCSDIR}
-
-post-install-STATIC-on:
-	${RM} -r \
-		${STAGEDIR}${PREFIX}/include/fmt \
-		${STAGEDIR}${PREFIX}/lib/cmake \
-		${STAGEDIR}${PREFIX}/lib/libfmt.a \
-		${STAGEDIR}${PREFIX}/libdata/pkgconfig/fmt.pc
 
 .include <bsd.port.post.mk>
