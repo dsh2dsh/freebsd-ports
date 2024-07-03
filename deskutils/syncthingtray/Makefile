@@ -11,7 +11,6 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKDIR}/syncthingtray/LICENSE
 
 BUILD_DEPENDS=	${LOCALBASE}/share/ECM/cmake/ECMConfig.cmake:devel/kf5-extra-cmake-modules \
-		doxygen:devel/doxygen \
 		p5-YAML-LibYAML>0:textproc/p5-YAML-LibYAML
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
 		libboost_regex.so:devel/boost-libs
@@ -29,6 +28,7 @@ USES=		cmake:insource iconv perl5 xorg
 CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
 		-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
 CMAKE_OFF=	SYSTEMD_SUPPORT USE_STANDARD_FILESYSTEM
+CMAKE_ON=	NO_DOXYGEN
 CMAKE_SOURCE_PATH=	${WRKDIR}/subdirs/syncthingtray
 
 USE_GITHUB=	nodefault
@@ -39,7 +39,7 @@ GH_TUPLE=	Martchus:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:syncthingtray/
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
 		Martchus:subdirs:088907b:subdirs/../subdirs
 
-USE_QT=		declarative svg doc:build
+USE_QT=		declarative svg
 USE_XORG=	x11
 .if ${FLAVOR} == qt5
 USES+=		kde:5 qt:5
