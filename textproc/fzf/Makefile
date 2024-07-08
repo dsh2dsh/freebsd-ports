@@ -1,25 +1,21 @@
 PORTNAME=	fzf
-DISTVERSION=	0.53.0
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.54.0
 CATEGORIES=	textproc
-MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
-DISTFILES=	go.mod:gomod
 
 MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Blazing fast command-line fuzzy finder
+WWW=		https://github.com/junegunn/${PORTNAME}
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	junegunn
-GH_PROJECT=	fzf
-
-GO_MODULE=	github.com/junegunn/fzf
+GO_MODULE=	github.com/junegunn/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags="-X main.revision=${COMMIT_ID} ${STRIP} -w"
 
-COMMIT_ID=	c4a9ccd
+COMMIT_ID=	9e92b6f
 
 PLIST_FILES=	bin/fzf share/man/man1/fzf.1.gz
 
