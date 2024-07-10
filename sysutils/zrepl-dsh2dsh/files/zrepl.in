@@ -50,8 +50,9 @@ command_args="-p $pidfile -S -l $zrepl_facility -s $zrepl_priority -T $name \
 start_precmd="zrepl_precmd"
 restart_precmd="zrepl_checkconfig"
 configtest_cmd="zrepl_checkconfig"
+graceful_cmd="zrepl_graceful"
 gracefulstop_cmd="zrepl_gracefulstop"
-extra_commands="configtest gracefulstop"
+extra_commands="configtest graceful gracefulstop"
 
 zrepl_checkconfig() {
     echo "Performing sanity check on zrepl configuration:"
@@ -65,6 +66,15 @@ zrepl_precmd() {
                 "/var/run/zrepl/stdinserver"
     fi
     zrepl_checkconfig
+}
+
+zrepl_graceful() {
+    local _rc_prefix _return
+		( run_rc_command gracefulstop $rc_extra_args )
+		( run_rc_command start $rc_extra_args )
+		_return=$?
+		[ $_return -ne 0 ] && [ -z "$rc_force" ] && return 1
+    return $_return
 }
 
 zrepl_gracefulstop() {
