@@ -25,6 +25,10 @@
 #                       Default: local0
 # zrepl_priority (str): Syslog priority to use
 #                       Default: alert
+#
+# zrepl_gracefully (bool): Set to YES to always stop the zrepl service
+#                          gracefully.
+#                          Default: NO
 
 . /etc/rc.subr
 
@@ -40,6 +44,7 @@ load_rc_config "$name"
 : ${zrepl_facility:="local0"}
 : ${zrepl_priority:="alert"}
 : ${zrepl_options:="$zrepl_flags --config $zrepl_config"}
+: ${zrepl_gracefully:="NO"}
 
 pidfile="/var/run/zrepl.pid"
 command="/usr/sbin/daemon"
@@ -87,5 +92,9 @@ zrepl_gracefulstop() {
     eval "$procname" signal shutdown
     wait_for_pids "$rc_pid"
 }
+
+if checkyesno zrepl_gracefully; then
+    stop_cmd="zrepl_gracefulstop"
+fi
 
 run_rc_command "$1"
