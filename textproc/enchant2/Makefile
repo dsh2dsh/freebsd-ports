@@ -1,8 +1,7 @@
 PORTNAME=	enchant
-PORTVERSION=	2.2.15
-PORTREVISION=	5
+DISTVERSIONPREFIX=	v
+DISTVERSION=	2.6.2
 CATEGORIES=	textproc gnome
-MASTER_SITES=	https://github.com/AbiWord/enchant/releases/download/v${PORTVERSION}/
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	gnome@FreeBSD.org
@@ -12,14 +11,17 @@ WWW=		https://abiword.github.io/enchant/
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
-USES=		compiler:c++11-lib gmake gnome libtool localbase pathfix \
-		pkgconfig
+USES=		compiler:c++11-lib gmake gnome libtool localbase pathfix pkgconfig
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	AbiWord
+GH_PROJECT=	enchant
+
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--without-applespell \
-		--without-voikko
+CONFIGURE_ARGS=	--without-applespell --without-voikko
 
 INSTALL_TARGET=	install-strip
 
@@ -58,5 +60,7 @@ PLIST_SUB+=	LIBVERSION="${PORTVERSION}"
 post-patch:
 	@${REINPLACE_CMD} -e 's|MKDIRPROG-mkdir|MKDIRPROG-mkdir -p|g' \
 		${WRKSRC}/install-sh
+	@${REINPLACE_CMD} -e 's|groff -mandoc|mandoc -mdoc|g' \
+		${WRKSRC}/src/Makefile.am
 
 .include <bsd.port.mk>
