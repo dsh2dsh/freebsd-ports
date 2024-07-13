@@ -1,26 +1,30 @@
 PORTNAME=	hunspell
-PORTVERSION=	20131101
+PORTVERSION=	2024.04.18
+DISTVERSION=	8c5b631
 CATEGORIES=	russian textproc
-MASTER_SITES=	http://cdn.bitbucket.org/Shaman_Alex/russian-dictionary-hunspell/downloads/
-DISTNAME=	ru_RU_UTF-8_${PORTVERSION}
-DIST_SUBDIR=	${PORTNAME}
+PKGNAMEPREFIX=	ru-
 
 MAINTAINER=	office@FreeBSD.org
 COMMENT=	Russian hunspell dictionaries
-WWW=		http://code.google.com/p/hunspell-ru/
 
 LICENSE=	LGPL3
 
-USES=		zip
+USE_GITHUB=	yes
+GH_ACCOUNT=	LibreOffice
+GH_PROJECT=	dictionaries
+
+WRKSRC_SUBDIR=	ru_RU
+EXTRACT_AFTER_ARGS=	--include ${GH_PROJECT}-${GH_TAGNAME}/${WRKSRC_SUBDIR}/* \
+			--no-same-owner --no-same-permissions
+
 NO_ARCH=	yes
 NO_BUILD=	yes
-NO_WRKSUBDIR=	yes
 
-PLIST_FILES=	${DATADIR}/ru_RU.aff \
-		${DATADIR}/ru_RU.dic
+PLIST_FILES=	${DATADIR}/ru_RU.aff ${DATADIR}/ru_RU.dic
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/ru_RU.aff ${WRKSRC}/ru_RU.dic ${STAGEDIR}${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/ru_RU.aff ${WRKSRC}/ru_RU.dic \
+		${STAGEDIR}${DATADIR}/
 
 .include <bsd.port.mk>
