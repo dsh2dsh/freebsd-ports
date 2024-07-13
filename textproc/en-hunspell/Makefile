@@ -1,25 +1,24 @@
 PORTNAME=	hunspell
-PORTVERSION=	2020.12.07
+PORTVERSION=	2024.05.01
+DISTVERSION=	7272a82
 CATEGORIES=	textproc
-MASTER_SITES=	SF/wordlist/speller/${PORTVERSION}/
 PKGNAMEPREFIX=	en-
-DISTFILES=	hunspell-en_CA${CA_VARIANT}-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_AU${AU_VARIANT}-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_US${US_VARIANT}-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_GB${GB_VARIANT}-${PORTVERSION}${EXTRACT_SUFX}
-DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	office@FreeBSD.org
 COMMENT=	English hunspell dictionaries
-WWW=		http://wordlist.aspell.net/
 
 LICENSE=	BSD3CLAUSE
 
-USES=		zip
+USE_GITHUB=	yes
+GH_ACCOUNT=	LibreOffice
+GH_PROJECT=	dictionaries
+
+EXTRACT_AFTER_ARGS=	--include ${GH_PROJECT}-${GH_TAGNAME}/en/* \
+			--no-same-owner --no-same-permissions
+WRKSRC_SUBDIR=	en
 
 NO_ARCH=	yes
 NO_BUILD=	yes
-NO_WRKSUBDIR=	yes
 
 PLIST_FILES=	${DATADIR}/README_en_AU${AU_VARIANT}.txt \
 		${DATADIR}/README_en_CA${CA_VARIANT}.txt \
@@ -98,19 +97,5 @@ do-install-CA_LARGE-on:
 do-install-US_LARGE-on:
 	${LN} -s en_US-large.aff ${STAGEDIR}${DATADIR}/en_US.aff
 	${LN} -s en_US-large.dic ${STAGEDIR}${DATADIR}/en_US.dic
-
-# maintainer section:
-
-.if defined(MAINTAINER_MODE)
-DISTFILES=	hunspell-en_AU-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_AU-large-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_CA-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_CA-large-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_GB-ise-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_GB-ize-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_GB-large-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_US-${PORTVERSION}${EXTRACT_SUFX} \
-		hunspell-en_US-large-${PORTVERSION}${EXTRACT_SUFX}
-.endif
 
 .include <bsd.port.mk>
