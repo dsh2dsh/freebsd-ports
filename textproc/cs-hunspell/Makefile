@@ -1,25 +1,28 @@
 PORTNAME=	hunspell
-PORTVERSION=	2.0
+PORTVERSION=	2021.07.28
+DISTVERSION=	b3a1c0b
 CATEGORIES=	textproc
-MASTER_SITES=	SF/aoo-extensions/1078/0/
 PKGNAMEPREFIX=	cs-
-DISTNAME=	dict-cs-${PORTVERSION}
-EXTRACT_SUFX=	.oxt
-DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	office@FreeBSD.org
 COMMENT=	Czech hunspell dictionaries
-WWW=		https://extensions.services.openoffice.org/en/project/czech-dictionary-pack-ceske-slovniky-cs-cz
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	LibreOffice
+GH_PROJECT=	dictionaries
+
+WRKSRC_SUBDIR=	cs_CZ
+EXTRACT_AFTER_ARGS=	--include ${GH_PROJECT}-${GH_TAGNAME}/${WRKSRC_SUBDIR}/* \
+			--no-same-owner --no-same-permissions
 
 NO_ARCH=	yes
 NO_BUILD=	yes
-NO_WRKSUBDIR=	yes
 
-PLIST_FILES=	${DATADIR}/cs_CZ.aff \
-		${DATADIR}/cs_CZ.dic
+PLIST_FILES=	${DATADIR}/cs_CZ.aff ${DATADIR}/cs_CZ.dic
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/
-	${INSTALL_DATA} ${WRKSRC}/cs_CZ.aff ${WRKSRC}/cs_CZ.dic ${STAGEDIR}${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/cs_CZ.aff ${WRKSRC}/cs_CZ.dic \
+		${STAGEDIR}${DATADIR}/
 
 .include <bsd.port.mk>
