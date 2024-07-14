@@ -1,6 +1,5 @@
 PORTNAME=	hunspell
 PORTVERSION=	2024.04.18
-DISTVERSION=	fc2dc38
 CATEGORIES=	russian textproc
 PKGNAMEPREFIX=	ru-
 
@@ -9,10 +8,13 @@ COMMENT=	Russian hunspell dictionaries
 
 LICENSE=	LGPL3
 
-USE_GITHUB=	yes
+USE_GITHUB=	nodefault
 GH_ACCOUNT=	LibreOffice
 GH_PROJECT=	dictionaries
+GH_TAGNAME=	fc2dc38
+GH_TUPLE:=	${GH_ACCOUNT}:${GH_PROJECT}:${GH_TAGNAME}:${PORTNAME}
 
+WRKSRC=		${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME_SANITIZED}
 WRKSRC_SUBDIR=	ru_RU
 EXTRACT_AFTER_ARGS=	--include ${GH_PROJECT}-${GH_TAGNAME}/${WRKSRC_SUBDIR}/* \
 			--no-same-owner --no-same-permissions

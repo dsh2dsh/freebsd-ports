@@ -1,16 +1,18 @@
 PORTNAME=	hunspell
 PORTVERSION=	2021.07.28
-DISTVERSION=	fc2dc38
 CATEGORIES=	textproc
 PKGNAMEPREFIX=	cs-
 
 MAINTAINER=	office@FreeBSD.org
 COMMENT=	Czech hunspell dictionaries
 
-USE_GITHUB=	yes
+USE_GITHUB=	nodefault
 GH_ACCOUNT=	LibreOffice
 GH_PROJECT=	dictionaries
+GH_TAGNAME=	fc2dc38
+GH_TUPLE:=	${GH_ACCOUNT}:${GH_PROJECT}:${GH_TAGNAME}:${PORTNAME}
 
+WRKSRC=		${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME_SANITIZED}
 WRKSRC_SUBDIR=	cs_CZ
 EXTRACT_AFTER_ARGS=	--include ${GH_PROJECT}-${GH_TAGNAME}/${WRKSRC_SUBDIR}/* \
 			--no-same-owner --no-same-permissions
