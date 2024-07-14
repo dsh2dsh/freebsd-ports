@@ -46,6 +46,9 @@ load_rc_config "$name"
 : ${zrepl_options:="$zrepl_flags --config $zrepl_config"}
 : ${zrepl_gracefully:="NO"}
 
+: ${zrepl_control_group:="$zrepl_group"}
+: ${zrepl_control_mode:="0700"}
+
 pidfile="/var/run/zrepl.pid"
 command="/usr/sbin/daemon"
 procname="%%PREFIX%%/bin/zrepl"
@@ -66,9 +69,10 @@ zrepl_checkconfig() {
 
 zrepl_precmd() {
     if [ ! -d "/var/run/zrepl/stdinserver" ]; then
-        install -d -g "$zrepl_group" -o "$zrepl_user" -m 0700 "/var/run/zrepl"
-        install -d -g "$zrepl_group" -o "$zrepl_user" -m 0700 \
-                "/var/run/zrepl/stdinserver"
+        install -d -g "$zrepl_control_group" -o "$zrepl_user" \
+                -m "$zrepl_control_mode"   "/var/run/zrepl"
+        install -d -g "$zrepl_control_group" -o "$zrepl_user" \
+                -m  "$zrepl_control_mode"  "/var/run/zrepl/stdinserver"
     fi
     zrepl_checkconfig
 }
