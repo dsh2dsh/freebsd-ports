@@ -23,7 +23,8 @@ SUB_FILES=	world-ccache ccache-update-links.sh ccache_clean
 # Prevent infinite recursion.
 NO_CCACHE_DEPEND=	yes
 
-LIB_DEPENDS+=	libzstd.so:archivers/zstd
+LIB_DEPENDS+=	libzstd.so:archivers/zstd \
+	libxxhash.so:devel/xxhash
 
 # /bin/bash -> /bin/sh to reduce tests dep.
 SHEBANG_FILES=	test/*
