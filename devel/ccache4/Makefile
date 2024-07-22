@@ -1,6 +1,6 @@
 PORTNAME=	ccache
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.10.1
+DISTVERSION=	4.10.2
 CATEGORIES=	devel
 PKGNAMESUFFIX=	4
 
@@ -23,8 +23,7 @@ SUB_FILES=	world-ccache ccache-update-links.sh ccache_clean
 # Prevent infinite recursion.
 NO_CCACHE_DEPEND=	yes
 
-LIB_DEPENDS+=	libzstd.so:archivers/zstd \
-		libxxhash.so:devel/xxhash
+LIB_DEPENDS+=	libzstd.so:archivers/zstd
 
 # /bin/bash -> /bin/sh to reduce tests dep.
 SHEBANG_FILES=	test/*
