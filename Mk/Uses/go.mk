@@ -15,7 +15,12 @@ go_ARGS:=	${go_ARGS:S/${GO_VERSION}/${GO_DEFAULT}/1}
 
 .endif # !defined(_INCLUDE_USES_GO_MK)
 
-.include "${USESDIR}/go.mk"
+.if empty(IGNORE)
+.  include "${USESDIR}/go.mk"
+.  undef IGNORE
+.else
+.  include "${USESDIR}/go.mk"
+.endif
 
 .if !defined(_DSH_INCLUDE_USES_GO_MK)
 _DSH_INCLUDE_USES_GO_MK=	yes
