@@ -16,7 +16,9 @@ USES=		autoreconf:build compiler:c++11-lib gmake gnome libtool localbase \
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--without-applespell --without-voikko
+CONFIGURE_ARGS=	--disable-dependency-tracking --without-applespell \
+	--without-voikko
+CONFIGURE_ENV+=	ACLOCAL="aclocal" AUTOMAKE="automake"
 
 INSTALL_TARGET=	install-strip
 
@@ -31,20 +33,16 @@ ZEMBEREK_DESC=	Spell checking via Zemberek
 
 ASPELL_LIB_DEPENDS=	libaspell.so:textproc/aspell
 ASPELL_CONFIGURE_WITH=	aspell
-ASPELL_CONFIGURE_ON=	--with-aspell-dir=${LOCALBASE}/share/aspell
 
 HSPELL_LIB_DEPENDS=	libhspell.so.0:hebrew/hspell
 HSPELL_CONFIGURE_WITH=	hspell
-HSPELL_CONFIGURE_ON=	--with-hspell-dir=${LOCALBASE}/share/hspell
 
 HUNSPELL_LIB_DEPENDS=	libhunspell-1.7.so:textproc/hunspell
 HUNSPELL_CONFIGURE_WITH=	hunspell
-HUNSPELL_CONFIGURE_ON=	--with-hunspell-dir=${LOCALBASE}/share/hunspell
 
 NUSPELL_LIB_DEPENDS=	libicuuc.so:devel/icu \
 			libnuspell.so:textproc/nuspell
 NUSPELL_CONFIGURE_WITH=	nuspell
-NUSPELL_CONFIGURE_ON=	--with-nuspell-dir=${LOCALBASE}/share/hunspell
 
 ZEMBEREK_LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 			libdbus-glib-1.so:devel/dbus-glib
