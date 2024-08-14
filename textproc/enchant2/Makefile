@@ -1,5 +1,5 @@
 PORTNAME=	enchant
-DISTVERSION=	2.8.1
+DISTVERSION=	2.8.2
 CATEGORIES=	textproc gnome
 MASTER_SITES=	https://github.com/AbiWord/enchant/releases/download/v${PORTVERSION}/
 PKGNAMESUFFIX=	2
