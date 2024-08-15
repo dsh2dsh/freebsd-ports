@@ -158,9 +158,9 @@ for _file in "${@}"; do
 				if env -S "${dp_FETCH_ENV}" ${_fetch_cmd}; then
 					[ "$tmp_file" ] && [ -f "$tmp_file" ] && \
 						chmod 644 "$tmp_file" && mv -f "$tmp_file" "$file"
-					unset tmp_file
 					actual_size=$(stat -f %z "${file}")
 					if [ -n "${dp_DISABLE_SIZE}" ] || [ -z "${CKSIZE}" ] || [ "${actual_size}" -eq "${CKSIZE}" ]; then
+						unset tmp_file
 						continue 2
 					else
 						${dp_ECHO_MSG} "=> Fetched file size mismatch (expected ${CKSIZE}, actual ${actual_size})"
