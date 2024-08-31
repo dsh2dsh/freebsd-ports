@@ -24,8 +24,8 @@ USES=		cmake:testing compiler:c++20-lang desktop-file-utils \
 
 .if ${FLAVOR} == qt5
 USES+=		kde:5 qt:5
-USE_QT=		core dbus gui network widgets buildtools:build concurrent:build \
-		linguisttools:build qmake:build testlib:build
+USE_QT=		core dbus gui network widgets buildtools:build linguisttools:build \
+		qmake:build testlib:build
 CMAKE_OFF=	TREMOTESF_QT6
 .else
 USES+=		gl kde:6 qt:6
