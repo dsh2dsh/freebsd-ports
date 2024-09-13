@@ -1,5 +1,5 @@
 PORTNAME=	tremotesf
-DISTVERSION=	2.7.0
+DISTVERSION=	2.7.1
 CATEGORIES=	net-p2p
 
 MAINTAINER=	vsasjason@gmail.com
@@ -37,7 +37,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	equeim yhirose:httplib
 GH_PROJECT=	tremotesf2 cpp-httplib:httplib
 GH_SUBDIR=	src/3rdparty/cpp-httplib:httplib
-GH_TAGNAME=	v0.14.3:httplib
+GH_TAGNAME=	v0.18.0:httplib
 
 USE_KDE=	widgetsaddons windowsystem
 USE_XORG=	x11
