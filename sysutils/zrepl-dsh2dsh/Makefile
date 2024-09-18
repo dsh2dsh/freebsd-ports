@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	${PORTNAME}
 
-USES=			go:1.22,modules ncurses
+USES=			go:1.23,modules ncurses
 USE_RC_SUBR=	${PORTNAME}
 
 GO_MODULE=		github.com/dsh2dsh/${PORTNAME}
