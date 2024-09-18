@@ -1,10 +1,9 @@
 PORTNAME=		zrepl
-PKGNAMESUFFIX=	-dsh2dsh
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.8.3
-DISTVERSIONSUFFIX=	-0.20240918143939-649c913f2ae7
-
+DISTVERSIONSUFFIX=	-0.20240918183109-43f237a15487
 CATEGORIES=		sysutils
+PKGNAMESUFFIX=	-dsh2dsh
 
 MAINTAINER=		dsh@bamus.cz
 COMMENT=		ZFS dataset replication tool (fork with more features)
@@ -13,13 +12,13 @@ WWW=			https://github.com/dsh2dsh/${PORTNAME}
 LICENSE=		MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-CONFLICTS_INSTALL=	${PORTNAME}
-
 USES=			go:1.23,modules ncurses
 USE_RC_SUBR=	${PORTNAME}
 
 GO_MODULE=		github.com/dsh2dsh/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "${STRIP} -w -X github.com/dsh2dsh/${PORTNAME}/version.${PORTNAME}Version=${DISTVERSIONFULL}"
+
+CONFLICTS_INSTALL=	${PORTNAME}
 
 SUB_FILES=		pkg-message 500.${PORTNAME}
 
