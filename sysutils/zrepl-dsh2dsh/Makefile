@@ -1,3 +1,4 @@
+#-*- tab-width: 8; -*-
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.8.3
@@ -27,8 +28,7 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
 		${STAGEDIR}${ETCDIR} \
 		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d \
-		${STAGEDIR}/var/run/${PORTNAME}
-	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
+		${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
 		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
 	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.yml \
 		${STAGEDIR}${ETCDIR}/${PORTNAME}.yml.sample
