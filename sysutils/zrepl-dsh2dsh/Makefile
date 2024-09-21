@@ -25,10 +25,10 @@ SUB_FILES=	pkg-message 500.${PORTNAME}
 OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
 		${STAGEDIR}${ETCDIR} \
-		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d \
-		${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
+		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
 		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
 	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.yml \
 		${STAGEDIR}${ETCDIR}/${PORTNAME}.yml.sample
@@ -37,7 +37,7 @@ post-install:
 		${STAGEDIR}${PREFIX}/etc/periodic/weekly/500.${PORTNAME}
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/hooks
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/hooks
 	(cd ${WRKSRC}/config/samples && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
 	${INSTALL_DATA} \
