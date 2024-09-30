@@ -1,7 +1,7 @@
 #-*- tab-width: 8; -*-
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.8.3
+DISTVERSION=	0.8.4
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-dsh2dsh
 
