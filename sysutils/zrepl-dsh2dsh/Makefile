@@ -20,7 +20,7 @@ GO_BUILDFLAGS=	-ldflags "${STRIP} -w -X github.com/dsh2dsh/${PORTNAME}/version.$
 
 CONFLICTS_INSTALL=	${PORTNAME}
 
-SUB_FILES=	pkg-message 500.${PORTNAME}
+SUB_FILES=	pkg-message 500.${PORTNAME} ${PORTNAME}.daily
 
 OPTIONS_DEFINE=	EXAMPLES
 
@@ -32,7 +32,10 @@ post-install:
 		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
 	${INSTALL_DATA} ${FILESDIR}/${PORTNAME}.yml \
 		${STAGEDIR}${ETCDIR}/${PORTNAME}.yml.sample
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/weekly
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/periodic/daily \
+		${STAGEDIR}${PREFIX}/etc/periodic/weekly
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.daily \
+		${STAGEDIR}${PREFIX}/etc/periodic/daily/${PORTNAME}
 	${INSTALL_SCRIPT} ${WRKDIR}/500.${PORTNAME} \
 		${STAGEDIR}${PREFIX}/etc/periodic/weekly/500.${PORTNAME}
 
