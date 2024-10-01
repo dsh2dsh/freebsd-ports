@@ -14,6 +14,7 @@ zrepl="%%PREFIX%%/bin/zrepl"
 case "$daily_zrepl_enable" in
     [Yy][Ee][Ss])
 	      if service zrepl enabled; then
+            echo
             echo "Check zrepl status:"
             $zrepl monitor alive -w "$daily_zrepl_warn" -c "$daily_zrepl_crit"
             $zrepl monitor snapshots
