@@ -6,7 +6,16 @@ MASTER_SITES=	https://dl.grafana.com/oss/release/:public \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 DISTFILES=	grafana-${DISTVERSION}.linux-amd64${EXTRACT_SUFX}:public \
 		go.mod:gomod \
+		go.work:gomod \
+		pkg/apimachinery/go.mod:gomod \
+		pkg/apiserver/go.mod:gomod \
+		pkg/build/go.mod:gomod \
+		pkg/build/wire/go.mod:gomod \
+		pkg/promlib/go.mod:gomod \
+		pkg/semconv/go.mod:gomod \
+		pkg/storage/unified/resource/go.mod:gomod \
 		pkg/util/xorm/go.mod:gomod
+EXTRACT_ONLY=	${DISTFILES:N*.mod\:*:N*.mod:C/:.*//:Ngo.work}
 
 MAINTAINER=	drtr0jan@yandex.ru
 COMMENT=	Dashboard and graph editor for multiple data stores
@@ -58,6 +67,15 @@ GRAFANA_LOGDIR?=		/var/log/${PORTNAME}
 GRAFANA_PLUGINDIR?=		${GRAFANA_DATADIR}/plugins
 GRAFANA_PROVISIONINGDIR?=	${ETCDIR}/provisioning
 
+# Disable some master port targets
+TARGET_ORDER_OVERRIDE=	-1:go-post-extract
+
+post-extract:
+	@${ECHO_MSG} "===> Tidying ${GO_MODNAME} dependencies";
+	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=${GO_MODCACHE} ${GO_CMD} mod tidy -e)
+	@${ECHO_MSG} "===> Vendoring ${GO_MODNAME} dependencies";
+	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=${GO_MODCACHE} ${GO_CMD} work vendor -e)
+
 post-patch:
 	@${REINPLACE_CMD} \
 		-e 's|;data = /var/lib/grafana|data = ${GRAFANA_DATADIR}|g' \
@@ -81,10 +99,6 @@ post-install:
 .endfor
 	${MKDIR} ${STAGEDIR}${GRAFANA_LOGDIR}
 	( cd ${WRKDIR}/${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX} && ${COPYTREE_SHARE} public ${STAGEDIR}${GRAFANA_HOMEDIR} )
-.for dir in input-datasource
-	${MKDIR} ${STAGEDIR}${GRAFANA_HOMEDIR}/plugins-bundled/internal/${dir}
-	( cd ${WRKDIR}/${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}/plugins-bundled/internal/${dir}/dist && ${COPYTREE_SHARE} . ${STAGEDIR}${GRAFANA_HOMEDIR}/plugins-bundled/internal/${dir} )
-.endfor
 	${INSTALL_DATA} ${WRKSRC}/conf/defaults.ini ${STAGEDIR}${GRAFANA_HOMEDIR}/conf/defaults.ini
 	${INSTALL_DATA} ${WRKSRC}/conf/sample.ini ${STAGEDIR}${ETCDIR}/grafana.ini.sample
 	${INSTALL_DATA} ${WRKSRC}/conf/ldap.toml ${STAGEDIR}${ETCDIR}/ldap.toml.sample
