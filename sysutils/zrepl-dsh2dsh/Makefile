@@ -1,4 +1,3 @@
-#-*- tab-width: 8; -*-
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.8.4
