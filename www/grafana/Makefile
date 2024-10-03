@@ -1,7 +1,6 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	10.4.5
-PORTREVISION=	1
+DISTVERSION=	11.2.1
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/:public \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -22,12 +21,12 @@ ONLY_FOR_ARCHS=	aarch64 amd64 i386 riscv64
 BUILD_DEPENDS=	wire:devel/go-wire
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 
-USES=		cpe go:1.21,modules
+USES=		cpe go:1.22,modules
 
 USE_GITHUB=	yes
 
 USE_RC_SUBR=	grafana
-TAG=		17cbd42
+TAG=		086b47f
 
 GO_MODULE=	github.com/grafana/grafana
 GO_TARGET=	./pkg/cmd/grafana \
