@@ -26,6 +26,7 @@ USER=		root # it has to run as root because it listens on the privileged DNS por
 GROUP=		wheel
 SUB_LIST=	USER=${USER} GROUP=${GROUP}
 USE_RC_SUBR=	${PORTNAME}
+PLIST_SUB=	PORTNAME=${PORTNAME}
 
 CPE_VENDOR=	adguard
 
