@@ -32,6 +32,10 @@ CPE_VENDOR=	adguard
 pre-build:
 	@${CP} -r ${WRKDIR}/build ${WRKSRC}/
 
-PLIST_FILES=	bin/${PORTNAME}
+post-install:
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
+		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
+		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
 
 .include <bsd.port.mk>
