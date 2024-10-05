@@ -42,9 +42,12 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX|${PREFIX}|g' ${WRKSRC}/pkg/config/config.go
 
 post-install:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
+		${STAGEDIR}${ETCDIR} \
+		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} "schema" ${STAGEDIR}${EXAMPLESDIR})
 	${INSTALL_DATA} ${WRKSRC}/config.example.yml ${STAGEDIR}${ETCDIR}/config.yml.sample
+	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
+		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
 
 .include <bsd.port.mk>
