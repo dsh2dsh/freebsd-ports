@@ -23,7 +23,7 @@ rcvar="${name}_enable"
 load_rc_config $name
 
 : "${icingadb_enable:=NO}"
-: "${icingadb_user:=}"
+: "${icingadb_user:=%%ICINGA2USER%%}"
 : "${icingadb_group:=%%ICINGA2GROUP%%}"
 
 icingadb_pid="/var/run/icingadb/icingadb.pid"
