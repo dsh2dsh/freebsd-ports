@@ -33,7 +33,7 @@ pidfile="${_pidprefix}/${name}.pid"
 
 procname="%%PREFIX%%/bin/adguardhome"
 command="/usr/sbin/daemon"
-command_args="-H -u $adguardhome_user -o $logfile -t $name -p $pidfile -P ${_pidprefix}/${name}_daemon.pid %%PREFIX%%/bin/adguardhome -c $adguardhome_config -w $adguardhome_work_dir $adguardhome_extra"
+command_args="-H -o $logfile -t $name -p $pidfile -P ${_pidprefix}/${name}_daemon.pid %%PREFIX%%/bin/adguardhome -c $adguardhome_config -w $adguardhome_work_dir $adguardhome_extra"
 
 start_precmd="${name}_prestart"
 extra_commands="reload"
