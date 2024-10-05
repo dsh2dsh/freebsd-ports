@@ -29,7 +29,6 @@ load_rc_config "$name"
 logfile="/var/log/${name}.log"
 pidfile="/var/run/${name}.pid"
 
-procname="%%PREFIX%%/bin/adguardhome"
 command="/usr/sbin/daemon"
 command_args="-H -o $logfile -t $name -P $pidfile %%PREFIX%%/bin/adguardhome -c $adguardhome_config -w $adguardhome_work_dir $adguardhome_extra"
 
