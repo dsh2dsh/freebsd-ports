@@ -1,3 +1,3 @@
-Iosevka is an open-source, sans-serif + slab-serif, monospace +
-quasi-proportional typeface family, designed for writing code, using
-in terminals, and preparing technical documents.
+Customised build of the Iosevka typeface, with a consistent rounded style and
+overrides for almost all individual glyphs in both roman (upright) and italic
+(slanted) variants.
