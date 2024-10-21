@@ -1,15 +1,14 @@
 PORTNAME=	poudriere
 DISTVERSION=	3.4.99.20240812
 CATEGORIES=	ports-mgmt
-PKGNAMESUFFIX=	-devel
+PKGNAMESUFFIX=	-dsh2dsh
 
-MAINTAINER=	bdrewery@FreeBSD.org
-COMMENT=	Port build and test system
-WWW=		https://github.com/freebsd/poudriere/wiki
+MAINTAINER=	dsh@bamus.cz
+COMMENT=	Port build and test system (fork with more features)
 
 LICENSE=	BSD2CLAUSE
 
-CONFLICTS_INSTALL=	poudriere
+CONFLICTS_INSTALL=	poudriere*
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
