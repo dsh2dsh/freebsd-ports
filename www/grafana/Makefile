@@ -1,18 +1,21 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.2.2
+DISTVERSION=	11.3.0
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/:public \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 DISTFILES=	grafana-${DISTVERSION}.linux-amd64${EXTRACT_SUFX}:public \
 		go.mod:gomod \
 		go.work:gomod \
+		apps/playlist/go.mod:gomod \
+		pkg/aggregator/go.mod:gomod \
 		pkg/apimachinery/go.mod:gomod \
 		pkg/apiserver/go.mod:gomod \
 		pkg/build/go.mod:gomod \
 		pkg/build/wire/go.mod:gomod \
 		pkg/promlib/go.mod:gomod \
 		pkg/semconv/go.mod:gomod \
+		pkg/storage/unified/apistore/go.mod:gomod \
 		pkg/storage/unified/resource/go.mod:gomod \
 		pkg/util/xorm/go.mod:gomod
 EXTRACT_ONLY=	${DISTFILES:N*.mod\:*:N*.mod:C/:.*//:Ngo.work}
@@ -30,12 +33,12 @@ ONLY_FOR_ARCHS=	aarch64 amd64 i386 riscv64
 BUILD_DEPENDS=	wire:devel/go-wire
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 
-USES=		cpe go:1.22,modules
+USES=		cpe go:1.23,modules
 
 USE_GITHUB=	yes
 
 USE_RC_SUBR=	grafana
-TAG=		086b47f
+TAG=		d9455ff
 
 GO_MODULE=	github.com/grafana/grafana
 GO_TARGET=	./pkg/cmd/grafana \
