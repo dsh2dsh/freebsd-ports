@@ -1,5 +1,4 @@
 PORTNAME=	iosevka-comfy
-DISTVERSIONPREFIX=	v
 DISTVERSION=	2.1.0
 CATEGORIES=	x11-fonts
 
@@ -13,7 +12,6 @@ USES=		fonts
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	protesilaos
-GH_TAGNAME=	c7cfc91
 
 NO_ARCH=	yes
 NO_BUILD=	yes
