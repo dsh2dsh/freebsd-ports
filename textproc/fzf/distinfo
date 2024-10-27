@@ -1,5 +1,5 @@
-TIMESTAMP = 1724943814
-SHA256 (go/textproc_fzf/fzf-v0.55.0/v0.55.0.mod) = d9cdb14c679aaf9c4f6a8d437f0add0b41dd0f159967485e3f02b630e59f56fa
-SIZE (go/textproc_fzf/fzf-v0.55.0/v0.55.0.mod) = 526
-SHA256 (go/textproc_fzf/fzf-v0.55.0/v0.55.0.zip) = 6cd155ca03ffe5dc875a83823ebd8af1940b34f108b6259a09773821022f52fe
-SIZE (go/textproc_fzf/fzf-v0.55.0/v0.55.0.zip) = 341742
+TIMESTAMP = 1730044356
+SHA256 (go/textproc_fzf/fzf-v0.56.0/v0.56.0.mod) = f3a38d98233a202159f842d4b1fc18e10b827e25b2f92c54dc29c6c3bc665f4b
+SIZE (go/textproc_fzf/fzf-v0.56.0/v0.56.0.mod) = 526
+SHA256 (go/textproc_fzf/fzf-v0.56.0/v0.56.0.zip) = a75da00dd90bc7252b9dcdb47b654c0f8a96e34487f3c558acac2dd534bc17ce
+SIZE (go/textproc_fzf/fzf-v0.56.0/v0.56.0.zip) = 344549
