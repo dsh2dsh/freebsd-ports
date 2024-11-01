@@ -1,12 +1,12 @@
 PORTNAME=	enchant
 DISTVERSION=	2.8.2
 CATEGORIES=	textproc gnome
-MASTER_SITES=	https://github.com/AbiWord/enchant/releases/download/v${PORTVERSION}/
+MASTER_SITES=	https://github.com/rrthomas/enchant/releases/download/v${DISTVERSION}/
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Dictionary/spellchecking framework
-WWW=		https://abiword.github.io/enchant/
+WWW=		https://rrthomas.github.io/enchant/
 
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
