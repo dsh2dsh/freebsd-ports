@@ -7,6 +7,7 @@ etc/rc.d/zrepl
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/bandwidth_limit.yml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/grafana-prometheus-zrepl.json
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/hooks/template.sh
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/keys.yaml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/local.yml
 @sample %%EXAMPLESDIR%%/newsyslog.conf etc/newsyslog.conf.d/zrepl.conf
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/pull.yml
