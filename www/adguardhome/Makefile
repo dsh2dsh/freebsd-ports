@@ -1,6 +1,6 @@
 PORTNAME=	adguardhome
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.107.53
+DISTVERSION=	0.107.54
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/${DISTVERSIONFULL}/
 DISTFILES=	${GH_PROJECT}_frontend${EXTRACT_SUFX}
@@ -29,6 +29,10 @@ USE_RC_SUBR=	${PORTNAME}
 PLIST_SUB=	PORTNAME=${PORTNAME}
 
 CPE_VENDOR=	adguard
+
+post-patch:
+	@${REINPLACE_CMD} -E -e 's|^(go [0-9]+\.[0-9]+)\.[0-9]+|\1|' \
+		${WRKSRC}/go.mod
 
 pre-build:
 	@${CP} -r ${WRKDIR}/build ${WRKSRC}/
