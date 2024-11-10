@@ -48,8 +48,8 @@ GN_ARGS+=	cc_wrapper="${CCACHE_BIN}"
 
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=274142
 .  if ${.CURDIR:M*/www/firefox}
-_USES_POST+=	gecko
 MAKE_ENV+=	CARGO_BUILD_JOBS=${MAKE_JOBS_NUMBER}
+USES+=	gecko
 .  endif
 
 ccache-update-links:
