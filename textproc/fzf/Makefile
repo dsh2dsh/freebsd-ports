@@ -1,5 +1,5 @@
 PORTNAME=	fzf
-DISTVERSION=	0.56.1
+DISTVERSION=	0.56.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 
@@ -15,7 +15,7 @@ USES=		go:modules
 GO_MODULE=	github.com/junegunn/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags="-X main.version=${DISTVERSION} -X main.revision=${COMMIT_ID} ${STRIP} -w"
 
-COMMIT_ID=	64c6160
+COMMIT_ID=	215ab48
 
 PLIST_FILES=	bin/fzf share/man/man1/fzf.1.gz
 
