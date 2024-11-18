@@ -42,7 +42,7 @@ post-install:
 	${INSTALL_DATA} \
 		${WRKSRC}/dist/freebsd/etc/newsyslog.conf.d/${PORTNAME}.conf \
 		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
-	${INSTALL} ${COPY} -m 0600 \
+	${INSTALL_DATA} \
 		${WRKSRC}/dist/freebsd/etc/${PORTNAME}/keys.yaml \
 		${STAGEDIR}${ETCDIR}/keys.yaml.sample
 	${INSTALL_DATA} ${WRKSRC}/dist/freebsd/etc/${PORTNAME}/${PORTNAME}.yml \
