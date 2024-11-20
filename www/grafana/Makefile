@@ -1,6 +1,6 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.3.0
+DISTVERSION=	11.3.1
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/:public \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -38,7 +38,7 @@ USES=		cpe go:1.23,modules
 USE_GITHUB=	yes
 
 USE_RC_SUBR=	grafana
-TAG=		d9455ff
+TAG=		9225f4a
 
 GO_MODULE=	github.com/grafana/grafana
 GO_TARGET=	./pkg/cmd/grafana \
@@ -80,6 +80,8 @@ post-extract:
 	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=${GO_MODCACHE} ${GO_CMD} work vendor -e)
 
 post-patch:
+	@${REINPLACE_CMD} -E -e 's|^(go [0-9]+\.[0-9]+)\.[0-9]+|\1|' \
+		${WRKSRC}/go.mod
 	@${REINPLACE_CMD} \
 		-e 's|;data = /var/lib/grafana|data = ${GRAFANA_DATADIR}|g' \
 		-e 's|;logs = /var/log/grafana|logs = ${GRAFANA_LOGDIR}|g' \
