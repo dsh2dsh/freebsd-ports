@@ -29,6 +29,7 @@ _DSH_INCLUDE_USES_GO_MK=	yes
 
 .  if ${go_ARGS:Mmodules}
 GO_GOPATH=	${DISTDIR}/go
+GO_ENV+=	GOTOOLCHAIN=local
 .  endif # ${go_ARGS:Mmodules}
 
 .endif # !defined(_DSH_INCLUDE_USES_GO_MK)
