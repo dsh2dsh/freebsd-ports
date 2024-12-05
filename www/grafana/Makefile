@@ -1,6 +1,6 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.3.2
+DISTVERSION=	11.4.0
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -30,7 +30,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386 riscv64
 
-BUILD_DEPENDS=	wire:devel/go-wire
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 
 USES=		cpe go:1.23,modules
@@ -38,7 +37,7 @@ USES=		cpe go:1.23,modules
 USE_GITHUB=	yes
 
 USE_RC_SUBR=	grafana
-TAG=		9225f4a
+TAG=		b587018
 
 GO_MODULE=	github.com/grafana/grafana
 GO_TARGET=	./pkg/cmd/grafana \
@@ -92,14 +91,15 @@ post-patch:
 pre-build:
 	@(cd ${GO_WRKSRC}; \
 	${ECHO_MSG} "===>  Generating wire_gen.go"; \
-	${SETENV} ${MAKE_ENV} ${GO_ENV} wire gen -tags "oss" ./pkg/server )
+	${SETENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=off ${GO_CMD} run \
+		./pkg/build/wire/cmd/wire/main.go gen -tags "oss" ./pkg/server )
 
 post-install:
 	${MKDIR} ${STAGEDIR}${GRAFANA_HOMEDIR}
 	${MKDIR} ${STAGEDIR}${GRAFANA_HOMEDIR}/conf
 	${MKDIR} ${STAGEDIR}${GRAFANA_DATADIR}
 	${MKDIR} ${STAGEDIR}${GRAFANA_PLUGINDIR}
-.for dir in access-control alerting dashboards datasources notifiers plugins
+.for dir in access-control alerting dashboards datasources plugins
 	${MKDIR} ${STAGEDIR}${GRAFANA_PROVISIONINGDIR}/${dir}
 .endfor
 	${MKDIR} ${STAGEDIR}${GRAFANA_LOGDIR}

@@ -14,7 +14,6 @@ bin/grafana-server
 @dir %%GRAFANA_PROVISIONINGDIR%%/alerting
 @dir %%GRAFANA_PROVISIONINGDIR%%/dashboards
 @dir %%GRAFANA_PROVISIONINGDIR%%/datasources
-@dir %%GRAFANA_PROVISIONINGDIR%%/notifiers
 @dir %%GRAFANA_PROVISIONINGDIR%%/plugins
 @dir %%GRAFANA_LOGDIR%%
 @mode
