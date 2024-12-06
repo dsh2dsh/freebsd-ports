@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=SC2034
 
 # PROVIDE: adguardhome
 # REQUIRE: DAEMON NETWORKING
@@ -7,6 +8,7 @@
 # Add the following lines to /etc/rc.conf to enable adguardhome:
 # adguardhome_enable : set to "YES" to enable the daemon, default is "NO"
 
+# shellcheck disable=SC1094
 . /etc/rc.subr
 
 name="adguardhome"
@@ -33,10 +35,10 @@ command="/usr/sbin/daemon"
 command_args="-H -o $logfile -t $name -P $pidfile %%PREFIX%%/bin/adguardhome -c $adguardhome_config -w $adguardhome_work_dir $adguardhome_extra"
 
 start_precmd="${name}_prestart"
+reload_precmd="${name}_reload_precmd"
 extra_commands="reload"
 
-adguardhome_prestart()
-{
+adguardhome_prestart() {
     # check if the old config exists
     if [ -f "$adguardhome_config_old" ] || [ -d "${adguardhome_work_dir_old}/data" ]; then
         if ! [ -f "$adguardhome_config" ] && ! [ -d "${adguardhome_work_dir}/data" ]; then
@@ -67,6 +69,10 @@ adguardhome_prestart()
         install -d -m 0750 -o "$adguardhome_user" -g "$adguardhome_group" \
                 "$adguardhome_work_dir"
     fi
+}
+
+adguardhome_reload_precmd() {
+    echo "Reloading $name."
 }
 
 run_rc_command "$1"
