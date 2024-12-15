@@ -12,7 +12,6 @@ CONFLICTS_INSTALL=	poudriere*
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
-GH_TAGNAME=	2bb549b4
 
 GNU_CONFIGURE=	yes
 ETCDIR=		${PREFIX}/etc/poudriere.d
