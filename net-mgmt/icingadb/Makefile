@@ -1,7 +1,6 @@
 PORTNAME=	icingadb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.0
-PORTREVISION=	3
+DISTVERSION=	1.2.1
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	dvl@FreeBSD.org
@@ -30,23 +29,23 @@ SUB_LIST=	ICINGA2GROUP=${ICINGA2GROUP} \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Icinga
-GH_PROJECT=	icingadb
+GH_PROJECT=	${PORTNAME}
 
-GO_MODULE=	github.com/icinga/icingadb
-GO_TARGET=	./cmd/icingadb
-
-SUB_LIST+=	ICINGA2USER=${ICINGA2USER} \
-		PREFIX=${PREFIX}
+GO_MODULE=	github.com/icinga/${PORTNAME}
+GO_TARGET=	./cmd/${PORTNAME}
+GO_BUILDFLAGS=	-ldflags "${STRIP} -w"
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%PREFIX|${PREFIX}|g' ${WRKSRC}/pkg/config/config.go
+	@${REINPLACE_CMD} -e 's|%%PREFIX|${PREFIX}|g' \
+		${WRKSRC}/pkg/config/config.go
 
 post-install:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
 		${STAGEDIR}${ETCDIR} \
 		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} "schema" ${STAGEDIR}${EXAMPLESDIR})
-	${INSTALL_DATA} ${WRKSRC}/config.example.yml ${STAGEDIR}${ETCDIR}/config.yml.sample
+	${INSTALL_DATA} ${WRKSRC}/config.example.yml \
+		${STAGEDIR}${ETCDIR}/config.yml.sample
 	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf \
 		${STAGEDIR}${EXAMPLESDIR}/newsyslog.conf
 
