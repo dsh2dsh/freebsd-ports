@@ -36,8 +36,8 @@ GO_TARGET=	./cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "${STRIP} -w"
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%PREFIX|${PREFIX}|g' \
-		${WRKSRC}/pkg/config/config.go
+	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
+		${WRKSRC}/internal/config/config.go
 
 post-install:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR} \
