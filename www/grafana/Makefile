@@ -69,14 +69,13 @@ GRAFANA_LOGDIR?=		/var/log/${PORTNAME}
 GRAFANA_PLUGINDIR?=		${GRAFANA_DATADIR}/plugins
 GRAFANA_PROVISIONINGDIR?=	${ETCDIR}/provisioning
 
-# Disable some master port targets
-TARGET_ORDER_OVERRIDE=	-1:go-post-extract
-
 post-extract:
 	@${ECHO_MSG} "===> Tidying ${GO_MODNAME} dependencies";
-	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=${GO_MODCACHE} ${GO_CMD} mod tidy -e)
+	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
+		GOPROXY=${GO_MODCACHE} ${GO_CMD} mod tidy -e)
 	@${ECHO_MSG} "===> Vendoring ${GO_MODNAME} dependencies";
-	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=${GO_MODCACHE} ${GO_CMD} work vendor -e)
+	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
+		GOPROXY=${GO_MODCACHE} ${GO_CMD} work vendor -e)
 
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|^(go [0-9]+\.[0-9]+)\.[0-9]+|\1|' \
@@ -103,10 +102,15 @@ post-install:
 	${MKDIR} ${STAGEDIR}${GRAFANA_PROVISIONINGDIR}/${dir}
 .endfor
 	${MKDIR} ${STAGEDIR}${GRAFANA_LOGDIR}
-	( cd ${WRKDIR}/${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX} && ${COPYTREE_SHARE} public ${STAGEDIR}${GRAFANA_HOMEDIR} )
-	${INSTALL_DATA} ${WRKSRC}/conf/defaults.ini ${STAGEDIR}${GRAFANA_HOMEDIR}/conf/defaults.ini
-	${INSTALL_DATA} ${WRKSRC}/conf/sample.ini ${STAGEDIR}${ETCDIR}/grafana.ini.sample
-	${INSTALL_DATA} ${WRKSRC}/conf/ldap.toml ${STAGEDIR}${ETCDIR}/ldap.toml.sample
-	${FIND} ${STAGEDIR}${DATADIR}/public -type f | ${SED} "s,^${STAGEDIR}${DATADIR},${DATADIR}," >> ${TMPPLIST}
+	(cd ${WRKDIR}/${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX} \
+		&& ${COPYTREE_SHARE} public ${STAGEDIR}${GRAFANA_HOMEDIR})
+	${INSTALL_DATA} ${WRKSRC}/conf/defaults.ini \
+		${STAGEDIR}${GRAFANA_HOMEDIR}/conf/defaults.ini
+	${INSTALL_DATA} ${WRKSRC}/conf/sample.ini \
+		${STAGEDIR}${ETCDIR}/grafana.ini.sample
+	${INSTALL_DATA} ${WRKSRC}/conf/ldap.toml \
+		${STAGEDIR}${ETCDIR}/ldap.toml.sample
+	${FIND} ${STAGEDIR}${DATADIR}/public -type f | \
+		${SED} "s,^${STAGEDIR}${DATADIR},${DATADIR}," >> ${TMPPLIST}
 
 .include <bsd.port.mk>
