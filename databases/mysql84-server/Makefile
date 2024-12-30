@@ -1,6 +1,5 @@
 PORTNAME?=		mysql
-PORTVERSION=		8.4.2
-PORTREVISION?=		1
+PORTVERSION=		8.4.3
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-8.4
 PKGNAMESUFFIX?=		84-server
@@ -88,7 +87,7 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 
 .ifdef USE_MYSQL
-IGNORE=		you have `USE_MYSQL' variable defined either in environment or in make(1) arguments, please undefine and try again
+IGNORE=		you have USE_MYSQL variable defined either in environment or in make(1) arguments, please undefine and try again
 .endif
 
 SUB_LIST=	MY_DBDIR=${MY_DBDIR} \
