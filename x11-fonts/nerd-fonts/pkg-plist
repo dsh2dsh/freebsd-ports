@@ -1819,16 +1819,16 @@
 %%ALL%%%%FONTSDIR%%/iA-Writer/Quattro/Italic/iMWritingQuatNerdFontPropo-Italic.ttf
 %%ALL%%%%FONTSDIR%%/iA-Writer/Quattro/Regular/iMWritingQuatNerdFont-Regular.ttf
 %%ALL%%%%FONTSDIR%%/iA-Writer/Quattro/Regular/iMWritingQuatNerdFontPropo-Regular.ttf
-@dir %%FONTSDIR%%/0xProto
-@dir %%FONTSDIR%%/CascadiaMono
-@dir %%FONTSDIR%%/CommitMono
-@dir %%FONTSDIR%%/D2Coding
-@dir %%FONTSDIR%%/DepartureMono
-@dir %%FONTSDIR%%/GeistMono
-@dir %%FONTSDIR%%/IntelOneMono
-@dir %%FONTSDIR%%/IosevkaTermSlab
-@dir %%FONTSDIR%%/MartianMono
-@dir %%FONTSDIR%%/Monaspace
-@dir %%FONTSDIR%%/Recursive
-@dir %%FONTSDIR%%/UbuntuSans
-@dir %%FONTSDIR%%/ZedMono
+%%ALL%%@dir %%FONTSDIR%%/0xProto
+%%ALL%%@dir %%FONTSDIR%%/CascadiaMono
+%%ALL%%@dir %%FONTSDIR%%/CommitMono
+%%ALL%%@dir %%FONTSDIR%%/D2Coding
+%%ALL%%@dir %%FONTSDIR%%/DepartureMono
+%%ALL%%@dir %%FONTSDIR%%/GeistMono
+%%ALL%%@dir %%FONTSDIR%%/IntelOneMono
+%%ALL%%@dir %%FONTSDIR%%/IosevkaTermSlab
+%%ALL%%@dir %%FONTSDIR%%/MartianMono
+%%ALL%%@dir %%FONTSDIR%%/Monaspace
+%%ALL%%@dir %%FONTSDIR%%/Recursive
+%%ALL%%@dir %%FONTSDIR%%/UbuntuSans
+%%ALL%%@dir %%FONTSDIR%%/ZedMono
