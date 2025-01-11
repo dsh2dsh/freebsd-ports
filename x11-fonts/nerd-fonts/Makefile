@@ -38,7 +38,7 @@ EXTRACT_AFTER_ARGS=	--no-same-owner --no-same-permissions \
 			--exclude '*Windows*'
 
 .if ${PORT_OPTIONS:MSYMBOLS}
-EXTRACT_AFTER_ARGS+=	--include ${DISTNAME}/patched-fonts/NerdFontsSymbolsOnly
+EXTRACT_AFTER_ARGS+=	--include ${PKGNAME}/patched-fonts/NerdFontsSymbolsOnly
 .endif
 
 do-install:
