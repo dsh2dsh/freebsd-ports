@@ -11,8 +11,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKDIR}/syncthingtray/LICENSE
 
 BUILD_DEPENDS=	p5-YAML-LibYAML>0:textproc/p5-YAML-LibYAML
-LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
-		libboost_regex.so:devel/boost-libs
+LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs
 
 FLAVORS=	qt5 qt6
 FLAVOR?=	${FLAVORS:[1]}
@@ -39,32 +38,43 @@ GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:${PORTNA
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
 		${GH_ACCOUNT}:subdirs:993f383:subdirs/../subdirs
 
-USE_KDE=	ecm:build
 USE_QT=		declarative svg
 USE_XORG=	x11
 
 .if ${FLAVOR} == qt5
-USES+=		kde:5 qt:5
-USE_KDE+=	plasma-framework:build
-USE_QT+=	concurrent core dbus gui location network qdbus \
-		quickcontrols2:build widgets x11extras:build buildtools:build \
-		linguist:build qmake:build testlib:build
-WEBENGINE_USE=	QT=printsupport,webchannel,webengine
+USES+=		qt:5
+USE_QT+=	concurrent core dbus gui network qdbus quickcontrols2:build \
+		widgets x11extras:build buildtools:build linguist:build \
+		qmake:build testlib:build
 .else
 CMAKE_ARGS+=	-DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
-USES+=		gl kde:6 qt:6
+USES+=		gl qt:6
 USE_GL=		opengl
-USE_KDE+=	libplasma:build
-USE_QT+=	base positioning
-WEBENGINE_USE=	QT=webchannel,webengine
+USE_QT+=	base tools:build
 .endif
 
-OPTIONS_DEFINE=		WEBENGINE
-OPTIONS_DEFAULT=	WEBENGINE
+OPTIONS_DEFINE=		PLASMA WEBENGINE
+OPTIONS_DEFAULT=	PLASMA WEBENGINE
+
+PLASMA_DESC=	Plasma integration (KF dependency)
+PLASMA_USE=	KDE=ecm:build
+PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
 
 WEBENGINE_DESC=		Built-in web view (webengine dependency)
 WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
 WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
+
+OPTIONS_SUB=	yes
+
+.if ${FLAVOR} == qt5
+PLASMA_USES=	kde:5
+PLASMA_USE+=	KDE=plasma-framework:build
+WEBENGINE_USE=	QT=printsupport,webchannel,webengine
+.else
+PLASMA_USES=	kde:6
+PLASMA_USE+=	KDE=libplasma:build
+WEBENGINE_USE=	QT=webchannel,webengine
+.endif
 
 USE_PERL5=	build
 
