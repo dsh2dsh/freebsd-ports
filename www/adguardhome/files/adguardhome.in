@@ -30,9 +30,10 @@ load_rc_config "$name"
 
 logfile="/var/log/${name}.log"
 pidfile="/var/run/${name}.pid"
+child_pidfile="/var/run/${name}_child.pid"
 
 command="/usr/sbin/daemon"
-command_args="-H -o $logfile -t $name -P $pidfile %%PREFIX%%/bin/adguardhome -c $adguardhome_config -w $adguardhome_work_dir $adguardhome_extra"
+command_args="-H -p $child_pidfile -P $pidfile -t $name -o $logfile %%PREFIX%%/bin/adguardhome -c $adguardhome_config -w $adguardhome_work_dir $adguardhome_extra"
 
 start_precmd="${name}_prestart"
 reload_precmd="${name}_reload_precmd"
@@ -74,5 +75,11 @@ adguardhome_prestart() {
 adguardhome_reload_precmd() {
     echo "Reloading $name."
 }
+
+case $1 in
+    reload)
+        pidfile=$child_pidfile
+        ;;
+esac
 
 run_rc_command "$1"
