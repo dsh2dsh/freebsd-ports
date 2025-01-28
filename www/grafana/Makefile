@@ -69,6 +69,9 @@ GRAFANA_LOGDIR?=		/var/log/${PORTNAME}
 GRAFANA_PLUGINDIR?=		${GRAFANA_DATADIR}/plugins
 GRAFANA_PROVISIONINGDIR?=	${ETCDIR}/provisioning
 
+# Disable some master port targets
+TARGET_ORDER_OVERRIDE=	-1:go-post-extract
+
 post-extract:
 	@${ECHO_MSG} "===> Tidying ${GO_MODNAME} dependencies";
 	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
