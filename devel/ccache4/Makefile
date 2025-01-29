@@ -11,7 +11,7 @@ WWW=		https://ccache.dev/
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/GPL-3.0.txt
 
-USES=		cmake:noninja pathfix shebangfix compiler:c++11-lang
+USES=		cmake:noninja compiler:c++17-lang pathfix shebangfix
 USE_GITHUB=	yes
 
 # /bin/bash -> /bin/sh to reduce tests dep.
@@ -29,12 +29,12 @@ CONFLICTS_INSTALL?=	ccache ccache-static
 
 # Prevent infinite recursion.
 NO_CCACHE_DEPEND=	yes
-SUB_FILES=	world-ccache ccache-update-links.sh ccache_clean
+SUB_FILES=	ccache_clean ccache-update-links.sh world-ccache
 
-PORTDOCS=	AUTHORS.adoc AUTHORS.html MANUAL.html MANUAL.adoc \
+PORTDOCS=	AUTHORS.adoc AUTHORS.html MANUAL.adoc MANUAL.html \
 		NEWS.adoc NEWS.html
 
-OPTIONS_DEFINE=		DOCS CLANGLINK LLVMLINK STATIC TEST
+OPTIONS_DEFINE=		CLANGLINK DOCS LLVMLINK STATIC TEST
 OPTIONS_DEFAULT=	CLANGLINK LLVMLINK
 OPTIONS_SUB=		yes
 
@@ -42,9 +42,9 @@ CLANGLINK_DESC=		Create clang compiler links if clang is installed
 LLVMLINK_DESC=		Create llvm compiler links if llvm is installed
 
 DOCS_BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor
-DOCS_ALL_TARGET=	all doc
 DOCS_USES=		perl5
 DOCS_CMAKE_BOOL=	ENABLE_DOCUMENTATION
+DOCS_ALL_TARGET=	all doc
 
 STATIC_BUILD_DEPENDS=	${LOCALBASE}/lib/libzstd.a:archivers/zstd \
 			${LOCALBASE}/lib/libxxhash.a:devel/xxhash
