@@ -14,12 +14,16 @@ BUILD_DEPENDS=	p5-YAML-LibYAML>0:textproc/p5-YAML-LibYAML
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs
 
 FLAVORS=	qt5 qt6
+.if defined(DEVELOPER) || ${DEVELOPER_MODE:Uno} == yes
+FLAVORS+=	plasma5 plasma6
+.endif
 FLAVOR?=	${FLAVORS:[1]}
 FLAVORS_SUB=	yes
 
-qt5_CONFLICTS_INSTALL=	${PORTNAME}-qt6
+plasma5_PKGNAMESUFFIX=	-plasma5
+plasma6_PKGNAMESUFFIX=	-plasma6
 qt6_PKGNAMESUFFIX=	-qt6
-qt6_CONFLICTS_INSTALL=	${PORTNAME}
+CONFLICTS_INSTALL=	${PORTNAME} ${PORTNAME}-*
 
 USES=		cmake:insource iconv perl5 xorg
 
@@ -41,7 +45,7 @@ GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:${PORTNA
 USE_QT=		declarative svg
 USE_XORG=	x11
 
-.if ${FLAVOR} == qt5
+.if ${FLAVOR} == plasma5 || ${FLAVOR} == qt5
 USES+=		qt:5
 USE_QT+=	concurrent core dbus gui network qdbus quickcontrols2:build \
 		widgets x11extras:build buildtools:build linguist:build \
@@ -56,6 +60,10 @@ USE_QT+=	base tools:build
 OPTIONS_DEFINE=		PLASMA WEBENGINE
 OPTIONS_DEFAULT=	PLASMA WEBENGINE
 
+.if ${FLAVOR} == plasma5 || ${FLAVOR} == plasma6
+OPTIONS_SET_FORCE=	PLASMA
+.endif
+
 PLASMA_DESC=	Plasma integration (KF dependency)
 PLASMA_USE=	KDE=ecm:build
 PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
@@ -66,7 +74,7 @@ WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
 
 OPTIONS_SUB=	yes
 
-.if ${FLAVOR} == qt5
+.if ${FLAVOR} == plasma5 || ${FLAVOR} == qt5
 PLASMA_USES=	kde:5
 PLASMA_USE+=	KDE=plasma-framework:build
 WEBENGINE_USE=	QT=printsupport,webchannel,webengine
