@@ -45,6 +45,7 @@ USE_RC_SUBR=	grafana
 TAG=		c6c701c
 
 GO_MODULE=	github.com/grafana/grafana
+GO_MOD_DIST=	github
 GO_TARGET=	./pkg/cmd/grafana \
 		./pkg/cmd/grafana-server \
 		./pkg/cmd/grafana-cli
@@ -59,6 +60,8 @@ SUB_LIST=	GRAFANA_USER=${GRAFANA_USER} \
 		GRAFANA_LOGDIR=${GRAFANA_LOGDIR} \
 		GRAFANA_PLUGINDIR=${GRAFANA_PLUGINDIR} \
 		GRAFANA_PROVISIONINGDIR=${GRAFANA_PROVISIONINGDIR}
+# Disable some master port targets
+TARGET_ORDER_OVERRIDE=	-1:go-post-extract
 
 GRAFANA_USER?=	grafana
 GRAFANA_GROUP?=	grafana
@@ -73,9 +76,6 @@ GRAFANA_HOMEDIR?=		${DATADIR}
 GRAFANA_LOGDIR?=		/var/log/${PORTNAME}
 GRAFANA_PLUGINDIR?=		${GRAFANA_DATADIR}/plugins
 GRAFANA_PROVISIONINGDIR?=	${ETCDIR}/provisioning
-
-# Disable some master port targets
-TARGET_ORDER_OVERRIDE=	-1:go-post-extract
 
 post-extract:
 	@${ECHO_MSG} "===> Tidying ${GO_MODNAME} dependencies";
@@ -97,7 +97,7 @@ pre-build:
 	@(cd ${GO_WRKSRC}; \
 	${ECHO_MSG} "===>  Generating wire_gen.go"; \
 	${SETENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=off ${GO_CMD} run \
-		./pkg/build/wire/cmd/wire/main.go gen -tags "oss" ./pkg/server )
+		./pkg/build/wire/cmd/wire/main.go gen -tags "oss" ./pkg/server)
 
 post-install:
 	${MKDIR} ${STAGEDIR}${GRAFANA_HOMEDIR}
