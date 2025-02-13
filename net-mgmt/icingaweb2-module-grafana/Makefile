@@ -1,13 +1,11 @@
 PORTNAME=	icingaweb2-module-grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.3
-PORTREVISION=	1
+DISTVERSION=	3.0.1
 CATEGORIES=	net-mgmt www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	joneum@FreeBSD.org
 COMMENT=	Add Grafana graphs into Icinga Web 2 to display performance metrics
-WWW=		https://github.com/Mikesch-mp/icingaweb2-module-grafana
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -17,7 +15,7 @@ RUN_DEPENDS=	icingaweb2${PHP_PKGNAMESUFFIX}>=2.11.4:net-mgmt/icingaweb2@${PHP_FL
 USES=		php:web,flavors
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	mikesch-mp
+GH_ACCOUNT=	NETWAYS
 
 NO_BUILD=	yes
 NO_ARCH=	yes
