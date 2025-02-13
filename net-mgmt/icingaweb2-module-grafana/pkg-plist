@@ -1,6 +1,7 @@
 %%WWWDIR%%/CHANGELOG.md
 %%WWWDIR%%/CONTRIBUTING.md
 %%WWWDIR%%/LICENSE
+%%WWWDIR%%/Makefile
 %%WWWDIR%%/README.md
 %%WWWDIR%%/RELEASE.md
 %%WWWDIR%%/application/controllers/ConfigController.php
@@ -124,6 +125,7 @@
 %%WWWDIR%%/library/Grafana/Web/Controller/IcingadbGrafanaController.php
 %%WWWDIR%%/library/Grafana/Web/Widget/PrintAction.php
 %%WWWDIR%%/module.info
+%%WWWDIR%%/phpcs.xml
 %%WWWDIR%%/public/css/module.less
 %%WWWDIR%%/public/js/behavior/iframe.js
 %%WWWDIR%%/run.php
