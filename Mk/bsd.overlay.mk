@@ -50,8 +50,13 @@ GN_ARGS+=	cc_wrapper="${CCACHE_BIN}"
 .  if ${.CURDIR:M*/www/firefox}
 MAKE_ENV+=	CARGO_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 
-.  elif ${.CURDIR:M*/deskutils/syncthingtray} && !${FLAVORS:Mplasma?}
+.  elif ${.CURDIR:M*/deskutils/syncthingtray}
 FLAVORS+=	plasma5 plasma6
+plasma5_PKGNAMESUFFIX=	-plasma5
+plasma6_PKGNAMESUFFIX=	-plasma6
+.    if ${FLAVOR:Mplasma?}
+OPTIONS_SET_FORCE=	PLASMA
+.    endif
 .  endif
 
 ccache-update-links:

@@ -14,14 +14,9 @@ BUILD_DEPENDS=	p5-YAML-LibYAML>0:textproc/p5-YAML-LibYAML
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs
 
 FLAVORS=	qt5 qt6
-.if defined(DEVELOPER) || ${DEVELOPER_MODE:Uno} == yes
-FLAVORS+=	plasma5 plasma6
-.endif
 FLAVOR?=	${FLAVORS:[1]}
 FLAVORS_SUB=	yes
 
-plasma5_PKGNAMESUFFIX=	-plasma5
-plasma6_PKGNAMESUFFIX=	-plasma6
 qt6_PKGNAMESUFFIX=	-qt6
 CONFLICTS_INSTALL=	${PORTNAME} ${PORTNAME}-*
 
@@ -59,10 +54,6 @@ USE_QT+=	base tools:build
 
 OPTIONS_DEFINE=		PLASMA WEBENGINE
 OPTIONS_DEFAULT=	PLASMA WEBENGINE
-
-.if ${FLAVOR} == plasma5 || ${FLAVOR} == plasma6
-OPTIONS_SET_FORCE=	PLASMA
-.endif
 
 PLASMA_DESC=	Plasma integration (KF dependency)
 PLASMA_USE=	KDE=ecm:build
