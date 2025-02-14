@@ -9,7 +9,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 
 BROKEN_sparc64=	https://github.com/boostorg/context/commit/f2ef6326b6ed
 
-BUILD_DEPENDS+=	bjam:devel/boost-jam
+BUILD_DEPENDS+=	bjam:devel/boost186-jam
 
 CONFLICTS_INSTALL=	boost-libs
 

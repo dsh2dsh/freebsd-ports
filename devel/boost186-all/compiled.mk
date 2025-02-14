@@ -11,8 +11,8 @@ PLIST_SUB+=	BOOST_MAJOR_VER=${BOOST_MAJOR_VER} \
 		BOOST_MINOR_VER=${BOOST_MINOR_VER} \
 		BOOST_SHARED_LIB_VER=${BOOST_SHARED_LIB_VER}
 
-PKG_MESSAGE_FILE_THREADS=	${PORTSDIR}/devel/boost186-all/pkg-message.threads
-PKG_MESSAGE_FILE_PYTHON=	${PORTSDIR}/devel/boost186-all/pkg-message.python
+PKG_MESSAGE_FILE_THREADS=	${.CURDIR}/../boost186-all/pkg-message.threads
+PKG_MESSAGE_FILE_PYTHON=	${.CURDIR}/../boost186-all/pkg-message.python
 
 MAKE_ARGS=	--layout=system \
 		--prefix=${PREFIX} \
