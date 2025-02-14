@@ -1,4 +1,4 @@
-PORTNAME=	boost-libs
+PORTNAME=	boost186-libs
 PORTREVISION?=	1
 
 COMMENT=	Free portable C++ libraries (without Boost.Python)
@@ -10,6 +10,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 BROKEN_sparc64=	https://github.com/boostorg/context/commit/f2ef6326b6ed
 
 BUILD_DEPENDS+=	bjam:devel/boost-jam
+
+CONFLICTS_INSTALL=	boost-libs
 
 # Note about LLVM_FROM_PORTS option:
 # Build of this port fails with assertion failure of compiler due to
@@ -46,9 +48,9 @@ ICU_LIB_DEPENDS=	libicuuc.so:devel/icu
 ICU_MAKE_ARGS=		-sICU_PATH=${LOCALBASE}
 ICU_MAKE_ARGS_OFF=	boost.locale.icu=off
 
-.include "${.CURDIR}/../boost-all/common.mk"
+.include "${.CURDIR}/../boost186-all/common.mk"
 
-.include "${.CURDIR}/../boost-all/compiled.mk"
+.include "${.CURDIR}/../boost186-all/compiled.mk"
 
 MAKE_ARGS+=	--without-python
 MAKE_ARGS+=	${MAKE_ARGS_${CHOSEN_COMPILER_TYPE}}

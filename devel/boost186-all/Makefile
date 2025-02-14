@@ -1,4 +1,4 @@
-PORTNAME=	boost-all
+PORTNAME=	boost186-all
 
 USES=		metaport
 
@@ -13,10 +13,10 @@ PYTHON_DESC=	Boost.Python - interfacing Python and C++
 
 .include "common.mk"
 
-LIBRARIES_RUN_DEPENDS=	${LOCALBASE}/lib/libboost_thread.so:devel/boost-libs
-JAM_RUN_DEPENDS=	${LOCALBASE}/bin/bjam:devel/boost-jam
+LIBRARIES_RUN_DEPENDS=	${LOCALBASE}/lib/libboost_thread.so:devel/boost186-libs
+JAM_RUN_DEPENDS=	${LOCALBASE}/bin/bjam:devel/boost186-jam
 PYTHON_RUN_DEPENDS=	${LOCALBASE}/lib/${PY_BOOST}
 PYTHON_USES=		python:env
-DOCS_RUN_DEPENDS=	${LOCALBASE}/share/doc/boost/doc/html/index.html:devel/boost-docs
+DOCS_RUN_DEPENDS=	${LOCALBASE}/share/doc/boost/doc/html/index.html:devel/boost186-docs
 
 .include <bsd.port.mk>
