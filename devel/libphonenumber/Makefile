@@ -15,7 +15,7 @@ LIB_DEPENDS=	libabsl_strings.so:devel/abseil \
 		libicui18n.so:devel/icu \
 		libprotobuf.so:devel/protobuf
 
-USES=		cmake:noninja compiler:c++17-lang pkgconfig
+USES=		cmake:noninja compiler:c++17-lang localbase pkgconfig
 # Workaround CMAKE_ARGS+=-DABSL_PROPAGATE_CXX_STD:BOOL=ON not being set in the
 # devel/abseil Makefile. As of version 8.13.21, libphonenumber no longer sets
 # the C++ dialect and expects to inherit it from abseil.
