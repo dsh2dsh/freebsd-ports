@@ -22,15 +22,19 @@ RUN_DEPENDS=	consolekit2>1.2.5:sysutils/consolekit2 \
 		xauth:x11/xauth \
 		xmessage:x11/xmessage
 
-USES=		cmake compiler:c++17-lang cpe pkgconfig python:build qt:5 xorg
+FLAVORS=	qt5 qt6
+FLAVOR?=	${FLAVORS:[1]}
+FLAVORS_SUB=	yes
+
+qt6_PKGNAMESUFFIX=	-qt6
+
+USES=		cmake compiler:c++17-lang cpe pkgconfig python:build xorg
 CPE_VENDOR=	${PORTNAME}_project
 USE_GITHUB=	yes
-USE_QT=		core declarative dbus gui network \
-		buildtools:build linguisttools:build declarative-test:build \
-		qmake:build testlib:build
+USE_QT=		declarative
 USE_XORG=	xau xcb
 
-CONFLICTS_INSTALL=	lightdm
+CONFLICTS_INSTALL=	lightdm ${PORTNAME} ${PORTNAME}-*
 
 CMAKE_ON=	BUILD_MAN_PAGES
 CMAKE_ARGS=	-DUID_MIN=1000 \
@@ -40,6 +44,18 @@ CMAKE_ARGS=	-DUID_MIN=1000 \
 		-DRST2MAN_EXECUTABLE=${LOCALBASE}/bin/rst2man \
 		-DSDDM_INITIAL_VT=7
 
+.if ${FLAVOR} == qt5
+USES+=		qt:5
+USE_QT+=	core dbus gui network buildtools:build linguisttools:build \
+		declarative-test:build qmake:build testlib:build
+.else
+CMAKE_ON+=	BUILD_WITH_QT6
+USES+=		gl qt:6
+USE_GL=		opengl
+USE_QT+=	base tools:build
+.endif
+
+PLIST_SUB=	QT_VER=${FLAVOR:S/qt//}
 USE_RC_SUBR=	sddm
 SUB_FILES=	xinit-session \
 		xinitrc.desktop
