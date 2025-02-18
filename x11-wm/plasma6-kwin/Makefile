@@ -13,7 +13,6 @@ PATCHFILES+=	1e7421d6b0e7ac03d1cac8323c5436a867dfc3db.diff:-p1 \
 
 COMMENT=	Easy to use, but flexible, X Window Manager and Wayland Compositor
 MAINTAINER=	kde@FreeBSD.org
-DESCR=		${PORTSDIR}/x11/plasma6-plasma/pkg-descr
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
 		hwdata>0:misc/hwdata \
