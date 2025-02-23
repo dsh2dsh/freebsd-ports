@@ -35,8 +35,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386 riscv64
 
-RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
-
 USES=		cpe go:1.23,modules
 
 USE_GITHUB=	yes
