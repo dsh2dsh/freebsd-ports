@@ -1,6 +1,5 @@
 PORTNAME=	dhcpd
-PORTVERSION=	6.6.20200413
-PORTREVISION=	2
+PORTVERSION=	6.6.20220916
 CATEGORIES=	net
 
 MAINTAINER=	koue@chaosophia.net
@@ -13,6 +12,7 @@ USES=		ssl uidfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	koue
+GH_TAGNAME=	ee324e3
 USE_RC_SUBR=	dhcpd
 
 MAKE_ARGS+=	BINDIR=${PREFIX}/sbin MANDIR=${PREFIX}/share/man/man
