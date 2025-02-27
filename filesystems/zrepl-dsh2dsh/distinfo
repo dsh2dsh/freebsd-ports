@@ -1,5 +1,5 @@
-TIMESTAMP = 1740078745
-SHA256 (go/filesystems_zrepl-dsh2dsh/zrepl-v0.9.7-0.20250220190902-bde74da0acdf/v0.9.7-0.20250220190902-bde74da0acdf.mod) = 6857e0d01ddcdc676d462d7c44a3cc8368c35fd8a9c0ccf76c38f0e7409401cb
-SIZE (go/filesystems_zrepl-dsh2dsh/zrepl-v0.9.7-0.20250220190902-bde74da0acdf/v0.9.7-0.20250220190902-bde74da0acdf.mod) = 2920
-SHA256 (go/filesystems_zrepl-dsh2dsh/zrepl-v0.9.7-0.20250220190902-bde74da0acdf/v0.9.7-0.20250220190902-bde74da0acdf.zip) = fde5c2dc8e218ad7bd126a8c15c96f02c0371e20ea35c9fd802d5b149432dd77
-SIZE (go/filesystems_zrepl-dsh2dsh/zrepl-v0.9.7-0.20250220190902-bde74da0acdf/v0.9.7-0.20250220190902-bde74da0acdf.zip) = 468633
+TIMESTAMP = 1740673343
+SHA256 (go/filesystems_zrepl-dsh2dsh/zrepl-v0.9.7/v0.9.7.mod) = 6857e0d01ddcdc676d462d7c44a3cc8368c35fd8a9c0ccf76c38f0e7409401cb
+SIZE (go/filesystems_zrepl-dsh2dsh/zrepl-v0.9.7/v0.9.7.mod) = 2920
+SHA256 (go/filesystems_zrepl-dsh2dsh/zrepl-v0.9.7/v0.9.7.zip) = ecbc0a9372d5bffcfeb8eff50b22a41dee00313ef19eb67c6b7ebdefe4d7df66
+SIZE (go/filesystems_zrepl-dsh2dsh/zrepl-v0.9.7/v0.9.7.zip) = 448961

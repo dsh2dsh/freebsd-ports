@@ -1,7 +1,6 @@
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.9.7
-DISTVERSIONSUFFIX=	-0.20250220190902-bde74da0acdf
 CATEGORIES=	filesystems sysutils
 PKGNAMESUFFIX=	-dsh2dsh
 
@@ -12,7 +11,7 @@ WWW=		https://github.com/dsh2dsh/${PORTNAME}
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.23,modules ncurses
+USES=		go:1.24,modules ncurses
 
 GO_MODULE=	github.com/dsh2dsh/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "${STRIP} -w -X github.com/dsh2dsh/${PORTNAME}/internal/version.${PORTNAME}Version=${DISTVERSIONFULL}"
