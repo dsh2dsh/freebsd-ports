@@ -1,14 +1,11 @@
---- v8/src/builtins/x64/builtins-x64.cc.orig	2024-10-27 06:40:35 UTC
+--- v8/src/builtins/x64/builtins-x64.cc.orig	2025-02-20 09:59:21 UTC
 +++ v8/src/builtins/x64/builtins-x64.cc
-@@ -2838,7 +2838,11 @@ void Generate_OSREntry(MacroAssembler* masm, Register 
-   // Drop the return address on the stack and jump to the OSR entry
-   // point of the function.
-   __ Drop(1);
-+#ifdef V8_ENABLE_CET_IBT
-+  __ jmp(entry_address, /*notrack=*/true);
-+#else
-   __ jmp(entry_address);
-+#endif
+@@ -1836,7 +1836,7 @@ static void Generate_InterpreterEnterBytecode(MacroAss
+                   times_system_pointer_size, 0));
+ 
+   // Jump to the interpreter entry, and call kJavaScriptCallCodeStartRegister.
+-  __ jmp(rbx);
++  __ jmp(rbx, /*notrack=*/true);
  }
  
- enum class OsrSourceTier {
+ void Builtins::Generate_InterpreterEnterAtNextBytecode(MacroAssembler* masm) {
