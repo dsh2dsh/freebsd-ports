@@ -1,13 +1,13 @@
 PORTNAME=	keepassxc
-DISTVERSION=	2.7.10
+DISTVERSION=	2.7.9
+PORTREVISION=	1
 CATEGORIES=	security
+MASTER_SITES=	https://github.com/keepassxreboot/keepassxc/releases/download/${DISTVERSION}/
+DISTNAME=	${PORTNAME}-${DISTVERSION}-src
 
 MAINTAINER=	lwhsu@FreeBSD.org
 COMMENT=	KeePass Cross-platform Community Edition
 WWW=		https://keepassxc.org
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	keepassxreboot
 
 LICENSE=	APACHE20 BSD3CLAUSE CC0-1.0 GPLv2 GPLv3 LGPL21 LGPL3 MIT \
 		NOKIA-LGPL-EXCEPTION
@@ -27,7 +27,7 @@ USE_QT=		concurrent core dbus gui network svg widgets buildtools:build \
 		linguisttools:build qmake:build testlib:build x11extras
 USE_XORG=	x11
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
+WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 CMAKE_OFF=	WITH_XC_UPDATECHECK
 
 CONFLICTS_INSTALL=	keepassx-0.* keepassx2 keepassx
