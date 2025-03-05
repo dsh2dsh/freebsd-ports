@@ -1,4 +1,4 @@
-DISTVERSION=	1.24.0
+DISTVERSION=	1.24.1
 # Always set PORTREVISION explicitly as otherwise they are inherited from lang/go-devel
 MASTER_SITES=	https://golang.org/dl/
 DISTFILES=	go${DISTVERSION}.src.tar.gz \
