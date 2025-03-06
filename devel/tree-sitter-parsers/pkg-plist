@@ -35,6 +35,8 @@ lib/libtree-sitter-markdown.so
 lib/libtree-sitter-nix.so
 lib/libtree-sitter-nu.so
 lib/libtree-sitter-ocaml.so
+lib/libtree-sitter-ocaml-interface.so
+lib/libtree-sitter-ocaml-type.so
 lib/libtree-sitter-org.so
 lib/libtree-sitter-perl.so
 lib/libtree-sitter-php.so
