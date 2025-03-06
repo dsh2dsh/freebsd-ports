@@ -1,1 +1,2 @@
-This is a collection of parsers for use with tree-sitter.
+This is a collection of language grammars for use with tree-sitter. With this
+collection installed Emacs tree-sitter based modes work out of box.

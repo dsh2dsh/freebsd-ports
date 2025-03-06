@@ -1,3 +1,4 @@
+lib/libtree-sitter-agda.so
 lib/libtree-sitter-awk.so
 lib/libtree-sitter-bash.so
 lib/libtree-sitter-bibtex.so
@@ -12,14 +13,17 @@ lib/libtree-sitter-css.so
 lib/libtree-sitter-dart.so
 lib/libtree-sitter-dockerfile.so
 lib/libtree-sitter-elixir.so
+lib/libtree-sitter-embedded-template.so
 lib/libtree-sitter-glsl.so
 lib/libtree-sitter-go.so
 lib/libtree-sitter-gomod.so
+lib/libtree-sitter-haskell.so
 lib/libtree-sitter-heex.so
 lib/libtree-sitter-html.so
 lib/libtree-sitter-janet.so
 lib/libtree-sitter-java.so
 lib/libtree-sitter-javascript.so
+lib/libtree-sitter-jsdoc.so
 lib/libtree-sitter-json.so
 lib/libtree-sitter-julia.so
 lib/libtree-sitter-kotlin.so
@@ -30,11 +34,14 @@ lib/libtree-sitter-markdown-inline.so
 lib/libtree-sitter-markdown.so
 lib/libtree-sitter-nix.so
 lib/libtree-sitter-nu.so
+lib/libtree-sitter-ocaml.so
 lib/libtree-sitter-org.so
 lib/libtree-sitter-perl.so
+lib/libtree-sitter-php.so
 lib/libtree-sitter-proto.so
 lib/libtree-sitter-python.so
 lib/libtree-sitter-r.so
+lib/libtree-sitter-regex.so
 lib/libtree-sitter-ruby.so
 lib/libtree-sitter-rust.so
 lib/libtree-sitter-scala.so
