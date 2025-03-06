@@ -1,8 +1,9 @@
 DISTVERSION=	1.24.1
 # Always set PORTREVISION explicitly as otherwise they are inherited from lang/go-devel
+PORTREVISION=	1
 MASTER_SITES=	https://golang.org/dl/
 DISTFILES=	go${DISTVERSION}.src.tar.gz \
-		go1.23.6.${OPSYS:tl}-${GOARCH_${ARCH}}.tar.gz
+		go1.23.7.${OPSYS:tl}-${GOARCH_${ARCH}}.tar.gz
 
 # Avoid conflicting patch files
 PATCHFILES=
@@ -15,15 +16,14 @@ WRKSRC=		${WRKDIR}/go
 DISTINFO_FILE=	${.CURDIR}/distinfo
 EXTRACT_ONLY=	${DISTFILES:[1]}
 
-SHEBANG_FILES?=	lib/wasm/go_js_wasm_exec lib/wasm/go_wasip1_wasm_exec
+SHEBANG_FILES=	lib/wasm/go_js_wasm_exec lib/wasm/go_wasip1_wasm_exec
 
-BOOTSTRAP_WRKDIR=	${WRKDIR}/go-${OPSYS:tl}-${GOARCH_${ARCH}}${GOARM_${ARCH}}-bootstrap
+BOOTSTRAP_WRKSRC=	${WRKDIR}/go-${OPSYS:tl}-${GOARCH_${ARCH}}${GOARM_${ARCH}}-bootstrap
 
 pre-extract:
-	${MKDIR} "${BOOTSTRAP_WRKDIR}"
-	(cd "${BOOTSTRAP_WRKDIR}" && \
-	${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
-		"${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:[2]}" \
-		--strip-components 1 ${EXTRACT_AFTER_ARGS})
+	${MKDIR} ${BOOTSTRAP_WRKSRC}
+	cd ${BOOTSTRAP_WRKSRC} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
+		${DISTDIR}/${DIST_SUBDIR}/${DISTFILES:[2]} \
+		--strip-components 1 ${EXTRACT_AFTER_ARGS}
 
 .include "${MASTERDIR}/Makefile"
