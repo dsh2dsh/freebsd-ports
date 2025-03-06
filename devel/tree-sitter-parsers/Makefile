@@ -100,7 +100,7 @@ do-install: install-all-parsers
 .include <bsd.port.mk>
 
 .for lang dir in ${_BUILD}
-LIBS+=	${WRKSRC}/${dir}/libtree-sitter-${lang}.so
+_LANGS+=	${WRKSRC}/${dir}/libtree-sitter-${lang}.so
 SRCS.${lang:${LANG_FILTER}}+=	${dir}/parser.c
 .  if exists(${WRKSRC}/${dir}/scanner.c)
 SRCS.${lang:${LANG_FILTER}}+=	${dir}/scanner.c
@@ -118,13 +118,15 @@ ${WRKSRC}/${dir}/libtree-sitter-${lang}.so: ${SRCS.${lang:${LANG_FILTER}}:R:S/$/
 .endfor
 
 .c.o:
-	${CC}  ${CFLAGS}   -fPIC -c -I${.TARGET:H} -o ${.TARGET} ${.IMPSRC}
+	${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${CC} \
+		${CFLAGS}   -fPIC -c -I${.TARGET:H} -o ${.TARGET} ${.IMPSRC}
 
 .cc.o:
-	${CXX} ${CXXFLAGS} -fPIC -c -I${.TARGET:H} -o ${.TARGET} ${.IMPSRC}
+	${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${CXX} \
+		${CXXFLAGS} -fPIC -c -I${.TARGET:H} -o ${.TARGET} ${.IMPSRC}
 
-build-all-parsers: ${LIBS}
+build-all-parsers: ${_LANGS}
 
 install-all-parsers:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_LIB} ${LIBS} ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_LIB} ${_LANGS} ${STAGEDIR}${PREFIX}/lib
