@@ -1,5 +1,5 @@
 PORTNAME=	tree-sitter-parsers
-PORTVERSION=	20250306
+PORTVERSION=	20250310
 CATEGORIES=	devel
 
 MAINTAINER=	dsh@bamus.cz
@@ -59,6 +59,7 @@ _TUPLES=\
 	surface		connorlay:tree-sitter-surface:v0.2.0 \
 	toml		tree-sitter:tree-sitter-toml:v0.5.1 \
 	tsx		tree-sitter:tree-sitter-typescript:v0.23.2 \
+	typespec	happenslol:tree-sitter-typespec:cfcf94c \
 	typst		uben0:tree-sitter-typst:v0.11.0 \
 	verilog		gmlarumbe:tree-sitter-verilog:cd6e48b \
 	vhdl		alemuller:tree-sitter-vhdl:a3b2d84 \

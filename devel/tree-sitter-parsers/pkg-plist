@@ -52,6 +52,7 @@ lib/libtree-sitter-surface.so
 lib/libtree-sitter-toml.so
 lib/libtree-sitter-tsx.so
 lib/libtree-sitter-typescript.so
+lib/libtree-sitter-typespec.so
 lib/libtree-sitter-typst.so
 lib/libtree-sitter-verilog.so
 lib/libtree-sitter-vhdl.so
