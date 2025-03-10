@@ -1,4 +1,4 @@
-TIMESTAMP = 1741276130
+TIMESTAMP = 1741618772
 SHA256 (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = e436584f1c44c8cd06f26f169b0f817500687512ce3028c2fb2f0e2a7e7baf64
 SIZE (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = 367567
 SHA256 (tree-sitter-tree-sitter-agda-v1.3.3_GH0.tar.gz) = f09055ac4df99d8c27af4a80442abd0659b75babd46e8693a7dd9133d5711ef5
@@ -99,6 +99,8 @@ SHA256 (tree-sitter-tree-sitter-toml-v0.5.1_GH0.tar.gz) = 23be3c5d7e65b60460f2a3
 SIZE (tree-sitter-tree-sitter-toml-v0.5.1_GH0.tar.gz) = 162300
 SHA256 (tree-sitter-tree-sitter-typescript-v0.23.2_GH0.tar.gz) = 2c4ce711ae8d1218a3b2f899189298159d672870b5b34dff5d937bed2f3e8983
 SIZE (tree-sitter-tree-sitter-typescript-v0.23.2_GH0.tar.gz) = 1032670
+SHA256 (happenslol-tree-sitter-typespec-cfcf94c_GH0.tar.gz) = e1b18653057f1032f089ef8d8c56d06601120fdee85db2ec104519a5ada45370
+SIZE (happenslol-tree-sitter-typespec-cfcf94c_GH0.tar.gz) = 78519
 SHA256 (uben0-tree-sitter-typst-v0.11.0_GH0.tar.gz) = d195b420e2f143c8f595c347fbba88f640dfe7a228c047b7aa2e3394e93839c5
 SIZE (uben0-tree-sitter-typst-v0.11.0_GH0.tar.gz) = 379379
 SHA256 (gmlarumbe-tree-sitter-verilog-cd6e48b_GH0.tar.gz) = 4ab8c0f3085e8c76fe8126040776fa447d6046a40e6e25f1eecc27afeeaeac26
