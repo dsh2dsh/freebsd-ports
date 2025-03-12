@@ -1,6 +1,6 @@
 PORTNAME=	golangci-lint
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.64.6
+DISTVERSION=	1.64.7
 CATEGORIES=	devel
 
 MAINTAINER=	lcook@FreeBSD.org
@@ -12,17 +12,20 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules
 
-_BUILD_VERSION=	${DISTVERSION}
-_BUILD_COMMIT=	d574f35
-_BUILD_DATE=	$$(date -u "+%Y-%m-%dT%H:%M:%SZ")
+USE_GITHUB=	yes
+GH_ACCOUNT=	golangci
 
-GO_MODULE=	github.com/${PORTNAME:S/-lint//}/${PORTNAME}
+_BUILD_VERSION=	${DISTVERSION}
+_BUILD_COMMIT=	8cffdb7
+_BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
+_BUILD_XFLAGS=	main.version=${_BUILD_VERSION} \
+		main.commit=${_BUILD_COMMIT} \
+		main.date=${_BUILD_DATE:sh}
+
+GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
+GO_MOD_DIST=	github
 GO_TARGET=	./cmd/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags "\
-		-s -w \
-		-X main.version=${_BUILD_VERSION} \
-		-X main.commit=${_BUILD_COMMIT} \
-		-X main.date=${_BUILD_DATE}"
+GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	CHANGELOG.md README.md
