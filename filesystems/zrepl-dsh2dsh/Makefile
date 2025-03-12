@@ -1,7 +1,6 @@
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.7
-DISTVERSIONSUFFIX=	-3-gc0d91f5
+DISTVERSION=	0.9.7-6-g54ffdb6
 CATEGORIES=	filesystems sysutils
 PKGNAMESUFFIX=	-${GH_ACCOUNT}
 
@@ -18,7 +17,8 @@ USES=		go:1.24,modules ncurses
 
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
 GO_MOD_DIST=	github
-GO_BUILDFLAGS=	-ldflags "${STRIP} -w -X github.com/${GH_ACCOUNT}/${PORTNAME}/internal/version.${PORTNAME}Version=${DISTVERSIONFULL}"
+_BUILD_XFLAGS=	${GO_MODULE}/internal/version.${PORTNAME}Version=${DISTVERSIONFULL}
+GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
 
 CONFLICTS_INSTALL=	${PORTNAME}
 
