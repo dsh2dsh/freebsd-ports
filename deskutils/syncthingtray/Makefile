@@ -1,6 +1,6 @@
 PORTNAME=	syncthingtray
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.7.2
+DISTVERSION=	1.7.3
 CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
@@ -33,14 +33,14 @@ GH_ACCOUNT=	Martchus
 GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:${PORTNAME}/../${PORTNAME} \
 		${GH_ACCOUNT}:cpp-utilities:v5.27.3:cpputilities/../c++utilities \
 		${GH_ACCOUNT}:qtutilities:v6.14.6:qtutilities/../qtutilities \
-		${GH_ACCOUNT}:qtforkawesome:v0.3.0:qtforkawesome/../qtforkawesome \
+		${GH_ACCOUNT}:qtforkawesome:v0.3.1:qtforkawesome/../qtforkawesome \
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
-		${GH_ACCOUNT}:subdirs:993f383:subdirs/../subdirs
+		${GH_ACCOUNT}:subdirs:ae15dda:subdirs/../subdirs
 
 USE_QT=		declarative svg
 USE_XORG=	x11
 
-.if ${FLAVOR} == plasma5 || ${FLAVOR} == qt5
+.if ${FLAVOR} == qt5
 USES+=		qt:5
 USE_QT+=	concurrent core dbus gui network qdbus quickcontrols2:build \
 		widgets x11extras:build buildtools:build linguist:build \
