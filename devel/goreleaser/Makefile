@@ -1,6 +1,6 @@
 PORTNAME=	goreleaser
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.7.0
+DISTVERSION=	2.8.0
 CATEGORIES=	devel
 
 MAINTAINER=	fuz@FreeBSD.org
@@ -10,9 +10,14 @@ WWW=		https://goreleaser.com/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-USES=		go:1.23,modules
-GO_MODULE=	github.com/${PORTNAME}/${PORTNAME}/v2
-GO_BUILDFLAGS=	-ldflags="-X main.version=${PKGVERSION} -X 'main.builtBy=FreeBSD ports' ${STRIP}"
+USE_GITHUB=	yes
+GH_ACCOUNT=	${PORTNAME}
+
+USES=		go:1.24,modules
+GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}/v2
+GO_MOD_DIST=	github
+_BUILD_XFLAGS=	'main.builtBy=FreeBSD ports' main.version=${PKGVERSION}
+GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
 
 # TODO: generate documentation
 PLIST_FILES=	bin/goreleaser \
