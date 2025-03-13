@@ -1,6 +1,7 @@
 PORTNAME=	transmission
-DISTVERSION=	4.0.6
-PORTREVISION=	4
+DISTVERSION=	4.1.0-beta.2
+DISTVERSIONSUFFIX=	+rac5c9e082d
+PORTREVISION=	0
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -178,9 +179,12 @@ do-install:
 
 .if ${FLAVOR} == qt
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps
-	${INSTALL_DATA}	${WRKSRC}/qt/icons/transmission.svg \
+	${MV} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/transmission-devel.svg \
+		${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/transmission-devel-qt.svg
+	${MV} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/transmission.svg \
 		${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/transmission-qt.svg
+	${MV} ${STAGEDIR}${PREFIX}/share/icons/hicolor/symbolic/apps/transmission-symbolic.svg \
+		${STAGEDIR}${PREFIX}/share/icons/hicolor/symbolic/apps/transmission-symbolic-qt.svg
 .endif
 
 .if ${FLAVOR} == daemon

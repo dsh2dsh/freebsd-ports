@@ -4,7 +4,7 @@
  
  target_include_directories(fmt::fmt-header-only
      INTERFACE
--        ${CMAKE_CURRENT_LIST_DIR}/../third-party/fmt/include)
+-        ${TR_THIRD_PARTY_SOURCE_DIR}/fmt/include)
 +    	${CMAKE_INSTALL_PREFIX}/include)
  
  target_compile_definitions(fmt::fmt-header-only
