@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USES=		cpe go:1.24,modules
 
+USE_GITHUB=	yes
 GH_ACCOUNT=	AdguardTeam
 GH_PROJECT=	AdGuardHome
 
