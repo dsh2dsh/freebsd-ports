@@ -27,6 +27,8 @@ go_ARGS:=	${go_ARGS:S/${GO_VERSION}/${GO_DEFAULT}/1}
 .if !defined(_DSH_INCLUDE_USES_GO_MK)
 _DSH_INCLUDE_USES_GO_MK=	yes
 
+FETCH_DEPENDS:=	${FETCH_DEPENDS:N*\:security/ca_root_nss}
+
 .  if ${go_ARGS:Mmodules}
 GO_GOPATH=	${DISTDIR}/go
 GO_ENV+=	GOTOOLCHAIN=local
