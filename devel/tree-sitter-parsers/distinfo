@@ -1,4 +1,4 @@
-TIMESTAMP = 1741618772
+TIMESTAMP = 1742927161
 SHA256 (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = e436584f1c44c8cd06f26f169b0f817500687512ce3028c2fb2f0e2a7e7baf64
 SIZE (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = 367567
 SHA256 (tree-sitter-tree-sitter-agda-v1.3.3_GH0.tar.gz) = f09055ac4df99d8c27af4a80442abd0659b75babd46e8693a7dd9133d5711ef5
@@ -115,3 +115,5 @@ SHA256 (mehmetoguzderin-tree-sitter-wgsl-27ae4db_GH0.tar.gz) = 5b3209be54b53ff20
 SIZE (mehmetoguzderin-tree-sitter-wgsl-27ae4db_GH0.tar.gz) = 155400
 SHA256 (tree-sitter-grammars-tree-sitter-yaml-v0.7.0_GH0.tar.gz) = 8182760587f14d5131161dee3605613ccebe86062909f0879edf63b4bdd99d44
 SIZE (tree-sitter-grammars-tree-sitter-yaml-v0.7.0_GH0.tar.gz) = 159326
+SHA256 (tree-sitter-grammars-tree-sitter-zig-v1.1.2_GH0.tar.gz) = 612d67059faa90ec7691e5d786d70d8f7c2c8b15b83de901b9b801122ad4cf25
+SIZE (tree-sitter-grammars-tree-sitter-zig-v1.1.2_GH0.tar.gz) = 264645

@@ -1,5 +1,5 @@
 PORTNAME=	tree-sitter-parsers
-PORTVERSION=	20250310
+PORTVERSION=	20250325
 CATEGORIES=	devel
 
 MAINTAINER=	dsh@bamus.cz
@@ -66,7 +66,8 @@ _TUPLES=\
 	vue		tree-sitter-grammars:tree-sitter-vue:7e48557 \
 	wast		wasm-lsp:tree-sitter-wasm:2ca28a9 \
 	wgsl		mehmetoguzderin:tree-sitter-wgsl:27ae4db \
-	yaml		tree-sitter-grammars:tree-sitter-yaml:v0.7.0
+	yaml		tree-sitter-grammars:tree-sitter-yaml:v0.7.0 \
+	zig		tree-sitter-grammars:tree-sitter-zig:v1.1.2
 
 _SRCDIR.markdown=	tree-sitter-markdown/src
 _SRCDIR.ocaml=		grammars/ocaml/src
