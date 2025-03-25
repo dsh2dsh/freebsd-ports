@@ -1,6 +1,6 @@
 PORTNAME=	golangci-lint
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.0
+DISTVERSION=	2.0.1
 CATEGORIES=	devel
 
 MAINTAINER=	lcook@FreeBSD.org
@@ -16,13 +16,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	golangci
 
 _BUILD_VERSION=	${DISTVERSION}
-_BUILD_COMMIT=	f1f8343
+_BUILD_COMMIT=	e8927ce
 _BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
 _BUILD_XFLAGS=	main.version=${_BUILD_VERSION} \
 		main.commit=${_BUILD_COMMIT} \
 		main.date=${_BUILD_DATE:sh}
 
-GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
+GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}/v2
 GO_MOD_DIST=	github
 GO_TARGET=	./cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
