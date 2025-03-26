@@ -1,5 +1,5 @@
 PORTNAME=	tree-sitter-parsers
-PORTVERSION=	20250325
+PORTVERSION=	20250326
 CATEGORIES=	devel
 
 MAINTAINER=	dsh@bamus.cz
@@ -23,6 +23,7 @@ _TUPLES=\
 	css		tree-sitter:tree-sitter-css:v0.23.2 \
 	dart		ast-grep:tree-sitter-dart:23e3921 \
 	dockerfile	camdencheek:tree-sitter-dockerfile:v0.2.0 \
+	elisp		Wilfred:tree-sitter-elisp:12b547b \
 	elixir		elixir-lang:tree-sitter-elixir:v0.3.4 \
 	embedded-template	tree-sitter:tree-sitter-embedded-template:v0.23.2 \
 	glsl		tree-sitter-grammars:tree-sitter-glsl:v0.1.9 \
@@ -31,7 +32,7 @@ _TUPLES=\
 	haskell		tree-sitter:tree-sitter-haskell:v0.23.1 \
 	heex		phoenixframework:tree-sitter-heex:v0.8.0 \
 	html		tree-sitter:tree-sitter-html:v0.23.2 \
-	janet		sogaiu:tree-sitter-janet-simple:v0.0.7 \
+	janet-simple	sogaiu:tree-sitter-janet-simple:v0.0.7 \
 	java		tree-sitter:tree-sitter-java:v0.23.5 \
 	javascript	tree-sitter:tree-sitter-javascript:v0.23.1 \
 	jsdoc		tree-sitter:tree-sitter-jsdoc:v0.23.2 \
@@ -55,6 +56,7 @@ _TUPLES=\
 	ruby		tree-sitter:tree-sitter-ruby:v0.23.1 \
 	rust		tree-sitter:tree-sitter-rust:v0.23.2 \
 	scala		tree-sitter:tree-sitter-scala:v0.23.4 \
+	solidity	JoranHonig:tree-sitter-solidity:d38dcd0 \
 	sql		DerekStride:tree-sitter-sql:9376414 \
 	surface		connorlay:tree-sitter-surface:v0.2.0 \
 	toml		tree-sitter:tree-sitter-toml:v0.5.1 \
