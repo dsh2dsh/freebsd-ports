@@ -1,16 +1,16 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.5.2
+DISTVERSION=	11.6.0
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
-DISTFILES=	grafana-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
+DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		go.mod:gomod \
 		go.work:gomod \
+		apps/advisor/go.mod:gomod \
 		apps/alerting/notifications/go.mod:gomod \
-		apps/investigation/go.mod:gomod \
+		apps/investigations/go.mod:gomod \
 		apps/playlist/go.mod:gomod \
-		kindsv2/go.mod:gomod \
 		pkg/aggregator/go.mod:gomod \
 		pkg/apimachinery/go.mod:gomod \
 		pkg/apiserver/go.mod:gomod \
@@ -27,8 +27,8 @@ EXTRACT_ONLY=	${DISTFILES:N*.mod\:*:N*.mod:C/:.*//:Ngo.work}
 
 MAINTAINER=	drtr0jan@yandex.ru
 COMMENT=	Dashboard and graph editor for multiple data stores
-WWW=		https://grafana.com/grafana/ \
-		https://github.com/grafana/grafana
+WWW=		https://grafana.com/${PORTNAME}/ \
+		https://github.com/${GH_ACCOUNT}/${GH_PROJECT}
 
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -38,16 +38,18 @@ ONLY_FOR_ARCHS=	aarch64 amd64 i386 riscv64
 USES=		cpe go:1.23,modules
 
 USE_GITHUB=	yes
+USE_RC_SUBR=	${PORTNAME}
 
-USE_RC_SUBR=	grafana
-TAG=		598e033
+_BUILD_COMMIT=	d2fdff9
+_BUILD_XFLAGS=	main.version=${PORTVERSION} \
+		main.commit=${_BUILD_COMMIT}
 
-GO_MODULE=	github.com/grafana/grafana
+GO_MODULE=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 GO_MOD_DIST=	github
-GO_TARGET=	./pkg/cmd/grafana \
-		./pkg/cmd/grafana-server \
-		./pkg/cmd/grafana-cli
-GO_BUILDFLAGS=	-ldflags="-w -X main.version=${PORTVERSION} -X main.commit=${TAG}"
+GO_TARGET=	./pkg/cmd/${PORTNAME} \
+		./pkg/cmd/${PORTNAME}-server \
+		./pkg/cmd/${PORTNAME}-cli
+GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
 
 CONFLICTS_INSTALL=	grafana*
 
@@ -61,8 +63,8 @@ SUB_LIST=	GRAFANA_USER=${GRAFANA_USER} \
 # Disable some master port targets
 TARGET_ORDER_OVERRIDE=	-1:go-post-extract
 
-GRAFANA_USER?=	grafana
-GRAFANA_GROUP?=	grafana
+GRAFANA_USER?=	${PORTNAME}
+GRAFANA_GROUP?=	${PORTNAME}
 
 USERS=		${GRAFANA_USER}
 GROUPS=		${GRAFANA_GROUP}
@@ -76,15 +78,15 @@ GRAFANA_PLUGINDIR?=		${GRAFANA_DATADIR}/plugins
 GRAFANA_PROVISIONINGDIR?=	${ETCDIR}/provisioning
 
 post-extract:
-	@${ECHO_MSG} "===> Tidying ${GO_MODNAME} dependencies";
-	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
+	${ECHO_MSG} "===> Tidying ${GO_MODNAME} dependencies";
+	(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
 		GOPROXY=${GO_MODCACHE} ${GO_CMD} mod tidy -e)
-	@${ECHO_MSG} "===> Vendoring ${GO_MODNAME} dependencies";
-	@(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
+	${ECHO_MSG} "===> Vendoring ${GO_MODNAME} dependencies";
+	(cd ${GO_WRKSRC}; ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${GO_ENV} \
 		GOPROXY=${GO_MODCACHE} ${GO_CMD} work vendor -e)
 
 post-patch:
-	@${REINPLACE_CMD} \
+	${REINPLACE_CMD} \
 		-e 's|;data = /var/lib/grafana|data = ${GRAFANA_DATADIR}|g' \
 		-e 's|;logs = /var/log/grafana|logs = ${GRAFANA_LOGDIR}|g' \
 		-e 's|;plugins = /var/lib/grafana/plugins|plugins = ${GRAFANA_PLUGINDIR}|g' \
@@ -92,7 +94,7 @@ post-patch:
 		 ${WRKSRC}/conf/sample.ini
 
 pre-build:
-	@(cd ${GO_WRKSRC}; \
+	(cd ${GO_WRKSRC}; \
 	${ECHO_MSG} "===>  Generating wire_gen.go"; \
 	${SETENV} ${MAKE_ENV} ${GO_ENV} GOPROXY=off ${GO_CMD} run \
 		./pkg/build/wire/cmd/wire/main.go gen -tags "oss" ./pkg/server)
