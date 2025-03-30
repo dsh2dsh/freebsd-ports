@@ -1,25 +1,30 @@
 PORTNAME=	fzf
-DISTVERSION=	0.60.3
+DISTVERSION=	0.61.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 
 MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Blazing fast command-line fuzzy finder
-WWW=		https://github.com/junegunn/${PORTNAME}
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	junegunn
+
 USES=		go:modules
 
-GO_MODULE=	github.com/junegunn/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags="-X main.version=${DISTVERSION} -X main.revision=${COMMIT_ID} ${STRIP} -w"
+_BUILD_COMMIT=	e15cba0
+_BUILD_XFLAGS=	main.revision=${COMMIT_ID} \
+		main.version=${DISTVERSION}
 
-COMMIT_ID=	0012183
+GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
+GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
 
 PLIST_FILES=	bin/fzf share/man/man1/fzf.1.gz
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/man1/fzf.1 \
+		${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>
