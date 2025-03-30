@@ -1,22 +1,22 @@
 #!/bin/sh
+# shellcheck disable=SC2034
 
 # PROVIDE: fcron
-# REQUIRE: LOGIN
+# REQUIRE: LOGIN FILESYSTEMS
 # BEFORE: securelevel
 # KEYWORD: shutdown
 #
-# fcron_enable (bool):	Set to NO by default.
-#			Set it to YES to enable fcron.
+# fcron_enable (bool): Set to YES to enable fcron.
+#                      Default: NO
 
+# shellcheck disable=SC1094
 . /etc/rc.subr
 
-desc="Periodic command scheduler"
-name=fcron
-rcvar=fcron_enable
-
-load_rc_config $name
-
-command="%%PREFIX%%/sbin/${name}"
+name="fcron"
+desc="Daemon to execute scheduled commands"
+rcvar="${name}_enable"
+command="%%PREFIX%%/sbin/$name"
 pidfile="/var/run/${name}.pid"
 
+load_rc_config "$name"
 run_rc_command "$1"

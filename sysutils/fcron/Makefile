@@ -67,6 +67,7 @@ do-install-DOCS-on:
 
 do-install-EXAMPLES-on:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${FILESDIR}/fcrontab-* ${WRKSRC}/files/*.pam ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${FILESDIR}/fcrontab-root ${WRKSRC}/files/*.pam \
+		${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
