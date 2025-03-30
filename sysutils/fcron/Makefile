@@ -1,10 +1,9 @@
 PORTNAME=	fcron
-PORTVERSION=	3.2.1
-PORTREVISION=	2
+DISTVERSION=	3.4.0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://fcron.free.fr/archives/ \
 		ftp://ftp.seul.org/pub/fcron/
-DISTNAME=	${PORTNAME}-${PORTVERSION}.src
+DISTFILES=	${DISTNAME}.src${EXTRACT_SUFX}
 
 MAINTAINER=	bob@eager.cx
 COMMENT=	Periodic command scheduler
@@ -25,8 +24,6 @@ CONFIGURE_ARGS=	--localstatedir=/var \
 
 SUB_FILES=	pkg-message
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
 USERS=		fcron
 GROUPS=		fcron
 
@@ -40,19 +37,27 @@ DOCSRC=		${WRKSRC}/doc/en
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install:
+	${MKDIR} -m 770 ${STAGEDIR}/var/spool/${PORTNAME}
+
 	${INSTALL_PROGRAM} ${WRKSRC}/fcron ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_PROGRAM} ${WRKSRC}/fcrontab ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/fcrondyn ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/fcronsighup ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/files/fcron.pam ${STAGEDIR}${PREFIX}/${PAMDIR}/fcron
-	${INSTALL_DATA} ${WRKSRC}/files/fcrontab.pam ${STAGEDIR}${PREFIX}/${PAMDIR}/fcrontab
+.for f in fcrontab fcrondyn fcronsighup
+	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/bin
+.endfor
+
+.for f in fcron fcrontab
+	${INSTALL_DATA} ${WRKSRC}/files/${f}.pam \
+		${STAGEDIR}${PREFIX}/${PAMDIR}/${f}
+.endfor
+
 .for f in fcron.allow fcron.conf fcron.deny
-	${INSTALL_DATA} -m 640 ${WRKSRC}/files/${f} ${STAGEDIR}${PREFIX}/etc/${f}.sample
+	${INSTALL_DATA} -m 640 ${WRKSRC}/files/${f} \
+		${STAGEDIR}${PREFIX}/etc/${f}.sample
 .endfor
+
 .for n in 1 5 8
-	${INSTALL_MAN} ${DOCSRC}/man/*.${n} ${STAGEDIR}${PREFIX}/share/man/man${n}
+	${INSTALL_MAN} ${DOCSRC}/man/*.${n} \
+		${STAGEDIR}${PREFIX}/share/man/man${n}
 .endfor
-	${MKDIR} -m 770 ${STAGEDIR}/var/spool/fcron
 
 do-install-DOCS-on:
 .for d in txt HTML
