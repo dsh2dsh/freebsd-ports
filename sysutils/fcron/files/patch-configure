@@ -1,7 +1,7 @@
---- configure.orig	2016-06-26 17:46:37 UTC
+--- configure.orig	2025-03-22 20:52:42 UTC
 +++ configure
-@@ -5164,7 +5164,7 @@ if ${ax_cv_lib_readline+:} false; then :
- else
+@@ -5775,7 +5775,7 @@ else $as_nop
+ else $as_nop
  
      ORIG_LIBS="$LIBS"
 -    for readline_lib in readline edit editline; do
