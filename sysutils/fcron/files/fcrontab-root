@@ -9,6 +9,9 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 # Save some entropy so that /dev/random can re-seed on boot.
 @runas(operator) 11 /usr/libexec/save-entropy
 
+# atrun(8) – run jobs queued for later execution.
+@ 5 /usr/libexec/atrun
+
 # Flush mail queue every 30 minutes.
 @ 30 /usr/libexec/dma -q
 
