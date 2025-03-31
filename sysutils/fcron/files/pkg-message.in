@@ -4,12 +4,16 @@
 To enable fcron, and disable the default system cron, add the following lines to
 your /etc/rc.conf:
 
-  fcron_enable="YES"
   cron_enable="NO"
+  fcron_enable="YES"
 
 and move jobs from /etc/crontab to the root's fcrontab(5) file:
 
   # fcrontab /etc/crontab
+
+or
+
+  # fcrontab %%EXAMPLESDIR%%/fcrontab-root
 
 See also:
 
