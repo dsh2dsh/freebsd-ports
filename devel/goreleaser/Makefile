@@ -1,6 +1,6 @@
 PORTNAME=	goreleaser
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.8.1
+DISTVERSION=	2.8.2
 CATEGORIES=	devel
 
 MAINTAINER=	fuz@FreeBSD.org
@@ -16,7 +16,8 @@ GH_ACCOUNT=	${PORTNAME}
 USES=		go:1.24,modules
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}/v2
 GO_MOD_DIST=	github
-_BUILD_XFLAGS=	'main.builtBy=FreeBSD ports' main.version=${PKGVERSION}
+_BUILD_XFLAGS=	'main.builtBy=FreeBSD ports' \
+		main.version=${PKGVERSION}
 GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
 
 # TODO: generate documentation
