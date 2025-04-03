@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=SC2034
 
 # PROVIDE: icingadb
 # REQUIRE: SERVERS mysql postgresql redis
@@ -7,51 +8,51 @@
 # Add the following lines to /etc/rc.conf.local or /etc/rc.conf
 # to enable this service:
 #
-# icingadb_enable:	Set to NO by default.
-#			Set it to YES to enable icingadb
-# icingadb_user:	The user account used to run the daemon.
-#			Default: %%ICINGA2USER%%
-# icingadb_group:	The group account used to run the daemon.
-#			Default: %%ICINGA2GROUP%%
+# icingadb_enable: Set it to YES to enable icingadb.
+#			             Default: NO
+# icingadb_user:   The user account used to run the daemon.
+#			             Default: %%ICINGA2USER%%
+# icingadb_group:  The group account used to run the daemon.
+#			             Default: %%ICINGA2GROUP%%
 #
 
+# shellcheck disable=SC1094
 . /etc/rc.subr
 
-name=icingadb
+name="icingadb"
 rcvar="${name}_enable"
-
-load_rc_config $name
+load_rc_config "$name"
 
 : "${icingadb_enable:=NO}"
 : "${icingadb_user:=%%ICINGA2USER%%}"
 : "${icingadb_group:=%%ICINGA2GROUP%%}"
+: "${icingadb_logfile:=/var/log/icinga2/$name.log}"
+: "${icingadb_pidfile:=/var/run/$name/$name.pid}"
+: "${icingadb_config:=%%PREFIX%%/etc/$name/config.yml}"
+: "${icingadb_daemonflags:=-H -o $icingadb_logfile -P $icingadb_pidfile} -t $name -T $name"
+: "${icingadb_extra_flags:=-c $icingadb_config --database-schema-dir=%%EXAMPLESDIR%% --database-auto-import}"
 
-icingadb_pid="/var/run/icingadb/icingadb.pid"
-icingadb_logfile="/var/log/icinga2/$name.log"
-icingadb_daemonflags="-H -o ${icingadb_logfile}"
-
-pidfile="$icingadb_pid"
+pidfile="$icingadb_pidfile"
 command="/usr/sbin/daemon"
+procname="%%PREFIX%%/bin/$name"
+command_args="$icingadb_daemonflags $procname $icingadb_extra_flags"
 
-start_precmd=icingadb_precmd
+start_precmd="icingadb_precmd"
 
-icingadb_precmd()
-{
-	  [ -f "$icingadb_logfile" ] || \
-        install -g "$icingadb_group" -o "$icingadb_user" -m 644 \
-                /dev/null "$icingadb_logfile"
+icingadb_precmd() {
+    [ -f "$icingadb_logfile" ] ||
+        install -g "$icingadb_group" -o "$icingadb_user" -m 644 /dev/null \
+            "$icingadb_logfile"
 
-	if [ ! -d "/var/run/icingadb" ]; then
-		  install -d -o "$icingadb_user" -g "$icingadb_group" -m 0775 \
-              "/var/run/icingadb"
-	fi
-	if [ ! -e "$pidfile" ]; then
-		install -o "$icingadb_user" -g "$icingadb_group" /dev/null "$pidfile";
-	else
-		chown "${icingadb_user}:${icingadb_group}" "$pidfile";
-	fi
+    rundir=$(dirname "$pidfile")
+    [ -d "$rundir" ] ||
+        install -d -o "$icingadb_user" -g "$icingadb_group" -m 0775 "$rundir"
+
+    if [ -e "$pidfile" ]; then
+        chown "$icingadb_user:$icingadb_group" "$pidfile"
+    else
+        install -o "$icingadb_user" -g "$icingadb_group" /dev/null "$pidfile"
+    fi
 }
-
-command_args="$icingadb_daemonflags -P $pidfile -t ${name} -T ${name} %%PREFIX%%/bin/${name} -c %%PREFIX%%/etc/icingadb/config.yml"
 
 run_rc_command "$1"

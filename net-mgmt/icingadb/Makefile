@@ -1,6 +1,6 @@
 PORTNAME=	icingadb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.1
+DISTVERSION=	1.3.0
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	dvl@FreeBSD.org
@@ -10,11 +10,16 @@ WWW=		https://icinga.com/docs/icinga-db/latest/doc/02-Installation/
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules pgsql
+USES=		go:1.24,modules
 
-WANT_PGSQL=	contrib
+USE_GITHUB=	yes
+GH_ACCOUNT=	icinga
 
-USE_RC_SUBR=	icingadb
+GO_MODULE=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
+GO_MOD_DIST=	github
+GO_TARGET=	./cmd/${GH_PROJECT}
+
+USE_RC_SUBR=	${PORTNAME}
 
 PLIST_SUB=	PORTNAME=${PORTNAME}
 
@@ -27,12 +32,8 @@ GROUPS=		${ICINGA2GROUP}
 SUB_LIST=	ICINGA2GROUP=${ICINGA2GROUP} \
 		ICINGA2USER=${ICINGA2USER}
 
-GO_MODULE=	github.com/icinga/${PORTNAME}
-GO_TARGET=	./cmd/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags "${STRIP} -w"
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
+	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
 		${WRKSRC}/internal/config/config.go
 
 post-install:

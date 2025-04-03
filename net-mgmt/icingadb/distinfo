@@ -1,5 +1,5 @@
-TIMESTAMP = 1734537873
-SHA256 (go/net-mgmt_icingadb/icingadb-v1.2.1/v1.2.1.mod) = eacefe1f30a7ca66dcf3f51f6416ac6a3cde1ed7d75ccdbc0f08f45d4f4b3ac7
-SIZE (go/net-mgmt_icingadb/icingadb-v1.2.1/v1.2.1.mod) = 1622
-SHA256 (go/net-mgmt_icingadb/icingadb-v1.2.1/v1.2.1.zip) = f2707519967f03ffd78d5e04b843fc26ce3bb4ec45c9500a1806f24c24711c15
-SIZE (go/net-mgmt_icingadb/icingadb-v1.2.1/v1.2.1.zip) = 3338708
+TIMESTAMP = 1743692017
+SHA256 (go/net-mgmt_icingadb/icinga-icingadb-v1.3.0_GH0/go.mod) = 70e73911336caf7948e653fc4b3ada8c9ea2b4f1435428a4bd32fb206089345d
+SIZE (go/net-mgmt_icingadb/icinga-icingadb-v1.3.0_GH0/go.mod) = 1624
+SHA256 (go/net-mgmt_icingadb/icinga-icingadb-v1.3.0_GH0/icinga-icingadb-v1.3.0_GH0.tar.gz) = 0ab871b48badd08d43dfdfcc708def1873f17ec861b1003632ad06c347eb0672
+SIZE (go/net-mgmt_icingadb/icinga-icingadb-v1.3.0_GH0/icinga-icingadb-v1.3.0_GH0.tar.gz) = 3326891
