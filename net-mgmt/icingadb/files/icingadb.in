@@ -34,8 +34,8 @@ load_rc_config "$name"
 
 pidfile="$icingadb_pidfile"
 command="/usr/sbin/daemon"
-procname="%%PREFIX%%/bin/$name"
-command_args="$icingadb_daemonflags $procname $icingadb_extra_flags"
+icingadb_command="%%PREFIX%%/bin/$name"
+command_args="$icingadb_daemonflags $icingadb_command $icingadb_extra_flags"
 
 start_precmd="icingadb_precmd"
 
