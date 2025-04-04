@@ -1,11 +1,10 @@
 PORTNAME=	syncthingtray
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.7.3
+DISTVERSION=	1.7.4
 CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
 COMMENT=	Qt ${FLAVOR:S/qt//}-based Syncthing tray application
-WWW=		https://github.com/Martchus/syncthingtray
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKDIR}/syncthingtray/LICENSE
@@ -31,8 +30,8 @@ CMAKE_SOURCE_PATH=	${WRKDIR}/subdirs/syncthingtray
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	Martchus
 GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:${PORTNAME}/../${PORTNAME} \
-		${GH_ACCOUNT}:cpp-utilities:v5.27.3:cpputilities/../c++utilities \
-		${GH_ACCOUNT}:qtutilities:v6.14.6:qtutilities/../qtutilities \
+		${GH_ACCOUNT}:cpp-utilities:v5.28.0:cpputilities/../c++utilities \
+		${GH_ACCOUNT}:qtutilities:v6.15.0:qtutilities/../qtutilities \
 		${GH_ACCOUNT}:qtforkawesome:v0.3.1:qtforkawesome/../qtforkawesome \
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
 		${GH_ACCOUNT}:subdirs:ae15dda:subdirs/../subdirs
