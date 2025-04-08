@@ -27,8 +27,8 @@ load_rc_config $name
 : "${miniflux_group:=%%MINIFLUX_GROUP%%}"
 : "${miniflux_config=%%PREFIX%%/etc/$name.env}"
 : "${miniflux_pidfile:=/var/run/$name/$name.pid}"
-: "${miniflux_daemonflags:=-fH -P $miniflux_pidfile} -t $name -T $name"
-: "${miniflux_extra_flags:=-c $miniflux_config} -migrate"
+: "${miniflux_daemonflags:=-fH -P $miniflux_pidfile} -t $name -T $name}"
+: "${miniflux_extra_flags:=-c $miniflux_config} -migrate}"
 
 pidfile="$miniflux_pidfile"
 command="/usr/sbin/daemon"
