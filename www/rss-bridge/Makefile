@@ -13,7 +13,7 @@ LICENSE=	UNLICENSE
 USES=		php:web,flavors
 USE_GITHUB=	yes
 GH_ACCOUNT=	RSS-Bridge
-USE_PHP=	curl mbstring simplexml zip
+USE_PHP=	curl dom filter mbstring simplexml zip
 
 NO_ARCH=	yes
 NO_BUILD=	yes
