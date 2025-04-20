@@ -64,7 +64,7 @@ WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
 
 OPTIONS_SUB=	yes
 
-.if ${FLAVOR} == plasma5 || ${FLAVOR} == qt5
+.if ${FLAVOR} == qt5
 PLASMA_USES=	kde:5
 PLASMA_USE+=	KDE=plasma-framework:build
 WEBENGINE_USE=	QT=printsupport,webchannel,webengine
