@@ -52,7 +52,7 @@ PLIST_SUB+=	LIBVERSION="${PORTVERSION}"
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|MKDIRPROG-mkdir|MKDIRPROG-mkdir -p|g' \
-		${WRKSRC}/install-sh
+		${WRKSRC}/build-aux/install-sh
 	@${REINPLACE_CMD} -e 's|groff -mandoc|mandoc -mdoc|g' \
 		${WRKSRC}/lib/Makefile.am \
 		${WRKSRC}/src/Makefile.am
