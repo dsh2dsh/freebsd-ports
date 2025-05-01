@@ -17,10 +17,9 @@ USES=		php:web,flavors
 USE_GITHUB=	yes
 GH_ACCOUNT=	NETWAYS
 
+WWWDIR?=	${PREFIX}/www/icingaweb2/modules/${PORTNAME:C/^.*-//}
 NO_BUILD=	yes
 NO_ARCH=	yes
-
-WWWDIR?=	${PREFIX}/www/icingaweb2/modules/${PORTNAME:C/^.*-//}
 
 do-install:
 	@${RM} -r ${WRKSRC}/.idea ${WRKSRC}/.github
