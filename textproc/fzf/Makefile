@@ -1,5 +1,5 @@
 PORTNAME=	fzf
-DISTVERSION=	0.61.3
+DISTVERSION=	0.62.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 
@@ -14,7 +14,7 @@ GH_ACCOUNT=	junegunn
 
 USES=		go:modules
 
-_BUILD_COMMIT=	d24b58e
+_BUILD_COMMIT=	d226d84
 _BUILD_XFLAGS=	main.revision=${COMMIT_ID} \
 		main.version=${DISTVERSION}
 
