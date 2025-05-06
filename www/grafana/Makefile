@@ -1,18 +1,28 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.6.1
+DISTVERSION=	12.0.0
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		go.mod:gomod \
 		go.work:gomod \
+		.citools/bra/go.mod:gomod \
+		.citools/cog/go.mod:gomod \
+		.citools/cue/go.mod:gomod \
+		.citools/golangci-lint/go.mod:gomod \
+		.citools/jb/go.mod:gomod \
+		.citools/lefthook/go.mod:gomod \
+		.citools/swagger/go.mod:gomod \
 		apps/advisor/go.mod:gomod \
 		apps/alerting/notifications/go.mod:gomod \
+		apps/dashboard/go.mod:gomod \
+		apps/folder/go.mod:gomod \
 		apps/investigations/go.mod:gomod \
 		apps/playlist/go.mod:gomod \
 		pkg/aggregator/go.mod:gomod \
 		pkg/apimachinery/go.mod:gomod \
+		pkg/apis/secret/go.mod:gomod \
 		pkg/apiserver/go.mod:gomod \
 		pkg/build/go.mod:gomod \
 		pkg/build/wire/go.mod:gomod \
@@ -40,7 +50,7 @@ USES=		cpe go:1.24,modules
 USE_GITHUB=	yes
 USE_RC_SUBR=	${PORTNAME}
 
-_BUILD_COMMIT=	ae23ead
+_BUILD_COMMIT=	4c0e704
 _BUILD_XFLAGS=	main.version=${PORTVERSION} \
 		main.commit=${_BUILD_COMMIT}
 
