@@ -5,6 +5,7 @@ CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
 COMMENT=	Qt ${FLAVOR:S/qt//}-based Syncthing tray application
+WWW=		https://martchus.github.io/syncthingtray/
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKDIR}/syncthingtray/LICENSE
@@ -12,7 +13,7 @@ LICENSE_FILE=	${WRKDIR}/syncthingtray/LICENSE
 BUILD_DEPENDS=	p5-YAML-LibYAML>0:textproc/p5-YAML-LibYAML
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs
 
-FLAVORS=	qt5 qt6
+FLAVORS=	qt6 qt5
 FLAVOR?=	${FLAVORS:[1]}
 FLAVORS_SUB=	yes
 
