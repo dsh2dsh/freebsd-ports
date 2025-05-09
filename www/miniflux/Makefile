@@ -1,6 +1,6 @@
 PORTNAME=	miniflux
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.8-42-g11c397f3
+DISTVERSION=	2.2.8-54-gcdb96dc5
 CATEGORIES=	www
 
 MAINTAINER=	krion@FreeBSD.org
@@ -17,7 +17,7 @@ GH_ACCOUNT=	dsh2dsh
 
 GO_MODULE=	${GH_ACCOUNT}.app/${GH_PROJECT}
 GO_MOD_DIST=	github
-_BUILD_COMMIT=	11c397f3
+_BUILD_COMMIT=	cdb96dc5
 _BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
 _BUILD_XFLAGS=	version.Version=${DISTVERSION} \
 		version.Commit=${_BUILD_COMMIT} \
