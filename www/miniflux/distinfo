@@ -1,5 +1,5 @@
-TIMESTAMP = 1747763839
-SHA256 (go/www_miniflux/dsh2dsh-miniflux-v2.2.8-105-g009680b9_GH0/go.mod) = b335b1f495eed627070a89436d75d827e86afd622ef1029e8431a2a7a50e65d3
-SIZE (go/www_miniflux/dsh2dsh-miniflux-v2.2.8-105-g009680b9_GH0/go.mod) = 2384
-SHA256 (go/www_miniflux/dsh2dsh-miniflux-v2.2.8-105-g009680b9_GH0/dsh2dsh-miniflux-v2.2.8-105-g009680b9_GH0.tar.gz) = fc0bbe33aefe0dfce79ee48507a00ae5d88f60b109e82475a198e02f73ad77c9
-SIZE (go/www_miniflux/dsh2dsh-miniflux-v2.2.8-105-g009680b9_GH0/dsh2dsh-miniflux-v2.2.8-105-g009680b9_GH0.tar.gz) = 1216691
+TIMESTAMP = 1747765270
+SHA256 (go/www_miniflux/dsh2dsh-miniflux-v2.2.8-106-g20e4cb01_GH0/go.mod) = b335b1f495eed627070a89436d75d827e86afd622ef1029e8431a2a7a50e65d3
+SIZE (go/www_miniflux/dsh2dsh-miniflux-v2.2.8-106-g20e4cb01_GH0/go.mod) = 2384
+SHA256 (go/www_miniflux/dsh2dsh-miniflux-v2.2.8-106-g20e4cb01_GH0/dsh2dsh-miniflux-v2.2.8-106-g20e4cb01_GH0.tar.gz) = 0b3c6cab6daf8823db340dce32338afeda6fe6759f555b88a35e491246186066
+SIZE (go/www_miniflux/dsh2dsh-miniflux-v2.2.8-106-g20e4cb01_GH0/dsh2dsh-miniflux-v2.2.8-106-g20e4cb01_GH0.tar.gz) = 1216534
