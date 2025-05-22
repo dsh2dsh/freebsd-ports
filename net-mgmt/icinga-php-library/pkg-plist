@@ -85,7 +85,6 @@
 %%WWWDIR%%/asset/static/img/select-icon.svg
 %%WWWDIR%%/composer.json
 %%WWWDIR%%/composer.lock
-%%WWWDIR%%/patches/ramsey-collection.patch
 %%WWWDIR%%/vendor/autoload.php
 %%WWWDIR%%/vendor/brick/math/LICENSE
 %%WWWDIR%%/vendor/brick/math/composer.json
