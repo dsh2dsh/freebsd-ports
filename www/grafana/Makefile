@@ -45,7 +45,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386 riscv64
 
-USES=		cpe go:1.24,modules
+USES=		cpe go:modules
 
 USE_GITHUB=	yes
 USE_RC_SUBR=	${PORTNAME}

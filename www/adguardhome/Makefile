@@ -12,7 +12,7 @@ WWW=		https://adguard.com/en/adguard-home/overview.html
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		cpe go:1.24,modules
+USES=		cpe go:modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	AdguardTeam

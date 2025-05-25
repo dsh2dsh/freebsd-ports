@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 USE_GITHUB=	yes
 GH_ACCOUNT=	${PORTNAME}
 
-USES=		go:1.24,modules
+USES=		go:modules
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}/v2
 GO_MOD_DIST=	github
 _BUILD_XFLAGS=	'main.builtBy=FreeBSD ports' \

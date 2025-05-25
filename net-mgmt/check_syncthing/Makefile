@@ -9,7 +9,7 @@ COMMENT=	Icinga2 monitoring plugin for syncthing daemon
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.22,modules
+USES=		go:modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh

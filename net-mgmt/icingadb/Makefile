@@ -10,7 +10,7 @@ WWW=		https://icinga.com/docs/icinga-db/latest/doc/02-Installation/
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.24,modules
+USES=		go:modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	icinga

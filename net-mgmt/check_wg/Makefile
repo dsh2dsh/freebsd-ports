@@ -10,7 +10,7 @@ WWW=		https://github.com/dsh2dsh/${PORTNAME}
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.22,modules
+USES=		go:modules
 
 GO_MODULE=	github.com/dsh2dsh/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags="${STRIP} -w -X ${GO_MODULE}/main.version=${DISTVERSIONFULL}"

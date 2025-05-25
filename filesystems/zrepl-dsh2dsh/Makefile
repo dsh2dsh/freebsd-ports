@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
 
-USES=		go:1.24,modules ncurses
+USES=		go:modules ncurses
 
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
 GO_MOD_DIST=	github

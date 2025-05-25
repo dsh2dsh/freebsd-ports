@@ -10,7 +10,7 @@ WWW=		https://github.com/golangci/golangci-lint
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.23,modules
+USES=		go:modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	golangci
