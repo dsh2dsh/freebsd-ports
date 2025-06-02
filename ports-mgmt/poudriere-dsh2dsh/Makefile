@@ -1,5 +1,5 @@
 PORTNAME=	poudriere
-DISTVERSION=	3.4.99.20250522
+DISTVERSION=	3.4.99.20250602
 CATEGORIES=	ports-mgmt
 PKGNAMESUFFIX=	-dsh2dsh
 
@@ -8,12 +8,24 @@ COMMENT=	Port build and test system (fork with more features)
 
 LICENSE=	BSD2CLAUSE
 
-CONFLICTS_INSTALL=	poudriere*
+# gmake is not strictly needed but handles test jobs better
+TEST_DEPENDS=	gmake>0:devel/gmake
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
 
 GNU_CONFIGURE=	yes
+
+.if make(test)
+MAKE_CMD=	gmake
+.endif
+TEST_ARGS=	-s
+TEST_ARGS+=	${_MAKE_JOBS}
+TEST_ENV=	MAKE=gmake
+TEST_TARGET=	check
+
+CONFLICTS_INSTALL=	poudriere*
+
 ETCDIR=		${PREFIX}/etc/poudriere.d
 
 OPTIONS_DEFINE=	BASH MANIFESTS PORTCONFIG EXAMPLES QEMU ZSH
@@ -21,24 +33,13 @@ OPTIONS_DEFAULT=BASH MANIFESTS PORTCONFIG ZSH
 OPTIONS_SUB=	yes
 
 MANIFESTS_DESC=		Install manifests for jail creation
-MANIFESTS_RUN_DEPENDS+=	freebsd-release-manifests>0:misc/freebsd-release-manifests
-
 PORTCONFIG_DESC=	Install portconfig for options command
-PORTCONFIG_RUN_DEPENDS=	portconfig>0:ports-mgmt/portconfig
-
 QEMU_DESC=	Add qemu-user-static for non-x86 architectures
+
+MANIFESTS_RUN_DEPENDS+=	freebsd-release-manifests>0:misc/freebsd-release-manifests
+PORTCONFIG_RUN_DEPENDS=	portconfig>0:ports-mgmt/portconfig
 QEMU_RUN_DEPENDS=	qemu-user-static>0:emulators/qemu-user-static
 
-
-# gmake is not strictly needed but handles test jobs better
-TEST_DEPENDS=	gmake>0:devel/gmake
-TEST_ENV=	MAKE=gmake
-.if make(test)
-MAKE_CMD=	gmake
-.endif
-TEST_TARGET=	check
-TEST_ARGS=	-s
-TEST_ARGS+=	${_MAKE_JOBS}
 # ccache passthrough helps for building pkg a few hundred times.
 # ccache not added as a dependency because it is only used if setup
 # and provided in the env already.
