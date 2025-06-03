@@ -1,6 +1,6 @@
 PORTNAME=	syncthingtray
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.7.7
+DISTVERSION=	1.7.8
 CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
@@ -28,7 +28,7 @@ GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:${PORTNA
 		${GH_ACCOUNT}:qtutilities:v6.15.0:qtutilities/../qtutilities \
 		${GH_ACCOUNT}:qtforkawesome:v0.3.1:qtforkawesome/../qtforkawesome \
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
-		${GH_ACCOUNT}:subdirs:231003b:subdirs/../subdirs
+		${GH_ACCOUNT}:subdirs:9fc3290:subdirs/../subdirs
 
 USE_PERL5=	build
 USE_QT=		declarative svg
