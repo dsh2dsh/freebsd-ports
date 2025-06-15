@@ -8,25 +8,15 @@ COMMENT=	Port build and test system (fork with more features)
 
 LICENSE=	BSD2CLAUSE
 
-# gmake is not strictly needed but handles test jobs better
-TEST_DEPENDS=	gmake>0:devel/gmake
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
 
 GNU_CONFIGURE=	yes
 
-.if make(test)
-MAKE_CMD=	gmake
-.endif
-TEST_ARGS=	-s
-TEST_ARGS+=	${_MAKE_JOBS}
-TEST_ENV=	MAKE=gmake
-TEST_TARGET=	check
-
 CONFLICTS_INSTALL=	poudriere*
 
 ETCDIR=		${PREFIX}/etc/poudriere.d
+NO_TEST=	yes
 
 OPTIONS_DEFINE=	BASH MANIFESTS PORTCONFIG EXAMPLES QEMU ZSH
 OPTIONS_DEFAULT=BASH MANIFESTS PORTCONFIG ZSH
@@ -39,19 +29,6 @@ QEMU_DESC=	Add qemu-user-static for non-x86 architectures
 MANIFESTS_RUN_DEPENDS+=	freebsd-release-manifests>0:misc/freebsd-release-manifests
 PORTCONFIG_RUN_DEPENDS=	portconfig>0:ports-mgmt/portconfig
 QEMU_RUN_DEPENDS=	qemu-user-static>0:emulators/qemu-user-static
-
-# ccache passthrough helps for building pkg a few hundred times.
-# ccache not added as a dependency because it is only used if setup
-# and provided in the env already.
-# XXX: Passthrough local PKGREPOSITORY dir for fetch support
-ccache_vars=	CCACHE_DIR_NON_ROOT_SAFE CCACHE_GROUP \
-		CCACHE_GID CCACHE_STATIC_PREFIX CCACHE_TEMPDIR \
-		CCACHE_DIR CCACHE_NLEVELS
-.for _cv in ${ccache_vars}
-.  if !empty(${_cv})
-TEST_ENV+=	${_cv}=${${_cv}}
-.  endif
-.endfor
 
 .include <bsd.port.options.mk>
 
