@@ -6,7 +6,6 @@ include/enchant-2/enchant.h
 %%ASPELL%%lib/enchant-2/enchant_aspell.so
 %%HSPELL%%lib/enchant-2/enchant_hspell.a
 %%HSPELL%%lib/enchant-2/enchant_hspell.so
-%%HUNSPELL%%lib/enchant-2/enchant_hunspell.a
 %%HUNSPELL%%lib/enchant-2/enchant_hunspell.so
 %%NUSPELL%%lib/enchant-2/enchant_nuspell.a
 %%NUSPELL%%lib/enchant-2/enchant_nuspell.so
