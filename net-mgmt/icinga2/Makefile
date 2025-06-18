@@ -10,7 +10,7 @@ WWW=		https://www.icinga.org/icinga2/
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libboost_system.so:devel/boost186-libs
+LIB_DEPENDS=	libboost_system.so:devel/boost-libs
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 USES=		alias bison cmake:insource compiler:c++0x libedit ssl
