@@ -1,5 +1,5 @@
---- etc/CMakeLists.txt.orig	2023-08-11 09:37:32.071724000 +0200
-+++ etc/CMakeLists.txt	2023-08-11 11:30:51.251785000 +0200
+--- etc/CMakeLists.txt.orig	2025-06-17 12:18:50 UTC
++++ etc/CMakeLists.txt
 @@ -9,44 +9,44 @@ if(NOT WIN32)
  endif()
  

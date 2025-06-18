@@ -1,6 +1,6 @@
---- lib/perfdata/CMakeLists.txt.orig	2021-09-09 09:49:26.077173000 +0200
-+++ lib/perfdata/CMakeLists.txt	2021-09-09 09:51:19.916439000 +0200
-@@ -34,37 +34,37 @@ set_target_properties (
+--- lib/perfdata/CMakeLists.txt.orig	2025-06-17 12:18:50 UTC
++++ lib/perfdata/CMakeLists.txt
+@@ -34,37 +34,37 @@ install_if_not_exists(
  )
  
  install_if_not_exists(
