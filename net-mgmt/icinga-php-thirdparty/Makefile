@@ -1,6 +1,6 @@
 PORTNAME=	icinga-php-thirdparty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.12.1
+DISTVERSION=	0.13.0
 CATEGORIES=	net-mgmt www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
@@ -22,8 +22,7 @@ NO_ARCH=	yes
 WWWDIR?=	${PREFIX}/www/icingaweb2/icinga-php/${PORTNAME:C/^.*-//}
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${WWWDIR}
-	(cd ${WRKSRC} && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
+	${MKDIR} ${STAGEDIR}${WWWDIR}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
 
 .include <bsd.port.mk>
