@@ -1,6 +1,6 @@
-TIMESTAMP = 1751573809
-SHA256 (Martchus-syncthingtray-v1.7.9_GH0.tar.gz) = ae2d537dc98c31d0c1cc4a7c7c03ad26c33ee703e263e9d9ffffb21f210b0a64
-SIZE (Martchus-syncthingtray-v1.7.9_GH0.tar.gz) = 5879175
+TIMESTAMP = 1751722658
+SHA256 (Martchus-syncthingtray-v1.7.10_GH0.tar.gz) = 5cead81878fa03a981b741e2570acb13b63626a4b520f60bc2a1d8ed83b3a7c1
+SIZE (Martchus-syncthingtray-v1.7.10_GH0.tar.gz) = 5879200
 SHA256 (Martchus-cpp-utilities-v5.29.0_GH0.tar.gz) = 79342cc592a7a7458b1981ded1c5e83ff33003129673048fb259090b1ef719ec
 SIZE (Martchus-cpp-utilities-v5.29.0_GH0.tar.gz) = 210180
 SHA256 (Martchus-qtutilities-v6.16.0_GH0.tar.gz) = 625d722e5ce23e8ba9aa884d4a9e9c1b5a267f934c5f8d9f3c1208b1493ed9f5
