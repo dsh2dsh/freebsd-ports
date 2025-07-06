@@ -42,14 +42,14 @@ CMAKE_SOURCE_PATH=	${WRKDIR}/subdirs/syncthingtray
 
 .if ${FLAVOR} == qt5
 USES+=		qt:5
-USE_QT+=	concurrent core dbus gui network qdbus quickcontrols2:build \
-		widgets x11extras:build buildtools:build linguist:build \
-		qmake:build testlib:build
+USE_QT+=	concurrent core dbus gui location network qdbus \
+		quickcontrols2:build widgets x11extras:build buildtools:build \
+		linguist:build qmake:build testlib:build
 .else
 CMAKE_ARGS+=	-DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
 USES+=		gl qt:6
 USE_GL=		opengl
-USE_QT+=	base tools:build
+USE_QT+=	base positioning tools:build
 .endif
 
 CONFLICTS_INSTALL=	${PORTNAME} ${PORTNAME}-*
