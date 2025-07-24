@@ -1,23 +1,17 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	12.0.2
+DISTVERSION=	12.1.0
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
 DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		go.mod:gomod \
 		go.work:gomod \
-		.citools/bra/go.mod:gomod \
-		.citools/cog/go.mod:gomod \
-		.citools/cue/go.mod:gomod \
-		.citools/golangci-lint/go.mod:gomod \
-		.citools/jb/go.mod:gomod \
-		.citools/lefthook/go.mod:gomod \
-		.citools/swagger/go.mod:gomod \
 		apps/advisor/go.mod:gomod \
 		apps/alerting/notifications/go.mod:gomod \
 		apps/dashboard/go.mod:gomod \
 		apps/folder/go.mod:gomod \
+		apps/iam/go.mod:gomod \
 		apps/investigations/go.mod:gomod \
 		apps/playlist/go.mod:gomod \
 		pkg/aggregator/go.mod:gomod \
@@ -29,10 +23,7 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		pkg/codegen/go.mod:gomod \
 		pkg/plugins/codegen/go.mod:gomod \
 		pkg/promlib/go.mod:gomod \
-		pkg/semconv/go.mod:gomod \
-		pkg/storage/unified/apistore/go.mod:gomod \
-		pkg/storage/unified/resource/go.mod:gomod \
-		pkg/util/xorm/go.mod:gomod
+		pkg/semconv/go.mod:gomod
 EXTRACT_ONLY=	${DISTFILES:N*.mod\:*:N*.mod:C/:.*//:Ngo.work}
 
 MAINTAINER=	drtr0jan@yandex.ru
@@ -50,7 +41,7 @@ USES=		cpe go:modules
 USE_GITHUB=	yes
 USE_RC_SUBR=	${PORTNAME}
 
-_BUILD_COMMIT=	5bda17e
+_BUILD_COMMIT=	ccd7b6c
 _BUILD_XFLAGS=	main.version=${PORTVERSION} \
 		main.commit=${_BUILD_COMMIT}
 
