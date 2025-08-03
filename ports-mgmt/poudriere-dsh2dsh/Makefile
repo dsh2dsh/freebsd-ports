@@ -8,6 +8,8 @@ COMMENT=	Port build and test system (fork with more features)
 
 LICENSE=	BSD2CLAUSE
 
+USES=		ssl
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
 
