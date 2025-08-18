@@ -1,11 +1,10 @@
 PORTNAME=	miniflux
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.11-96-g4d88afb7
+DISTVERSION=	2.2.11-97-g42714828
 CATEGORIES=	www
 
-MAINTAINER=	krion@FreeBSD.org
+MAINTAINER=	dsh@bamus.cz
 COMMENT=	Self-hosted software to read RSS/Atom/JSON feeds
-WWW=		https://miniflux.app/
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -17,7 +16,7 @@ GH_ACCOUNT=	dsh2dsh
 
 GO_MODULE=	${PORTNAME}.app/v2
 GO_MOD_DIST=	github
-_BUILD_COMMIT=	4d88afb7
+_BUILD_COMMIT=	42714828
 _BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
 _BUILD_XFLAGS=	version.Version=${DISTVERSION} \
 		version.Commit=${_BUILD_COMMIT} \
