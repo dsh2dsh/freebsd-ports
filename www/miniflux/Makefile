@@ -1,6 +1,6 @@
 PORTNAME=	miniflux
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.12-72-g3e54ac99
+DISTVERSION=	2.2.12-76-g90550acb
 CATEGORIES=	www
 
 MAINTAINER=	dsh@bamus.cz
@@ -16,7 +16,7 @@ GH_ACCOUNT=	dsh2dsh
 
 GO_MODULE=	${PORTNAME}.app/v2
 GO_MOD_DIST=	github
-_BUILD_COMMIT=	3e54ac99
+_BUILD_COMMIT=	90550acb
 _BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
 _BUILD_XFLAGS=	version.Version=${DISTVERSION} \
 		version.Commit=${_BUILD_COMMIT} \
