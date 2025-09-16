@@ -17,7 +17,7 @@ FLAVORS=	qt6 qt5
 FLAVOR?=	${FLAVORS:[1]}
 FLAVORS_SUB=	yes
 
-qt6_PKGNAMESUFFIX=	-qt6
+qt5_PKGNAMESUFFIX=	-qt5
 
 USES=		cmake:insource iconv perl5 xorg
 
@@ -69,9 +69,6 @@ WEBENGINE_DESC=		Built-in web view (webengine dependency)
 PLASMA_USE=	KDE=ecm:build
 PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
 
-WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
-WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
-
 .if ${FLAVOR} == qt5
 PLASMA_USES=	kde:5
 PLASMA_USE+=	KDE=plasma-framework:build
@@ -81,6 +78,9 @@ PLASMA_USES=	kde:6
 PLASMA_USE+=	KDE=libplasma:build
 WEBENGINE_USE=	QT=webchannel,webengine
 .endif
+
+WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
+WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
 
 post-install:
 	${RM} -r \
