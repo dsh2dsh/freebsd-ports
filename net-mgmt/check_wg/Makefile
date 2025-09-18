@@ -10,7 +10,7 @@ WWW=		https://github.com/dsh2dsh/${PORTNAME}
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.25,modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
