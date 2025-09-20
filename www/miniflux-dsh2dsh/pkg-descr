@@ -1,1 +1,11 @@
 Miniflux is a minimalist and opinionated feed reader written in Go.
+
+This is a fork with more features like
+
+  * Multiple log files.
+  * Limit max number of connections per server and rate of connections.
+  * Don't trust HTTP headers `X-Forwarded-For` and `X-Real-IP` by default.
+  * Naive deduplication of feed entries.
+  * Inline entry reader.
+
+and so on.
