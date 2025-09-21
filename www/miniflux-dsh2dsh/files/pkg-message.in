@@ -6,12 +6,12 @@ SETUP BEFORE FIRST USE:
   $ createuser -U postgres -e -P miniflux
   $ createdb -U postgres -O miniflux -E UTF8 --locale en_US.UTF-8 -T template0 miniflux
 - Modify the %%PREFIX%%/etc/miniflux.env configuration file
-- Create an admin user:
-  $ miniflux -create-admin
 - Enable the miniflux daemon to start automatically at boot:
   # sysrc miniflux_enable="YES"
 - Start the miniflux daemon:
   # service miniflux start
+- Create an admin user:
+  $ miniflux -c %%PREFIX%%/etc/miniflux.env create-admin
 
 Documentation: https://github.com/dsh2dsh/miniflux?tab=readme-ov-file#changes-from-upstream
                https://miniflux.app/docs/
