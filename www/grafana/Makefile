@@ -1,6 +1,6 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	12.1.0
+DISTVERSION=	12.2.0
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -8,15 +8,20 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		go.mod:gomod \
 		go.work:gomod \
 		apps/advisor/go.mod:gomod \
+		apps/alerting/alertenrichment/go.mod:gomod \
 		apps/alerting/notifications/go.mod:gomod \
 		apps/dashboard/go.mod:gomod \
 		apps/folder/go.mod:gomod \
 		apps/iam/go.mod:gomod \
 		apps/investigations/go.mod:gomod \
 		apps/playlist/go.mod:gomod \
+		apps/plugins/go.mod:gomod \
+		apps/preferences/go.mod:gomod \
+		apps/provisioning/go.mod:gomod \
+		apps/secret/go.mod:gomod \
+		apps/shorturl/go.mod:gomod \
 		pkg/aggregator/go.mod:gomod \
 		pkg/apimachinery/go.mod:gomod \
-		pkg/apis/secret/go.mod:gomod \
 		pkg/apiserver/go.mod:gomod \
 		pkg/build/go.mod:gomod \
 		pkg/build/wire/go.mod:gomod \
@@ -41,7 +46,7 @@ USES=		cpe go:modules
 USE_GITHUB=	yes
 USE_RC_SUBR=	${PORTNAME}
 
-_BUILD_COMMIT=	ccd7b6c
+_BUILD_COMMIT=	92f1fba
 _BUILD_XFLAGS=	main.version=${PORTVERSION} \
 		main.commit=${_BUILD_COMMIT}
 
