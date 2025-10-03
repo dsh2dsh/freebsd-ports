@@ -3,6 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	4.12
 CATEGORIES=	devel
 PKGNAMESUFFIX=	4
+PORTREVISION=	1
 
 MAINTAINER=	bdrewery@FreeBSD.org
 COMMENT=	Tool to minimize the compile time of C/C++ programs
@@ -28,6 +29,7 @@ CMAKE_OFF=	WARNINGS_AS_ERRORS \
 CONFLICTS_INSTALL?=	ccache ccache-static
 
 # Prevent infinite recursion.
+NO_CCACHE=	yes
 NO_CCACHE_DEPEND=	yes
 SUB_FILES=	ccache_clean ccache-update-links.sh world-ccache
 
