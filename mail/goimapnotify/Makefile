@@ -1,5 +1,6 @@
 PORTNAME=	goimapnotify
 DISTVERSION=	2.5.3
+PORTREVISION=	1
 CATEGORIES=	mail
 
 MAINTAINER=	dsh@bamus.cz
@@ -19,6 +20,6 @@ _BUILD_COMMIT=	17ba1755
 _BUILD_XFLAGS=	main.commit=${_BUILD_COMMIT} \
 		main.gittag=${DISTVERSIONFULL} \
 		main.branch=master
-GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S!^!-X ${GO_MODULE}/!}"
+GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S!^!-X !}"
 
 .include <bsd.port.mk>
