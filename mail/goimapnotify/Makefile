@@ -22,4 +22,6 @@ _BUILD_XFLAGS=	main.commit=${_BUILD_COMMIT} \
 		main.branch=master
 GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S!^!-X !}"
 
+PLIST_FILES=	bin/goimapnotify
+
 .include <bsd.port.mk>
