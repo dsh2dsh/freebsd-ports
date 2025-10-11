@@ -14,10 +14,9 @@ BUILD_DEPENDS=	cxxopts>0:devel/cxxopts
 LIB_DEPENDS=	libfmt.so:devel/libfmt \
 		libpsl.so:dns/libpsl
 
-USES=		cmake:testing compiler:c++20-lang desktop-file-utils \
-		gettext-tools pkgconfig tar:zst xorg
+USES=		cmake:testing compiler:c++23-lang desktop-file-utils \
+		gettext-tools gl kde:6 pkgconfig qt:6 tar:zst xorg
 
-USES+=		gl kde:6 qt:6
 USE_GL=		opengl
 USE_KDE=	widgetsaddons windowsystem
 USE_QT=		base
