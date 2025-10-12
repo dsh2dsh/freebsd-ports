@@ -1,6 +1,6 @@
 PORTNAME=	fzf
-DISTVERSION=	0.65.2
 DISTVERSIONPREFIX=	v
+DISTVERSION=	0.66.0
 CATEGORIES=	textproc
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -9,12 +9,12 @@ COMMENT=	Blazing fast command-line fuzzy finder
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USES=		go:modules
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	junegunn
 
-USES=		go:modules
-
-_BUILD_COMMIT=	416aff8
+_BUILD_COMMIT=	8cdfb23
 _BUILD_XFLAGS=	main.revision=${COMMIT_ID} \
 		main.version=${DISTVERSION}
 
