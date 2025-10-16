@@ -1,6 +1,6 @@
 PORTNAME=	icinga-php-library
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.17.0
+DISTVERSION=	0.17.1
 CATEGORIES=	net-mgmt www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
@@ -12,15 +12,15 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		php:web,flavors
 
-USE_PHP=	filter
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	icinga
 
-NO_BUILD=	yes
-NO_ARCH=	yes
+USE_PHP=	filter
 
 WWWDIR?=	${PREFIX}/www/icingaweb2/icinga-php/${PORTNAME:C/^.*-//}
+
+NO_ARCH=	yes
+NO_BUILD=	yes
 
 do-install:
 	${MKDIR} ${STAGEDIR}${WWWDIR}
