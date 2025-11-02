@@ -23,8 +23,7 @@ LIB_DEPENDS=	libb64.so:converters/libb64 \
 		libevent.so:devel/libevent \
 		libminiupnpc.so:net/miniupnpc \
 		libnatpmp.so:net/libnatpmp \
-		libpsl.so:dns/libpsl \
-		libutp.so:net-p2p/libutp
+		libpsl.so:dns/libpsl
 
 FLAVORS=			cli docs daemon gtk qt utils web
 FLAVOR?=			${FLAVORS:[1]}
@@ -54,7 +53,6 @@ EXTRACT_AFTER_ARGS=	--exclude third-party/dht \
 			--exclude third-party/libevent \
 			--exclude third-party/libnatpmp \
 			--exclude third-party/libpsl \
-			--exclude third-party/libutp \
 			--exclude third-party/miniupnpc \
 			--exclude third-party/rapidjson \
 			--exclude third-party/utfcpp
@@ -86,7 +84,7 @@ NO_BUILD=	yes
 
 CMAKE_ON=	USE_SYSTEM_B64 USE_SYSTEM_DEFLATE USE_SYSTEM_DHT \
 		USE_SYSTEM_EVENT2 USE_SYSTEM_MINIUPNPC USE_SYSTEM_NATPMP \
-		USE_SYSTEM_PSL USE_SYSTEM_UTP
+		USE_SYSTEM_PSL
 CMAKE_OFF=	ENABLE_MAC REBUILD_WEB WITH_SYSTEMD
 
 .if ${FLAVOR:Ndocs}
