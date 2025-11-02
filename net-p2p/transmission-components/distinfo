@@ -1,5 +1,3 @@
-TIMESTAMP = 1762103222
-SHA256 (transmission-transmission-4.1.0-beta.2_GH0.tar.gz) = 89eeb45aba5c097ffbd7aa20a134e2a5b4bf1181955e646e9062ba9d14b4f206
-SIZE (transmission-transmission-4.1.0-beta.2_GH0.tar.gz) = 8776800
-SHA256 (transmission-fmt-0c9fce2_GH0.tar.gz) = dd7dd5ef9e4677e8466a3f939613d1f73876c511a9a1be4857fb62590c110ca3
-SIZE (transmission-fmt-0c9fce2_GH0.tar.gz) = 701040
+TIMESTAMP = 1762105640
+SHA256 (transmission-4.1.0-beta.2+rac5c9e082d.tar.xz) = 8a339d55c9a4d12eda78eb06416d6e2ad840878524f8f187fe69059aaf24060f
+SIZE (transmission-4.1.0-beta.2+rac5c9e082d.tar.xz) = 11763168

@@ -1,7 +1,9 @@
 PORTNAME=	transmission
 DISTVERSION=	4.1.0-beta.2
+DISTVERSIONSUFFIX=	+rac5c9e082d
 PORTREVISION=	0
 CATEGORIES=	net-p2p
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
 MAINTAINER=	mondo.debater_0q@icloud.com
 COMMENT=	Transmission BitTorrent client
@@ -56,11 +58,6 @@ EXTRACT_AFTER_ARGS=	--exclude third-party/dht \
 			--exclude third-party/miniupnpc \
 			--exclude third-party/rapidjson \
 			--exclude third-party/utfcpp
-
-USE_GITHUB=	nodefault
-GH_ACCOUNT=	${PORTNAME}
-GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSION}:${PORTNAME} \
-		${GH_ACCOUNT}:fmt:0c9fce2:fmt/../${DISTNAME}/third-party/fmt
 
 .if ${FLAVOR} == gtk
 USES+=		desktop-file-utils gettext-runtime gettext-tools gnome
