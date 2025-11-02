@@ -13,6 +13,7 @@ LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/include/fast_float/fast_float.h:math/fast_float \
+		${LOCALBASE}/include/fmt/format.h:devel/libfmt \
 		${LOCALBASE}/include/rapidjson/rapidjson.h:devel/rapidjson \
 		${LOCALBASE}/include/utf8cpp/utf8.h:devel/utf8cpp
 
