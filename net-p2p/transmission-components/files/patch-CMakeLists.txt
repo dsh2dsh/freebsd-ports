@@ -1,6 +1,6 @@
---- CMakeLists.txt.orig	2025-11-05 23:57:39 UTC
+--- CMakeLists.txt.orig	2023-08-23 22:48:58 UTC
 +++ CMakeLists.txt
-@@ -850,20 +850,6 @@ endif()
+@@ -796,20 +796,6 @@ if(ENABLE_DAEMON OR ENABLE_GTK OR ENABLE_QT)
      tr_install_web(${CMAKE_INSTALL_DATAROOTDIR}/${TR_NAME})
  endif()
  
