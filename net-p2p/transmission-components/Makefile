@@ -17,6 +17,7 @@ BUILD_DEPENDS=	${LOCALBASE}/include/fast_float/fast_float.h:math/fast_float \
 		${LOCALBASE}/include/utf8cpp/utf8.h:devel/utf8cpp
 
 LIB_DEPENDS=	libb64.so:converters/libb64 \
+		libcrc32c.so:devel/crc32c \
 		libcurl.so:ftp/curl \
 		libdeflate.so:archivers/libdeflate \
 		libdht.so:devel/jech-dht \
@@ -46,7 +47,8 @@ USES=		cmake cpe iconv localbase pkgconfig ssl tar:xz
 CPE_VENDOR=	transmissionbt
 CPE_PRODUCT=	transmission
 
-EXTRACT_AFTER_ARGS=	--exclude third-party/dht \
+EXTRACT_AFTER_ARGS=	--exclude third-party/crc32c \
+			--exclude third-party/dht \
 			--exclude third-party/fast_float \
 			--exclude third-party/libb64 \
 			--exclude third-party/libdeflate \
