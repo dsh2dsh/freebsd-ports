@@ -1,5 +1,5 @@
 PORTNAME=	tree-sitter-parsers
-PORTVERSION=	20250910
+PORTVERSION=	20251108
 CATEGORIES=	devel
 
 MAINTAINER=	dsh@bamus.cz
@@ -47,8 +47,9 @@ _TUPLES=\
 	nu		nushell:tree-sitter-nu:b99dc3b \
 	ocaml		tree-sitter:tree-sitter-ocaml:v0.24.0 \
 	org		milisims:tree-sitter-org:v1.3.1 \
-	perl		ganezdragon:tree-sitter-perl:v1.1.1 \
+	perl		tree-sitter-perl:tree-sitter-perl:release \
 	php		tree-sitter:tree-sitter-php:v0.23.12 \
+	pod		tree-sitter-perl:tree-sitter-pod:release \
 	proto		mitchellh:tree-sitter-proto:42d82fa \
 	python		tree-sitter:tree-sitter-python:v0.23.6 \
 	r		r-lib:tree-sitter-r:v1.1.0 \
@@ -106,9 +107,11 @@ do-install: install-all-parsers
 .for lang dir in ${_BUILD}
 _LANGS+=	${WRKSRC}/${dir}/libtree-sitter-${lang}.so
 SRCS.${lang:${LANG_FILTER}}+=	${dir}/parser.c
+
 .  if exists(${WRKSRC}/${dir}/scanner.c)
 SRCS.${lang:${LANG_FILTER}}+=	${dir}/scanner.c
 .  endif
+
 .  if exists(${WRKSRC}/${dir}/scanner.cc)
 SRCS.${lang:${LANG_FILTER}}+=	${dir}/scanner.cc
 .  endif

@@ -41,6 +41,7 @@ lib/libtree-sitter-ocaml.so
 lib/libtree-sitter-org.so
 lib/libtree-sitter-perl.so
 lib/libtree-sitter-php.so
+lib/libtree-sitter-pod.so
 lib/libtree-sitter-proto.so
 lib/libtree-sitter-python.so
 lib/libtree-sitter-r.so
