@@ -109,6 +109,8 @@
 %%WWWDIR%%/vendor/brick/math/src/Internal/Calculator/NativeCalculator.php
 %%WWWDIR%%/vendor/brick/math/src/Internal/CalculatorRegistry.php
 %%WWWDIR%%/vendor/brick/math/src/RoundingMode.php
+%%WWWDIR%%/vendor/brick/math/tools/ecs/composer.json
+%%WWWDIR%%/vendor/brick/math/tools/ecs/ecs.php
 %%WWWDIR%%/vendor/composer/ClassLoader.php
 %%WWWDIR%%/vendor/composer/InstalledVersions.php
 %%WWWDIR%%/vendor/composer/LICENSE
