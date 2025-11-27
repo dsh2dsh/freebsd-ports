@@ -1,5 +1,5 @@
-TIMESTAMP = 1759693403
-SHA256 (go/mail_goimapnotify/goimapnotify-2.5.3/go.mod) = 0e6376557f31bcd54fa3b2ba02eaf981cbec5b72d585253dc788b142e0332e6f
-SIZE (go/mail_goimapnotify/goimapnotify-2.5.3/go.mod) = 1390
-SHA256 (go/mail_goimapnotify/goimapnotify-2.5.3/goimapnotify-2.5.3.tar.bz2) = 2819e42e7f45155423aee3cd72805c3bb10c0ef08ff5ecbc0324f0dcd863cd4e
-SIZE (go/mail_goimapnotify/goimapnotify-2.5.3/goimapnotify-2.5.3.tar.bz2) = 39573
+TIMESTAMP = 1764256542
+SHA256 (go/mail_goimapnotify/goimapnotify-2.5.4/go.mod) = 0e6376557f31bcd54fa3b2ba02eaf981cbec5b72d585253dc788b142e0332e6f
+SIZE (go/mail_goimapnotify/goimapnotify-2.5.4/go.mod) = 1390
+SHA256 (go/mail_goimapnotify/goimapnotify-2.5.4/goimapnotify-2.5.4.tar.bz2) = c40191012e8c0486cbfdaed5983da10c753a30ed2c28664e60cf43a9dca16de4
+SIZE (go/mail_goimapnotify/goimapnotify-2.5.4/goimapnotify-2.5.4.tar.bz2) = 40680
