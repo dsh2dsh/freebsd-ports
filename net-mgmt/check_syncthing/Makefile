@@ -1,6 +1,6 @@
 PORTNAME=	check_syncthing
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.6
+DISTVERSION=	1.0.0
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	dsh@bamus.cz
@@ -14,8 +14,10 @@ USES=		go:modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
 
+GO_MOD_DIST=	github
 GO_MODULE=	github.com/dsh2dsh/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags="${STRIP} -w -X ${GO_MODULE}/main.version=${DISTVERSIONFULL}"
+_BUILD_XFLAGS=	main.version=${DISTVERSIONFULL}
+GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S!^!-X ${GO_MODULE}/!}"
 
 PLIST_FILES=	libexec/nagios/${PORTNAME}
 
