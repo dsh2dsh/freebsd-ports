@@ -5,6 +5,7 @@ CATEGORIES=	net-mgmt
 
 MAINTAINER=	dsh@bamus.cz
 COMMENT=	Icinga2 monitoring plugin for syncthing daemon
+WWW=		https://github.com/dsh2dsh/check_syncthing
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
