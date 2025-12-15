@@ -10,7 +10,7 @@
 # DEFAULT_VERSIONS specifies higher version of go.
 .  if !defined(GO_STRICT_VERSION)
 GO_VERSION=	${go_ARGS:M[1-9].*:U${GO_DEFAULT}}
-.    if ${GO_VERSION:N*-devel} && ${GO_VERSION} < ${GO_DEFAULT}
+.    if ${GO_VERSION:N*-devel:S/+//} && ${GO_VERSION} < ${GO_DEFAULT}
 go_ARGS:=	${go_ARGS:S/${GO_VERSION}/${GO_DEFAULT}/1}
 .    endif
 .  endif
