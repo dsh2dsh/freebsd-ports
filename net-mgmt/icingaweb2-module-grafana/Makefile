@@ -18,8 +18,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	NETWAYS
 
 WWWDIR?=	${PREFIX}/www/icingaweb2/modules/${PORTNAME:C/^.*-//}
-NO_BUILD=	yes
 NO_ARCH=	yes
+NO_BUILD=	yes
 
 do-install:
 	@${RM} -r ${WRKSRC}/.idea ${WRKSRC}/.github
