@@ -1,5 +1,5 @@
 PORTNAME=	transmission
-DISTVERSION=	4.1.0-beta.4
+DISTVERSION=	4.1.0-beta.5
 PORTREVISION=	0
 CATEGORIES=	net-p2p
 
