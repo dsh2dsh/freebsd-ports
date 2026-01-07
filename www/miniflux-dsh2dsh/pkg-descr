@@ -4,8 +4,11 @@ This is a fork with more features like
 
   * Multiple log files.
   * Limit max number of connections per server and rate of connections.
+  * Republished entries marked as unread.
+  * Mark entries as read when scrolled and infinite scroll.
   * Don't trust HTTP headers `X-Forwarded-For` and `X-Real-IP` by default.
   * Naive deduplication of feed entries.
   * Inline entry reader.
+  * Show feed errors in the list of entries, as a pseudo entry.
 
 and so on.
