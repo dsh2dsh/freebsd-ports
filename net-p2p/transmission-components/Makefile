@@ -1,6 +1,5 @@
 PORTNAME=	transmission
-DISTVERSION=	4.1.0-beta.5
-DISTVERSIONSUFFIX=	+r11d3fc6f5a
+DISTVERSION=	4.1.0
 PORTREVISION=	0
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
