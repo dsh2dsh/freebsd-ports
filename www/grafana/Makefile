@@ -1,6 +1,6 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	12.3.1
+DISTVERSION=	12.3.2
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -51,7 +51,7 @@ USES=		cpe go:modules
 USE_GITHUB=	yes
 USE_RC_SUBR=	${PORTNAME}
 
-_BUILD_COMMIT=	0d1a5b4
+_BUILD_COMMIT=	df2547d
 _BUILD_XFLAGS=	main.version=${PORTVERSION} \
 		main.commit=${_BUILD_COMMIT}
 
