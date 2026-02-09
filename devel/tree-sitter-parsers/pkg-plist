@@ -21,6 +21,7 @@ lib/libtree-sitter-gomod.so
 lib/libtree-sitter-haskell.so
 lib/libtree-sitter-heex.so
 lib/libtree-sitter-html.so
+lib/libtree-sitter-hyprlang.so
 lib/libtree-sitter-janet-simple.so
 lib/libtree-sitter-java.so
 lib/libtree-sitter-javascript.so

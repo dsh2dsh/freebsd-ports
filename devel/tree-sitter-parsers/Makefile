@@ -32,6 +32,7 @@ _TUPLES=\
 	haskell		tree-sitter:tree-sitter-haskell:v0.23.1 \
 	heex		phoenixframework:tree-sitter-heex:v0.8.0 \
 	html		tree-sitter:tree-sitter-html:v0.23.2 \
+	hyprlang	tree-sitter-grammars:tree-sitter-hyprlang:v3.1.0 \
 	janet-simple	sogaiu:tree-sitter-janet-simple:v0.0.7 \
 	java		tree-sitter:tree-sitter-java:v0.23.5 \
 	javascript	tree-sitter:tree-sitter-javascript:v0.23.1 \

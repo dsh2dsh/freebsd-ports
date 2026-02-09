@@ -1,4 +1,4 @@
-TIMESTAMP = 1770667762
+TIMESTAMP = 1770668038
 SHA256 (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = e436584f1c44c8cd06f26f169b0f817500687512ce3028c2fb2f0e2a7e7baf64
 SIZE (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = 367567
 SHA256 (tree-sitter-tree-sitter-agda-v1.3.3_GH0.tar.gz) = f09055ac4df99d8c27af4a80442abd0659b75babd46e8693a7dd9133d5711ef5
@@ -45,6 +45,8 @@ SHA256 (phoenixframework-tree-sitter-heex-v0.8.0_GH0.tar.gz) = f5e9aea00f43b9f5f
 SIZE (phoenixframework-tree-sitter-heex-v0.8.0_GH0.tar.gz) = 35101
 SHA256 (tree-sitter-tree-sitter-html-v0.23.2_GH0.tar.gz) = 21fa4f2d4dcb890ef12d09f4979a0007814f67f1c7294a9b17b0108a09e45ef7
 SIZE (tree-sitter-tree-sitter-html-v0.23.2_GH0.tar.gz) = 49879
+SHA256 (tree-sitter-grammars-tree-sitter-hyprlang-v3.1.0_GH0.tar.gz) = f54794874fcc99b38254f31db749744651238add44e99ba18c3857be2296ed9b
+SIZE (tree-sitter-grammars-tree-sitter-hyprlang-v3.1.0_GH0.tar.gz) = 40691
 SHA256 (sogaiu-tree-sitter-janet-simple-v0.0.7_GH0.tar.gz) = f24ee9480a656eaf30a8fea98c8592a346e13affb21985d86b0a9e7e95e7aa97
 SIZE (sogaiu-tree-sitter-janet-simple-v0.0.7_GH0.tar.gz) = 21954
 SHA256 (tree-sitter-tree-sitter-java-v0.23.5_GH0.tar.gz) = cb199e0faae4b2c08425f88cbb51c1a9319612e7b96315a174a624db9bf3d9f0
