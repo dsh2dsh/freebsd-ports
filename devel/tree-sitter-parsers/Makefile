@@ -1,5 +1,5 @@
 PORTNAME=	tree-sitter-parsers
-PORTVERSION=	20251108
+PORTVERSION=	20260209
 CATEGORIES=	devel
 
 MAINTAINER=	dsh@bamus.cz
@@ -18,6 +18,7 @@ _TUPLES=\
 	c-sharp		tree-sitter:tree-sitter-c-sharp:v0.23.1 \
 	clojure		sogaiu:tree-sitter-clojure:v0.0.13 \
 	cmake		uyha:tree-sitter-cmake:v0.6.1 \
+	cobol		yutaro-sakamoto:tree-sitter-cobol:0.1.1 \
 	commonlisp	tree-sitter-grammars:tree-sitter-commonlisp:v0.3.3 \
 	cpp		tree-sitter:tree-sitter-cpp:v0.23.4 \
 	css		tree-sitter:tree-sitter-css:v0.23.2 \
