@@ -64,7 +64,6 @@ _TUPLES=\
 	solidity	JoranHonig:tree-sitter-solidity:d38dcd0 \
 	sql		DerekStride:tree-sitter-sql:9376414 \
 	surface		connorlay:tree-sitter-surface:v0.2.0 \
-	swift		alex-pinkus:tree-sitter-swift:0.7.1 \
 	toml		tree-sitter-grammars:tree-sitter-toml:v0.7.0 \
 	tsx		tree-sitter:tree-sitter-typescript:v0.23.2 \
 	typespec	happenslol:tree-sitter-typespec:cfcf94c \
