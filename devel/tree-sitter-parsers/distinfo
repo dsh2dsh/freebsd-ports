@@ -1,4 +1,4 @@
-TIMESTAMP = 1770668375
+TIMESTAMP = 1770668533
 SHA256 (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = e436584f1c44c8cd06f26f169b0f817500687512ce3028c2fb2f0e2a7e7baf64
 SIZE (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = 367567
 SHA256 (tree-sitter-tree-sitter-agda-v1.3.3_GH0.tar.gz) = f09055ac4df99d8c27af4a80442abd0659b75babd46e8693a7dd9133d5711ef5
@@ -41,6 +41,8 @@ SHA256 (tree-sitter-tree-sitter-go-v0.23.4_GH0.tar.gz) = 967870d7d120e9b760e538a
 SIZE (tree-sitter-tree-sitter-go-v0.23.4_GH0.tar.gz) = 205831
 SHA256 (camdencheek-tree-sitter-go-mod-v1.1.0_GH0.tar.gz) = 66f55e0dfa9d654484146c405261d667196d3b20872fa3f7813d5125a82d6de8
 SIZE (camdencheek-tree-sitter-go-mod-v1.1.0_GH0.tar.gz) = 27295
+SHA256 (omertuc-tree-sitter-go-work-949a8a4_GH0.tar.gz) = ff072c8999db76f03432585cefa9a6256a202e450043347047335431faa8efbe
+SIZE (omertuc-tree-sitter-go-work-949a8a4_GH0.tar.gz) = 15256
 SHA256 (tree-sitter-tree-sitter-haskell-v0.23.1_GH0.tar.gz) = bac7d0a37730af62d883e2bdbafb68f47e7ab4f5e744c7586bffc589906a8cc2
 SIZE (tree-sitter-tree-sitter-haskell-v0.23.1_GH0.tar.gz) = 1008575
 SHA256 (phoenixframework-tree-sitter-heex-v0.8.0_GH0.tar.gz) = f5e9aea00f43b9f5fd777167a513034b3b403af46d42eeef4a73a490c79533e1

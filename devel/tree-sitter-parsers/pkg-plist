@@ -19,6 +19,7 @@ lib/libtree-sitter-gitcommit.so
 lib/libtree-sitter-glsl.so
 lib/libtree-sitter-go.so
 lib/libtree-sitter-gomod.so
+lib/libtree-sitter-gowork.so
 lib/libtree-sitter-haskell.so
 lib/libtree-sitter-heex.so
 lib/libtree-sitter-html.so

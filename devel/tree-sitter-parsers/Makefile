@@ -30,6 +30,7 @@ _TUPLES=\
 	glsl		tree-sitter-grammars:tree-sitter-glsl:v0.1.9 \
 	go		tree-sitter:tree-sitter-go:v0.23.4 \
 	gomod		camdencheek:tree-sitter-go-mod:v1.1.0 \
+	gowork		omertuc:tree-sitter-go-work:949a8a4 \
 	haskell		tree-sitter:tree-sitter-haskell:v0.23.1 \
 	heex		phoenixframework:tree-sitter-heex:v0.8.0 \
 	html		tree-sitter:tree-sitter-html:v0.23.2 \
