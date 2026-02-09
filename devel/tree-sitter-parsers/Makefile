@@ -1,5 +1,6 @@
 PORTNAME=	tree-sitter-parsers
 PORTVERSION=	20260209
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	dsh@bamus.cz
@@ -20,7 +21,7 @@ _TUPLES=\
 	cmake		uyha:tree-sitter-cmake:v0.6.1 \
 	cobol		yutaro-sakamoto:tree-sitter-cobol:0.1.1 \
 	commonlisp	tree-sitter-grammars:tree-sitter-commonlisp:v0.3.3 \
-	cpp		tree-sitter:tree-sitter-cpp:v0.23.4 \
+	cpp		tree-sitter:tree-sitter-cpp:v0.22.0 \
 	css		tree-sitter:tree-sitter-css:v0.23.2 \
 	dart		UserNobody14:tree-sitter-dart:81638db \
 	dockerfile	camdencheek:tree-sitter-dockerfile:v0.2.0 \
