@@ -15,6 +15,7 @@ lib/libtree-sitter-dockerfile.so
 lib/libtree-sitter-elisp.so
 lib/libtree-sitter-elixir.so
 lib/libtree-sitter-embedded-template.so
+lib/libtree-sitter-gitcommit.so
 lib/libtree-sitter-glsl.so
 lib/libtree-sitter-go.so
 lib/libtree-sitter-gomod.so

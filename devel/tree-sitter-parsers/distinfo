@@ -1,4 +1,4 @@
-TIMESTAMP = 1770668146
+TIMESTAMP = 1770668272
 SHA256 (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = e436584f1c44c8cd06f26f169b0f817500687512ce3028c2fb2f0e2a7e7baf64
 SIZE (Beaglefoot-tree-sitter-awk-v0.7.2_GH0.tar.gz) = 367567
 SHA256 (tree-sitter-tree-sitter-agda-v1.3.3_GH0.tar.gz) = f09055ac4df99d8c27af4a80442abd0659b75babd46e8693a7dd9133d5711ef5
@@ -33,6 +33,8 @@ SHA256 (elixir-lang-tree-sitter-elixir-v0.3.4_GH0.tar.gz) = cd40b25fc0259fda2f45
 SIZE (elixir-lang-tree-sitter-elixir-v0.3.4_GH0.tar.gz) = 561177
 SHA256 (tree-sitter-tree-sitter-embedded-template-v0.23.2_GH0.tar.gz) = eeda286631c6086b6fbe6d2a2c5cc8c1ea6129aaaf5bef4ca4b9a3f44d829569
 SIZE (tree-sitter-tree-sitter-embedded-template-v0.23.2_GH0.tar.gz) = 39187
+SHA256 (gbprod-tree-sitter-gitcommit-v0.3.3_GH0.tar.gz) = 6f3a62fda990ace1f439f2de227c671488a126384ec4c7a66fcdfd550c837175
+SIZE (gbprod-tree-sitter-gitcommit-v0.3.3_GH0.tar.gz) = 155944
 SHA256 (tree-sitter-grammars-tree-sitter-glsl-v0.1.9_GH0.tar.gz) = 3b7f2ef24fe33bc38b21591c89f7255bc18060d4bc46cf1468340dac2b0b82ca
 SIZE (tree-sitter-grammars-tree-sitter-glsl-v0.1.9_GH0.tar.gz) = 389066
 SHA256 (tree-sitter-tree-sitter-go-v0.23.4_GH0.tar.gz) = 967870d7d120e9b760e538aeb8331a72f70ffcca4f1eaf1e1dea5375886d25d2

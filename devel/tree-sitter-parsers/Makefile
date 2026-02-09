@@ -26,6 +26,7 @@ _TUPLES=\
 	elisp		Wilfred:tree-sitter-elisp:12b547b \
 	elixir		elixir-lang:tree-sitter-elixir:v0.3.4 \
 	embedded-template	tree-sitter:tree-sitter-embedded-template:v0.23.2 \
+	gitcommit	gbprod:tree-sitter-gitcommit:v0.3.3 \
 	glsl		tree-sitter-grammars:tree-sitter-glsl:v0.1.9 \
 	go		tree-sitter:tree-sitter-go:v0.23.4 \
 	gomod		camdencheek:tree-sitter-go-mod:v1.1.0 \
