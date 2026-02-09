@@ -21,7 +21,7 @@ _TUPLES=\
 	commonlisp	tree-sitter-grammars:tree-sitter-commonlisp:v0.3.3 \
 	cpp		tree-sitter:tree-sitter-cpp:v0.23.4 \
 	css		tree-sitter:tree-sitter-css:v0.23.2 \
-	dart		ast-grep:tree-sitter-dart:23e3921 \
+	dart		UserNobody14:tree-sitter-dart:81638db \
 	dockerfile	camdencheek:tree-sitter-dockerfile:v0.2.0 \
 	elisp		Wilfred:tree-sitter-elisp:12b547b \
 	elixir		elixir-lang:tree-sitter-elixir:v0.3.4 \
