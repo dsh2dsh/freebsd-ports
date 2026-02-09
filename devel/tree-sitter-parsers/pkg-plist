@@ -56,7 +56,6 @@ lib/libtree-sitter-scala.so
 lib/libtree-sitter-solidity.so
 lib/libtree-sitter-sql.so
 lib/libtree-sitter-surface.so
-lib/libtree-sitter-swift.so
 lib/libtree-sitter-toml.so
 lib/libtree-sitter-tsx.so
 lib/libtree-sitter-typescript.so
