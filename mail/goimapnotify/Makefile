@@ -1,5 +1,5 @@
 PORTNAME=	goimapnotify
-DISTVERSION=	2.5.5
+DISTVERSION=	2.5.4
 CATEGORIES=	mail
 
 MAINTAINER=	dsh@bamus.cz
@@ -15,7 +15,7 @@ GL_ACCOUNT=	shackra
 
 GO_MOD_DIST=	gitlab
 GO_MODULE=	gitlab.com/${GL_ACCOUNT}/${PORTNAME}
-_BUILD_COMMIT=	bcc9d8d5
+_BUILD_COMMIT=	0152e169
 _BUILD_XFLAGS=	main.commit=${_BUILD_COMMIT} \
 		main.gittag=${DISTVERSIONFULL} \
 		main.branch=master
