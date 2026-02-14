@@ -1,6 +1,6 @@
 PORTNAME=	miniflux
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.3.16-164-g6c5bcd61
+DISTVERSION=	2.3.17
 CATEGORIES=	www
 PKGNAMESUFFIX=	-${GH_ACCOUNT}
 
@@ -10,7 +10,7 @@ COMMENT=	Self-hosted software to read RSS/Atom/JSON feeds (fork with more featur
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25+,modules
+USES=		go:1.26+,modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh
@@ -19,7 +19,7 @@ USE_RC_SUBR=	${PORTNAME}
 
 GO_MOD_DIST=	github
 GO_MODULE=	${PORTNAME}.app/v2
-_BUILD_COMMIT=	6c5bcd61
+_BUILD_COMMIT=	6c5bcd6
 _BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
 _BUILD_XFLAGS=	version.Version=${DISTVERSION} \
 		version.Commit=${_BUILD_COMMIT} \
