@@ -1,6 +1,6 @@
 PORTNAME=	golangci-lint
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.9.0
+DISTVERSION=	2.10.0
 CATEGORIES=	devel
 
 MAINTAINER=	lcook@FreeBSD.org
@@ -16,7 +16,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	golangci
 
 _BUILD_VERSION=	${DISTVERSION}
-_BUILD_COMMIT=	72798d3
+_BUILD_COMMIT=	95dcb68
 _BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
 _BUILD_XFLAGS=	main.version=${_BUILD_VERSION} \
 		main.commit=${_BUILD_COMMIT} \
