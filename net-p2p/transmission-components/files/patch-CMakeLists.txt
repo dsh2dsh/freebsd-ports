@@ -1,6 +1,6 @@
---- CMakeLists.txt.orig	2025-12-04 00:10:10 UTC
+--- CMakeLists.txt.orig	2026-02-20 00:30:46 UTC
 +++ CMakeLists.txt
-@@ -849,20 +849,6 @@ endif()
+@@ -841,20 +841,6 @@ endif()
      tr_install_web(${CMAKE_INSTALL_DATAROOTDIR}/${TR_NAME})
  endif()
  
