@@ -1,19 +1,23 @@
-PORTNAME=		expx-dbcopy
+PORTNAME=	expx-dbcopy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.2.2
-CATEGORIES=		sysutils
+DISTVERSION=	0.3.0
+CATEGORIES=	sysutils
 
-MAINTAINER=		dsh@bamus.cz
-COMMENT=		Wait and cat an S3 file
-WWW=			https://github.com/dsh2dsh/${PORTNAME}
+MAINTAINER=	dsh@bamus.cz
+COMMENT=	Wait and cat an S3 file
 
-LICENSE=		MIT
+LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=			go:modules
+USES=		go:1.26+,modules
 
-GO_MODULE=		github.com/dsh2dsh/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags="${STRIP} -w -X main.version=${DISTVERSION}"
+USE_GITHUB=	yes
+GH_ACCOUNT=	dsh2dsh
+
+GO_MOD_DIST=	github
+GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
+_BUILD_XFLAGS=	main.version=${DISTVERSION}
+GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S!^!-X !}"
 
 PLIST_FILES=	bin/${PORTNAME}
 

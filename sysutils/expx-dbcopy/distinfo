@@ -1,5 +1,5 @@
-TIMESTAMP = 1719503492
-SHA256 (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.2/v0.2.2.mod) = 129907e59a4b38574840931f568eea72386f1691bee98c014d6230389fc34dcb
-SIZE (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.2/v0.2.2.mod) = 2737
-SHA256 (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.2/v0.2.2.zip) = 890b3f5f70841b4d37a6bb7fd62f2d6f978e9c9755c56c49f0f8d154091adb89
-SIZE (go/sysutils_expx-dbcopy/expx-dbcopy-v0.2.2/v0.2.2.zip) = 15437
+TIMESTAMP = 1772310251
+SHA256 (go/sysutils_expx-dbcopy/dsh2dsh-expx-dbcopy-v0.3.0_GH0/go.mod) = 5248c34bc6411c78b92ee626c2aa6ab9acfc9dd40175cbe8cc57a4784844fdfc
+SIZE (go/sysutils_expx-dbcopy/dsh2dsh-expx-dbcopy-v0.3.0_GH0/go.mod) = 2528
+SHA256 (go/sysutils_expx-dbcopy/dsh2dsh-expx-dbcopy-v0.3.0_GH0/dsh2dsh-expx-dbcopy-v0.3.0_GH0.tar.gz) = efdab833efff2c35082ecfc295e547db7178e80966efd7dd6b4b96c3a7621d2b
+SIZE (go/sysutils_expx-dbcopy/dsh2dsh-expx-dbcopy-v0.3.0_GH0/dsh2dsh-expx-dbcopy-v0.3.0_GH0.tar.gz) = 12355
