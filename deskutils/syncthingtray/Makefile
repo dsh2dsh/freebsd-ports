@@ -1,6 +1,6 @@
 PORTNAME=	syncthingtray
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.7
+DISTVERSION=	2.0.8
 CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
