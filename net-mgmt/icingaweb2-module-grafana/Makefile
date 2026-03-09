@@ -18,15 +18,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	NETWAYS
 
 WWWDIR?=	${PREFIX}/www/icingaweb2/modules/${PORTNAME:C/^.*-//}
-NO_ARCH=	yes
-NO_BUILD=	yes
-
 EXTRACT_AFTER_ARGS=	--exclude .idea \
 			--exclude .github \
 			--no-same-owner --no-same-permissions
+NO_ARCH=	yes
+NO_BUILD=	yes
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${WWWDIR}
 	(cd ${WRKSRC} && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
 
