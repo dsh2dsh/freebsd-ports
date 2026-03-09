@@ -21,8 +21,11 @@ WWWDIR?=	${PREFIX}/www/icingaweb2/modules/${PORTNAME:C/^.*-//}
 NO_ARCH=	yes
 NO_BUILD=	yes
 
+EXTRACT_AFTER_ARGS=	--exclude .idea \
+			--exclude .github \
+			--no-same-owner --no-same-permissions
+
 do-install:
-	@${RM} -r ${WRKSRC}/.idea ${WRKSRC}/.github
 	@${MKDIR} ${STAGEDIR}${WWWDIR}
 	(cd ${WRKSRC} && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
