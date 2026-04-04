@@ -2176,6 +2176,7 @@
 %%WWWDIR%%/vendor/icinga/zf1/resources/languages/sk/Zend_Validate.php
 %%WWWDIR%%/vendor/icinga/zf1/resources/languages/sr/Zend_Validate.php
 %%WWWDIR%%/vendor/icinga/zf1/resources/languages/uk/Zend_Validate.php
+%%WWWDIR%%/vendor/jfcherng/php-color-output/.php-cs-fixer.dist.php
 %%WWWDIR%%/vendor/jfcherng/php-color-output/CHANGELOG.md
 %%WWWDIR%%/vendor/jfcherng/php-color-output/LICENSE
 %%WWWDIR%%/vendor/jfcherng/php-color-output/README.md
@@ -2185,6 +2186,8 @@
 %%WWWDIR%%/vendor/jfcherng/php-color-output/composer.lock
 %%WWWDIR%%/vendor/jfcherng/php-color-output/demo.php
 %%WWWDIR%%/vendor/jfcherng/php-color-output/src/CliColor.php
+%%WWWDIR%%/vendor/jfcherng/php-diff/.php-cs-fixer.dist.php
+%%WWWDIR%%/vendor/jfcherng/php-diff/.phpstorm.meta.php
 %%WWWDIR%%/vendor/jfcherng/php-diff/CHANGELOG/CHANGELOG_v2.md
 %%WWWDIR%%/vendor/jfcherng/php-diff/CHANGELOG/CHANGELOG_v3.md
 %%WWWDIR%%/vendor/jfcherng/php-diff/CHANGELOG/CHANGELOG_v4.md
@@ -2251,12 +2254,14 @@
 %%WWWDIR%%/vendor/jfcherng/php-diff/src/languages/spa.json
 %%WWWDIR%%/vendor/jfcherng/php-diff/src/languages/tur.json
 %%WWWDIR%%/vendor/jfcherng/php-diff/src/languages/ukr.json
+%%WWWDIR%%/vendor/jfcherng/php-mb-string/.php-cs-fixer.dist.php
 %%WWWDIR%%/vendor/jfcherng/php-mb-string/CHANGELOG
 %%WWWDIR%%/vendor/jfcherng/php-mb-string/LICENSE
 %%WWWDIR%%/vendor/jfcherng/php-mb-string/README.md
 %%WWWDIR%%/vendor/jfcherng/php-mb-string/composer.json
 %%WWWDIR%%/vendor/jfcherng/php-mb-string/composer.lock
 %%WWWDIR%%/vendor/jfcherng/php-mb-string/src/MbString.php
+%%WWWDIR%%/vendor/jfcherng/php-sequence-matcher/.php-cs-fixer.dist.php
 %%WWWDIR%%/vendor/jfcherng/php-sequence-matcher/LICENSE
 %%WWWDIR%%/vendor/jfcherng/php-sequence-matcher/README.md
 %%WWWDIR%%/vendor/jfcherng/php-sequence-matcher/composer.json
@@ -3690,6 +3695,7 @@
 %%WWWDIR%%/vendor/react/stream/src/Util.php
 %%WWWDIR%%/vendor/react/stream/src/WritableResourceStream.php
 %%WWWDIR%%/vendor/react/stream/src/WritableStreamInterface.php
+%%WWWDIR%%/vendor/ringcentral/psr7/.travis.yml
 %%WWWDIR%%/vendor/ringcentral/psr7/CHANGELOG.md
 %%WWWDIR%%/vendor/ringcentral/psr7/Dockerfile
 %%WWWDIR%%/vendor/ringcentral/psr7/LICENSE
@@ -4283,6 +4289,7 @@
 %%WWWDIR%%/vendor/wikimedia/less.php/README.md
 %%WWWDIR%%/vendor/wikimedia/less.php/SECURITY.md
 %%WWWDIR%%/vendor/wikimedia/less.php/lessc.inc.php
+%%WWWDIR%%/vendor/wikimedia/less.php/lib/Less/.easymin/ignore_prefixes
 %%WWWDIR%%/vendor/wikimedia/less.php/lib/Less/Autoloader.php
 %%WWWDIR%%/vendor/wikimedia/less.php/lib/Less/Cache.php
 %%WWWDIR%%/vendor/wikimedia/less.php/lib/Less/Colors.php
