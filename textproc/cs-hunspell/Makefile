@@ -9,7 +9,7 @@ COMMENT=	Czech hunspell dictionaries
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	LibreOffice
 GH_PROJECT=	dictionaries
-GH_TAGNAME=	fc2dc38
+GH_TAGNAME=	e7f163f
 GH_TUPLE:=	${GH_ACCOUNT}:${GH_PROJECT}:${GH_TAGNAME}:${PORTNAME}
 
 WRKSRC=		${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME_SANITIZED}
