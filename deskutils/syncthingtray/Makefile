@@ -1,6 +1,6 @@
 PORTNAME=	syncthingtray
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.9
+DISTVERSION=	2.0.10
 CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
@@ -18,8 +18,8 @@ USES=		cmake:insource gl iconv perl5 qt:6 xorg
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	Martchus
 GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:${PORTNAME}/../${PORTNAME} \
-		${GH_ACCOUNT}:cpp-utilities:v5.33.0:cpputilities/../c++utilities \
-		${GH_ACCOUNT}:qtutilities:v6.20.0:qtutilities/../qtutilities \
+		${GH_ACCOUNT}:cpp-utilities:v5.34.0:cpputilities/../c++utilities \
+		${GH_ACCOUNT}:qtutilities:v6.21.0:qtutilities/../qtutilities \
 		${GH_ACCOUNT}:qtforkawesome:v0.3.2:qtforkawesome/../qtforkawesome \
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
 		${GH_ACCOUNT}:subdirs:9fb173e:subdirs/../subdirs
