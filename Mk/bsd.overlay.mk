@@ -51,6 +51,14 @@ GN_ARGS+=	cc_wrapper="${CCACHE_BIN}"
 .  if ${.CURDIR:M*/www/firefox}
 MAKE_ENV+=	CARGO_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 
+.  elif ${.CURDIR:M*/deskutils/syncthingtray}
+FLAVORS+=	plasma5 plasma6
+plasma5_PKGNAMESUFFIX=	-plasma5
+plasma6_PKGNAMESUFFIX=	-plasma6
+.    if ${FLAVOR:Mplasma?}
+OPTIONS_SET_FORCE=	PLASMA
+.    endif
+
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=287447
 .  elif ${.CURDIR:M*/devel/llvm*}
 CMAKE_ARGS:=	${CMAKE_ARGS:S/-DLLVM_LINK_LLVM_DYLIB=ON/-DLLVM_LINK_LLVM_DYLIB=OFF/}
