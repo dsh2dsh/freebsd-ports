@@ -1,4 +1,4 @@
---- src/treesit.c.orig	2026-04-10 14:59:25 UTC
+--- src/treesit.c.orig	2025-07-05 09:56:00 UTC
 +++ src/treesit.c
 @@ -415,17 +415,17 @@ static Lisp_Object Vtreesit_str_plus;
  static Lisp_Object Vtreesit_str_question_mark;
@@ -24,7 +24,48 @@
  static Lisp_Object Vtreesit_str_empty;
  
  /* This is the limit on recursion levels for some tree-sitter
-@@ -2620,12 +2620,12 @@ See Info node `(elisp)Pattern Matching' for detailed e
+@@ -632,6 +632,22 @@ treesit_load_language_push_for_each_suffix (Lisp_Objec
+     }
+ }
+ 
++/* This function is a compatibility shim.  Tree-sitter 0.25 introduced
++   ts_language_abi_version as a replacement for ts_language_version, and
++   tree-sitter 0.26 removed ts_language_version.  Here we use the fact
++   that 0.25 bumped TREE_SITTER_LANGUAGE_VERSION to 15, to use the new
++   function instead of the old one, when Emacs is compiled against
++   tree-sitter version 0.25 or newer.  */
++static uint32_t
++treesit_language_abi_version (const TSLanguage *ts_lang)
++{
++#if TREE_SITTER_LANGUAGE_VERSION >= 15
++  return ts_language_abi_version (ts_lang);
++#else
++  return ts_language_version (ts_lang);
++#endif
++}
++
+ /* Load the dynamic library of LANGUAGE_SYMBOL and return the pointer
+    to the language definition.
+ 
+@@ -746,7 +762,7 @@ treesit_load_language (Lisp_Object language_symbol,
+     {
+       *signal_symbol = Qtreesit_load_language_error;
+       *signal_data = list2 (Qversion_mismatch,
+-			    make_fixnum (ts_language_version (lang)));
++			    make_fixnum (treesit_language_abi_version (lang)));
+       return NULL;
+     }
+   return lang;
+@@ -817,7 +833,7 @@ Return nil if a grammar library for LANGUAGE is not av
+ 						       &signal_data);
+       if (ts_language == NULL)
+ 	return Qnil;
+-      uint32_t version =  ts_language_version (ts_language);
++      uint32_t version =  treesit_language_abi_version (ts_language);
+       return make_fixnum((ptrdiff_t) version);
+     }
+ }
+@@ -2604,12 +2620,12 @@ See Info node `(elisp)Pattern Matching' for detailed e
      return Vtreesit_str_star;
    if (BASE_EQ (pattern, QCplus))
      return Vtreesit_str_plus;
@@ -43,7 +84,7 @@
    Lisp_Object opening_delimeter
      = VECTORP (pattern)
        ? Vtreesit_str_open_bracket : Vtreesit_str_open_paren;
-@@ -2656,7 +2656,9 @@ A PATTERN in QUERY can be
+@@ -2640,7 +2656,9 @@ A PATTERN in QUERY can be
      :*
      :+
      :equal
@@ -53,7 +94,7 @@
      (TYPE PATTERN...)
      [PATTERN...]
      FIELD-NAME:
-@@ -2819,7 +2821,7 @@ treesit_predicate_equal (Lisp_Object args, struct capt
+@@ -2803,7 +2821,7 @@ treesit_predicate_equal (Lisp_Object args, struct capt
    return !NILP (Fstring_equal (text1, text2));
  }
  
@@ -62,7 +103,7 @@
     matches the text spanned by @node; return false otherwise.
     Matching is case-sensitive.  If everything goes fine, don't touch
     SIGNAL_DATA; if error occurs, set it to a suitable signal data.  */
-@@ -2829,26 +2831,24 @@ treesit_predicate_match (Lisp_Object args, struct capt
+@@ -2813,26 +2831,24 @@ treesit_predicate_match (Lisp_Object args, struct capt
  {
    if (list_length (args) != 2)
      {
@@ -102,7 +143,7 @@
  
    Lisp_Object node = Qnil;
    if (!treesit_predicate_capture_name_to_node (capture_name, captures, &node,
-@@ -2932,11 +2932,11 @@ treesit_eval_predicates (struct capture_range captures
+@@ -2916,11 +2932,11 @@ treesit_eval_predicates (struct capture_range captures
        Lisp_Object predicate = XCAR (tail);
        Lisp_Object fn = XCAR (predicate);
        Lisp_Object args = XCDR (predicate);
@@ -117,7 +158,7 @@
  	pass &= treesit_predicate_pred (args, captures, signal_data);
        else
  	{
-@@ -4208,8 +4208,11 @@ syms_of_treesit (void)
+@@ -4192,8 +4208,11 @@ syms_of_treesit (void)
    DEFSYM (QCstar, ":*");
    DEFSYM (QCplus, ":+");
    DEFSYM (QCequal, ":equal");
@@ -129,7 +170,7 @@
  
    DEFSYM (Qnot_found, "not-found");
    DEFSYM (Qsymbol_error, "symbol-error");
-@@ -4340,12 +4343,12 @@ the symbol of that THING.  For example, (or sexp sente
+@@ -4324,12 +4343,12 @@ the symbol of that THING.  For example, (or sexp sente
    Vtreesit_str_star = build_pure_c_string ("*");
    staticpro (&Vtreesit_str_plus);
    Vtreesit_str_plus = build_pure_c_string ("+");
@@ -148,7 +189,7 @@
    staticpro (&Vtreesit_str_open_bracket);
    Vtreesit_str_open_bracket = build_pure_c_string ("[");
    staticpro (&Vtreesit_str_close_bracket);
-@@ -4356,12 +4359,12 @@ the symbol of that THING.  For example, (or sexp sente
+@@ -4340,12 +4359,12 @@ the symbol of that THING.  For example, (or sexp sente
    Vtreesit_str_close_paren = build_pure_c_string (")");
    staticpro (&Vtreesit_str_space);
    Vtreesit_str_space = build_pure_c_string (" ");
