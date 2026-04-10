@@ -53,7 +53,7 @@ MAKE_ENV+=	CARGO_BUILD_JOBS=${MAKE_JOBS_NUMBER}
 
 .  elif ${.CURDIR:M*/deskutils/syncthingtray}
 FLAVORS=	lite plasma
-plasma6_PKGNAMESUFFIX=	-plasma
+plasma_PKGNAMESUFFIX=	-plasma
 .    if ${FLAVOR:Mplasma}
 OPTIONS_SET_FORCE=	PLASMA
 .    endif
