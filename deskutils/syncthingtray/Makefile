@@ -4,7 +4,7 @@ DISTVERSION=	2.0.10
 CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
-COMMENT=	Qt ${FLAVOR:S/qt//}-based Syncthing tray application
+COMMENT=	Qt6-based Syncthing tray application
 WWW=		https://martchus.github.io/syncthingtray/
 
 LICENSE=	GPLv2
