@@ -1,6 +1,6 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	12.4.3
+DISTVERSION=	13.0.0
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -36,9 +36,9 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		pkg/build/go.mod:gomod \
 		pkg/build/wire/go.mod:gomod \
 		pkg/codegen/go.mod:gomod \
+		pkg/infra/features/go.mod:gomod \
 		pkg/plugins/go.mod:gomod \
 		pkg/plugins/codegen/go.mod:gomod \
-		pkg/promlib/go.mod:gomod \
 		pkg/semconv/go.mod:gomod \
 		pkg/storage/unified/resource/kv/go.mod:gomod
 EXTRACT_ONLY=	${DISTFILES:N*.mod\:*:N*.mod:C/:.*//:Ngo.work}
@@ -64,9 +64,7 @@ _BUILD_XFLAGS=	main.version=${PORTVERSION} \
 
 GO_MODULE=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 GO_MOD_DIST=	github
-GO_TARGET=	./pkg/cmd/${PORTNAME} \
-		./pkg/cmd/${PORTNAME}-server \
-		./pkg/cmd/${PORTNAME}-cli
+GO_TARGET=	./pkg/cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
 
 CONFLICTS_INSTALL=	grafana*
