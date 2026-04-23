@@ -10,7 +10,7 @@ WWW=		https://www.icinga.org/icinga2/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	libprotobuf.so:devel/protobuf
+BUILD_DEPENDS=	protoc:devel/protobuf
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
 		libabsl_base.so:devel/abseil
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
