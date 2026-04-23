@@ -1,6 +1,6 @@
---- lib/compat/CMakeLists.txt.orig	2025-06-17 12:18:50 UTC
+--- lib/compat/CMakeLists.txt.orig	2026-04-22 09:29:50 UTC
 +++ lib/compat/CMakeLists.txt
-@@ -22,12 +22,12 @@ install_if_not_exists(
+@@ -23,12 +23,12 @@ install_if_not_exists(
  )
  
  install_if_not_exists(
