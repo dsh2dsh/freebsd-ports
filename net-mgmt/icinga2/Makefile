@@ -11,7 +11,8 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
-		libprotobuf.so:devel/protobuf
+		libprotobuf.so:devel/protobuf \
+		libabsl_base.so:devel/abseil
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 USES=		bison cmake:insource compiler:c++0x libedit ssl
