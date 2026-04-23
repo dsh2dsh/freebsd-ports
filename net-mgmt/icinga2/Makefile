@@ -10,7 +10,8 @@ WWW=		https://www.icinga.org/icinga2/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs
+LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
+		libprotobuf.so:devel/protobuf
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 USES=		bison cmake:insource compiler:c++0x libedit ssl
