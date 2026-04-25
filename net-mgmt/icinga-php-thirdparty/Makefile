@@ -9,7 +9,7 @@ COMMENT=	Icinga PHP thirdparty
 WWW=		https://github.com/Icinga/icinga-php-thirdparty
 
 LICENSE=	MIT
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 USES=		php:web,flavors
 IGNORE_WITH_PHP=81
