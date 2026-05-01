@@ -1,33 +1,24 @@
---- chrome/browser/ui/views/frame/browser_widget.cc.orig	2025-11-01 06:40:37 UTC
+--- chrome/browser/ui/views/frame/browser_widget.cc.orig	2026-03-15 18:32:51 UTC
 +++ chrome/browser/ui/views/frame/browser_widget.cc
-@@ -53,7 +53,7 @@
+@@ -52,7 +52,7 @@
  #include "ui/aura/window.h"
  #endif
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- #include "ui/display/screen.h"
  #include "ui/linux/linux_ui.h"
  #endif
-@@ -68,7 +68,7 @@ namespace {
- constexpr double kTitlePaddingWidthFraction = 0.1;
- #endif
  
--#if BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- // These values are used for Linux/GTK.
- constexpr int kIconTitleSpacing = 4;
- constexpr int kCaptionSpacing = 5;
-@@ -98,7 +98,7 @@ class ThemeChangedObserver : public views::WidgetObser
+@@ -86,7 +86,7 @@ class ThemeChangedObserver : public views::WidgetObser
  };
  
- bool IsUsingLinuxSystemTheme(Profile* profile) {
+ bool IsUsingLinuxSystemTheme(ThemeService* theme_service) {
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   return ThemeServiceFactory::GetForProfile(profile)->UsingSystemTheme();
+   return theme_service->UsingSystemTheme();
  #else
    return false;
-@@ -214,7 +214,7 @@ void BrowserWidget::InitBrowserWidget() {
+@@ -209,7 +209,7 @@ void BrowserWidget::InitBrowserWidget() {
  
    Init(std::move(params));
  
@@ -36,16 +27,7 @@
    SelectNativeTheme();
  #else
    SetNativeTheme(ui::NativeTheme::GetInstanceForNativeUi());
-@@ -419,7 +419,7 @@ void BrowserWidget::OnNativeWidgetWorkspaceChanged() {
-   chrome::SaveWindowWorkspace(browser_view_->browser(), GetWorkspace());
-   chrome::SaveWindowVisibleOnAllWorkspaces(browser_view_->browser(),
-                                            IsVisibleOnAllWorkspaces());
--#if BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-   // If the window was sent to a different workspace, prioritize it if
-   // it was sent to the current workspace and deprioritize it
-   // otherwise.  This is done by MoveBrowsersInWorkspaceToFront()
-@@ -606,7 +606,7 @@ void BrowserWidget::OnMenuClosed() {
+@@ -535,7 +535,7 @@ void BrowserWidget::OnMenuClosed() {
  }
  
  void BrowserWidget::SelectNativeTheme() {
@@ -54,7 +36,7 @@
    // Use the regular NativeTheme instance if running incognito mode, regardless
    // of system theme (gtk, qt etc).
    ui::NativeTheme* native_theme = ui::NativeTheme::GetInstanceForNativeUi();
-@@ -647,7 +647,7 @@ void BrowserWidget::OnTouchUiChanged() {
+@@ -576,7 +576,7 @@ void BrowserWidget::OnTouchUiChanged() {
  bool BrowserWidget::RegenerateFrameOnThemeChange(
      BrowserThemeChangeType theme_change_type) {
    bool need_regenerate = false;

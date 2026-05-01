@@ -1,6 +1,6 @@
---- net/websockets/websocket_basic_stream_adapters_test.cc.orig	2025-10-21 16:57:35 UTC
+--- net/websockets/websocket_basic_stream_adapters_test.cc.orig	2026-04-15 11:25:12 UTC
 +++ net/websockets/websocket_basic_stream_adapters_test.cc
-@@ -1097,10 +1097,10 @@ TEST_F(WebSocketSpdyStreamAdapterTest,
+@@ -1101,10 +1101,10 @@ TEST_F(WebSocketSpdyStreamAdapterTest,
         OnCloseOkShouldBeTranslatedToConnectionClose) {
    spdy::SpdySerializedFrame response_headers(
        spdy_util_.ConstructSpdyResponseHeaders(1, ResponseHeaders(), false));

@@ -1,6 +1,6 @@
---- components/os_crypt/sync/os_crypt.h.orig	2025-09-10 13:22:16 UTC
+--- components/os_crypt/sync/os_crypt.h.orig	2026-03-15 18:32:51 UTC
 +++ components/os_crypt/sync/os_crypt.h
-@@ -23,7 +23,7 @@ class Keychain;
+@@ -25,7 +25,7 @@ class KeychainV2;
  }
  #endif
  
@@ -9,7 +9,7 @@
  class KeyStorageLinux;
  #endif  // BUILDFLAG(IS_LINUX)
  
-@@ -39,7 +39,7 @@ struct Config;
+@@ -41,7 +41,7 @@ struct Config;
  // Temporary interface due to OSCrypt refactor. See OSCryptImpl for descriptions
  // of what each function does.
  namespace OSCrypt {
@@ -18,7 +18,7 @@
  COMPONENT_EXPORT(OS_CRYPT)
  void SetConfig(std::unique_ptr<os_crypt::Config> config);
  #endif  // BUILDFLAG(IS_LINUX)
-@@ -84,7 +84,7 @@ COMPONENT_EXPORT(OS_CRYPT) void UseMockKeyForTesting(b
+@@ -88,7 +88,7 @@ COMPONENT_EXPORT(OS_CRYPT) void UseMockKeyForTesting(b
  COMPONENT_EXPORT(OS_CRYPT) void SetLegacyEncryptionForTesting(bool legacy);
  COMPONENT_EXPORT(OS_CRYPT) void ResetStateForTesting();
  #endif  // BUILDFLAG(IS_WIN)
@@ -27,7 +27,7 @@
  COMPONENT_EXPORT(OS_CRYPT)
  void UseMockKeyStorageForTesting(
      base::OnceCallback<std::unique_ptr<KeyStorageLinux>()>
-@@ -118,7 +118,7 @@ class COMPONENT_EXPORT(OS_CRYPT) OSCryptImpl {
+@@ -122,7 +122,7 @@ class COMPONENT_EXPORT(OS_CRYPT) OSCryptImpl {
    // Returns singleton instance of OSCryptImpl.
    static OSCryptImpl* GetInstance();
  

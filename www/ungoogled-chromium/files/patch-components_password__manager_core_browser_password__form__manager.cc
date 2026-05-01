@@ -1,15 +1,6 @@
---- components/password_manager/core/browser/password_form_manager.cc.orig	2025-11-01 06:40:37 UTC
+--- components/password_manager/core/browser/password_form_manager.cc.orig	2026-04-15 11:25:12 UTC
 +++ components/password_manager/core/browser/password_form_manager.cc
-@@ -67,7 +67,7 @@
- #include "components/webauthn/android/webauthn_cred_man_delegate.h"
- #endif  // BUILDFLAG(IS_ANDROID)
- 
--#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- #include "components/os_crypt/sync/os_crypt.h"
- #endif
- 
-@@ -239,7 +239,7 @@ bool ShouldUploadCrowdsourcingVotes(const FormOrDigest
+@@ -236,7 +236,7 @@ bool ShouldUploadCrowdsourcingVotes(const FormOrDigest
    return false;
  }
  

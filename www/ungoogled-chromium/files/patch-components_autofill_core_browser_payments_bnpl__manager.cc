@@ -1,6 +1,6 @@
---- components/autofill/core/browser/payments/bnpl_manager.cc.orig	2025-11-01 06:40:37 UTC
+--- components/autofill/core/browser/payments/bnpl_manager.cc.orig	2026-04-15 11:25:12 UTC
 +++ components/autofill/core/browser/payments/bnpl_manager.cc
-@@ -599,7 +599,7 @@ void BnplManager::MaybeUpdateDesktopSuggestionsWithBnp
+@@ -834,7 +834,7 @@ void BnplManager::MaybeUpdateDesktopSuggestionsWithBnp
        .OnBnplSuggestionShown();
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

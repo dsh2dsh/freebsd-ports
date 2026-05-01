@@ -1,11 +1,11 @@
---- media/gpu/vaapi/vaapi_wrapper.cc.orig	2025-10-21 16:57:35 UTC
+--- media/gpu/vaapi/vaapi_wrapper.cc.orig	2026-03-15 18:32:51 UTC
 +++ media/gpu/vaapi/vaapi_wrapper.cc
-@@ -85,7 +85,7 @@
+@@ -79,7 +79,7 @@
  using media_gpu_vaapi::kModuleVa_prot;
  #endif
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
- #include "base/files/file_util.h"
  #include "base/strings/string_split.h"
  #endif
+ 

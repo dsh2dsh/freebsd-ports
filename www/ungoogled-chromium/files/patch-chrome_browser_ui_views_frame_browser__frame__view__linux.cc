@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/frame/browser_frame_view_linux.cc.orig	2025-11-01 06:40:37 UTC
+--- chrome/browser/ui/views/frame/browser_frame_view_linux.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/ui/views/frame/browser_frame_view_linux.cc
-@@ -70,7 +70,7 @@ gfx::ShadowValues BrowserFrameViewLinux::GetShadowValu
+@@ -72,7 +72,7 @@ gfx::ShadowValues BrowserFrameViewLinux::GetShadowValu
  
  void BrowserFrameViewLinux::PaintRestoredFrameBorder(
      gfx::Canvas* canvas) const {
@@ -9,7 +9,7 @@
    const bool tiled = browser_widget()->tiled();
  #else
    const bool tiled = false;
-@@ -125,7 +125,7 @@ int BrowserFrameViewLinux::NonClientHitTest(const gfx:
+@@ -127,7 +127,7 @@ int BrowserFrameViewLinux::NonClientHitTest(const gfx:
  }
  
  float BrowserFrameViewLinux::GetRestoredCornerRadiusDip() const {
