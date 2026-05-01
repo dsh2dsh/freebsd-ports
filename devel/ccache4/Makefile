@@ -18,16 +18,16 @@ SHEBANG_FILES=	doc/scripts/* test/*
 SHEBANG_GLOB=	*.sh *.bash
 
 CMAKE_ARGS+=	-D DEPS=LOCAL
-CMAKE_OFF=	ENABLE_IPO ENABLE_TRACING WARNINGS_AS_ERRORS
-
-TEST_TARGET=		check
+CMAKE_OFF=	WARNINGS_AS_ERRORS \
+		ENABLE_IPO \
+		ENABLE_TRACING \
+		REDIS_STORAGE_BACKEND
 
 CONFLICTS_INSTALL?=	ccache ccache-static
 
 # Prevent infinite recursion.
-NO_CCACHE=	yes
 NO_CCACHE_DEPEND=	yes
-SUB_FILES=	ccache-update-links.sh ccache_clean world-ccache
+SUB_FILES=	ccache_clean ccache-update-links.sh world-ccache
 
 PORTDOCS=	AUTHORS.html AUTHORS.md LICENSE.md MANUAL.html MANUAL.md \
 		NEWS.html NEWS.md authors.adoc manual.adoc news.adoc
@@ -37,7 +37,6 @@ OPTIONS_DEFAULT=	CLANGLINK LLVMLINK STATIC
 OPTIONS_SUB=		yes
 
 CLANGLINK_DESC=		Create clang compiler links if clang is installed
-HIREDIS_DESC=		Enable high-performance libhiredis storage backend
 LLVMLINK_DESC=		Create llvm compiler links if llvm is installed
 
 DOCS_BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor \
@@ -47,18 +46,15 @@ DOCS_USES=		groff:run perl5
 DOCS_CMAKE_BOOL=	ENABLE_DOCUMENTATION
 DOCS_ALL_TARGET=	all doc
 
-HIREDIS_CMAKE_BOOL=	REDIS_STORAGE_BACKEND
-STATIC_BUILD_DEPENDS=	${LOCALBASE}/lib/libxxhash.a:devel/xxhash \
-			${LOCALBASE}/lib/libzstd.a:archivers/zstd
-STATIC_LIB_DEPENDS_OFF=	libfmt.so:devel/libfmt \
-			libxxhash.so:devel/xxhash \
-			libzstd.so:archivers/zstd
+STATIC_BUILD_DEPENDS=	${LOCALBASE}/lib/libzstd.a:archivers/zstd \
+			${LOCALBASE}/lib/libxxhash.a:devel/xxhash
+STATIC_LIB_DEPENDS_OFF=	libzstd.so:archivers/zstd \
+			libfmt.so:devel/libfmt \
+			libxxhash.so:devel/xxhash
 STATIC_CMAKE_BOOL=	STATIC_LINK
-STATIC_CMAKE_ON=	-DDEP_BLAKE3=BUNDLED \
-			-DDEP_CPPHTTPLIB=BUNDLED \
-			-DDEP_FMT=BUNDLED \
-			-DDEP_NONSTDSPAN=BUNDLED \
-			-DDEP_TLEXPECTED=BUNDLED
+STATIC_CMAKE_ON=	-D DEP_BLAKE3=BUNDLED -D DEP_CPPHTTPLIB=BUNDLED \
+			-D DEP_FMT=BUNDLED -D DEP_NONSTDSPAN=BUNDLED \
+			-D DEP_TLEXPECTED=BUNDLED
 STATIC_LDFLAGS=		-static
 
 TEST_BUILD_DEPENDS=	doctest>=2.4.6:devel/doctest
@@ -79,7 +75,8 @@ CCACHE_COMPILERS+=	icc icpc
 
 GNU_COMPILERS+=		12 13 14 15 16
 CCACHE_COMPILERS+=	cc c++ CC gcc g++ ${GNU_COMPILERS:S|^|gcc|} \
-			${GNU_COMPILERS:S|^|g++|} ${GNU_COMPILERS:S|^|cpp|}
+			${GNU_COMPILERS:S|^|g++|} \
+			${GNU_COMPILERS:S|^|cpp|}
 
 .if ${PORT_OPTIONS:MCLANGLINK}
 CLANG_COMPILERS+=	12 13 14 15 16 17 18 19 20 21 22 -devel
@@ -89,15 +86,7 @@ CCACHE_COMPILERS+=	clang clang++ ${CLANG_COMPILERS:S|^|clang|} \
 .endif
 
 .if ${PORT_OPTIONS:MLLVMLINK}
-CCACHE_COMPILERS+=	 llvm-c++ llvm-g++ llvm-gcc
-.endif
-
-.if ${PORT_OPTIONS:MHIREDIS}
-.  if ${PORT_OPTIONS:MSTATIC}
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libhiredis.a:databases/hiredis
-.  else
-LIB_DEPENDS+=	libhiredis.so:databases/hiredis
-.  endif
+CCACHE_COMPILERS+=	llvm-gcc llvm-c++ llvm-g++
 .endif
 
 CCACHE_COMPILERS+=	${EXTRA_COMPILERS}
