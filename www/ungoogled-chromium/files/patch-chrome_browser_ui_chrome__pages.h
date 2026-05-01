@@ -1,4 +1,4 @@
---- chrome/browser/ui/chrome_pages.h.orig	2025-11-01 06:40:37 UTC
+--- chrome/browser/ui/chrome_pages.h.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/ui/chrome_pages.h
 @@ -39,7 +39,7 @@ namespace signin {
  enum class ConsentLevel;
@@ -9,8 +9,8 @@
  namespace web_app {
  enum class AppSettingsPageEntryPoint;
  }  // namespace web_app
-@@ -182,7 +182,7 @@ void ShowShortcutCustomizationApp(Profile* profile,
-                                   const std::string& category);
+@@ -164,7 +164,7 @@ void ShowAppManagementPage(Profile* profile,
+                            ash::settings::AppManagementEntryPoint entry_point);
  #endif
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)

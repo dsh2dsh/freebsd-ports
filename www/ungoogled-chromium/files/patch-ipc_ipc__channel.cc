@@ -1,6 +1,6 @@
---- ipc/ipc_channel.cc.orig	2025-11-01 06:40:37 UTC
+--- ipc/ipc_channel.cc.orig	2026-03-15 18:32:51 UTC
 +++ ipc/ipc_channel.cc
-@@ -22,7 +22,7 @@ namespace {
+@@ -41,7 +41,7 @@ namespace {
  // Global atomic used to guarantee channel IDs are unique.
  base::AtomicSequenceNumber g_last_id;
  
@@ -9,8 +9,17 @@
  
  int g_global_pid = 0;
  
-@@ -60,7 +60,7 @@ std::string Channel::GenerateUniqueRandomChannelID() {
-       base::RandInt(0, std::numeric_limits<int32_t>::max()));
+@@ -83,7 +83,7 @@ class ThreadSafeChannelProxy : public mojo::ThreadSafe
+ };
+ 
+ base::ProcessId GetSelfPID() {
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+   if (int global_pid = Channel::GetGlobalPid()) {
+     return global_pid;
+   }
+@@ -119,7 +119,7 @@ std::string Channel::GenerateUniqueRandomChannelID() {
+       base::RandIntInclusive(0, std::numeric_limits<int32_t>::max()));
  }
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)

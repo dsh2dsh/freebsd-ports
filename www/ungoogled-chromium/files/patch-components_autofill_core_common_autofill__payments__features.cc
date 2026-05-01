@@ -1,6 +1,6 @@
---- components/autofill/core/common/autofill_payments_features.cc.orig	2025-11-01 06:40:37 UTC
+--- components/autofill/core/common/autofill_payments_features.cc.orig	2026-04-15 11:25:12 UTC
 +++ components/autofill/core/common/autofill_payments_features.cc
-@@ -26,7 +26,7 @@ BASE_FEATURE(kAutofillEnableAllowlistForBmoCardCategor
+@@ -32,7 +32,7 @@ BASE_FEATURE(kAutofillEnableAiBasedAmountExtraction,
  // of the allowlisted merchant websites.
  BASE_FEATURE(kAutofillEnableAmountExtraction,
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -9,7 +9,7 @@
               base::FEATURE_ENABLED_BY_DEFAULT);
  #else
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -42,7 +42,7 @@ BASE_FEATURE(kAutofillEnableAmountExtractionTesting,
+@@ -55,7 +55,7 @@ BASE_FEATURE(kAutofillEnableBottomSheetScanCardAndFill
  // When enabled, buy now pay later (BNPL) in Autofill will be offered.
  BASE_FEATURE(kAutofillEnableBuyNowPayLater,
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -18,35 +18,80 @@
               base::FEATURE_ENABLED_BY_DEFAULT);
  #else
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -62,7 +62,7 @@ BASE_FEATURE(kAutofillEnableBuyNowPayLaterForKlarna,
+@@ -66,7 +66,7 @@ BASE_FEATURE(kAutofillEnableBuyNowPayLater,
+ // (BNPL) issuers that are externally linked.
+ BASE_FEATURE(kAutofillEnableBuyNowPayLaterForExternallyLinked,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT);
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -76,7 +76,7 @@ BASE_FEATURE(kAutofillEnableBuyNowPayLaterForExternall
+ // offered.
+ BASE_FEATURE(kAutofillEnableBuyNowPayLaterForKlarna,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT);
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -85,7 +85,7 @@ BASE_FEATURE(kAutofillEnableBuyNowPayLaterForKlarna,
  // When enabled, buy now pay later (BNPL) data will be synced to Chrome clients.
  BASE_FEATURE(kAutofillEnableBuyNowPayLaterSyncing,
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT);
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -95,7 +95,7 @@ BASE_FEATURE(kAutofillEnableBuyNowPayLaterSyncing,
+ // include the issuer names for better brand recognition.
+ BASE_FEATURE(kAutofillEnableBuyNowPayLaterUpdatedSuggestionSecondLineString,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
               base::FEATURE_ENABLED_BY_DEFAULT);
  #else
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -86,7 +86,7 @@ BASE_FEATURE(kAutofillEnableCardBenefitsForAmericanExp
+@@ -115,7 +115,7 @@ BASE_FEATURE(kAutofillEnableCardBenefitsForAmericanExp
  // UI.
  BASE_FEATURE(kAutofillEnableCardBenefitsForBmo,
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS)
-+    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
               base::FEATURE_ENABLED_BY_DEFAULT);
  #else
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -151,7 +151,7 @@ BASE_FEATURE(kAutofillEnableFlatRateCardBenefitsBlockl
+@@ -169,7 +169,7 @@ BASE_FEATURE(kAutofillEnableFlatRateCardBenefitsBlockl
  // Payments Autofill UI.
  BASE_FEATURE(kAutofillEnableFlatRateCardBenefitsFromCurinos,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT);
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -247,7 +247,7 @@ BASE_FEATURE(kAutofillEnableTouchToFillReshowForBnpl,
+ // the card, and FIDO is not.
+ BASE_FEATURE(kAutofillEnableVcn3dsAuthentication,
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)
 +    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
               base::FEATURE_ENABLED_BY_DEFAULT);
  #else
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -301,7 +301,7 @@ BASE_FEATURE(kAutofillSyncEwalletAccounts, base::FEATU
- #endif  // BUILDFLAG(IS_ANDROID)
+@@ -271,7 +271,7 @@ BASE_FEATURE(kAutofillEnableWalletBranding, base::FEAT
+ // eligibility.
+ BASE_FEATURE(kAutofillPreferBuyNowPayLaterBlocklists,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT);
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -329,7 +329,7 @@ const base::FeatureParam<int> kAutofillVcnEnrollStrike
+     /*default_value=*/180};
  
  bool ShouldShowImprovedUserConsentForCreditCardSave() {
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX)

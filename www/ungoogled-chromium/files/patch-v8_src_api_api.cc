@@ -1,15 +1,15 @@
---- v8/src/api/api.cc.orig	2025-11-01 06:40:37 UTC
+--- v8/src/api/api.cc.orig	2026-04-15 11:25:12 UTC
 +++ v8/src/api/api.cc
-@@ -159,7 +159,7 @@
- #include "src/objects/intl-objects.h"
- #endif  // V8_INTL_SUPPORT
+@@ -165,7 +165,7 @@
+ 
+ #include "src/strings/string-hasher-inl.h"
  
 -#if V8_OS_LINUX || V8_OS_DARWIN || V8_OS_FREEBSD
 +#if V8_OS_LINUX || V8_OS_DARWIN || V8_OS_FREEBSD || V8_OS_OPENBSD
  #include <signal.h>
  #include <unistd.h>
  
-@@ -6480,7 +6480,7 @@ bool v8::V8::Initialize(const int build_config) {
+@@ -6353,7 +6353,7 @@ bool v8::V8::Initialize(const int build_config) {
    return true;
  }
  

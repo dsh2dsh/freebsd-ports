@@ -1,11 +1,11 @@
---- chrome/browser/webauthn/chrome_authenticator_request_delegate.cc.orig	2025-11-01 06:40:37 UTC
+--- chrome/browser/webauthn/chrome_authenticator_request_delegate.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/webauthn/chrome_authenticator_request_delegate.cc
-@@ -546,7 +546,7 @@ void ChromeAuthenticatorRequestDelegate::ConfigureDisc
+@@ -543,7 +543,7 @@ void ChromeAuthenticatorRequestDelegate::ConfigureDisc
      g_observer->ConfiguringCable(request_type);
    }
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    // No caBLEv1 on Linux. It tends to crash bluez.
-   if (base::Contains(pairings_from_extension,
-                      device::CableDiscoveryData::Version::V1,
+   if (std::ranges::contains(pairings_from_extension,
+                             device::CableDiscoveryData::Version::V1,

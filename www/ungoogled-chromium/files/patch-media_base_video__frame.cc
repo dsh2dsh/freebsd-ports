@@ -1,4 +1,4 @@
---- media/base/video_frame.cc.orig	2025-11-01 06:40:37 UTC
+--- media/base/video_frame.cc.orig	2026-04-15 11:25:12 UTC
 +++ media/base/video_frame.cc
 @@ -86,7 +86,7 @@ std::string VideoFrame::StorageTypeToString(
        return "OWNED_MEMORY";
@@ -9,16 +9,7 @@
      case VideoFrame::STORAGE_DMABUFS:
        return "DMABUFS";
  #endif
-@@ -100,7 +100,7 @@ std::string VideoFrame::StorageTypeToString(
- // static
- bool VideoFrame::IsStorageTypeMappable(VideoFrame::StorageType storage_type) {
-   return
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
-       // This is not strictly needed but makes explicit that, at VideoFrame
-       // level, DmaBufs are not mappable from userspace.
-       storage_type != VideoFrame::STORAGE_DMABUFS &&
-@@ -395,7 +395,7 @@ scoped_refptr<VideoFrame> VideoFrame::CreateFrameForMa
+@@ -425,7 +425,7 @@ scoped_refptr<VideoFrame> VideoFrame::WrapMappableShar
          plane_size.width() * VideoFrame::BytesPerElement(*format, plane);
    }
    uint64_t modifier = gfx::NativePixmapHandle::kNoModifier;
@@ -27,16 +18,16 @@
    bool is_native_buffer = !shared_image->IsSharedMemoryForVideoFrame();
    if (is_native_buffer) {
      const auto gmb_handle = shared_image->CloneGpuMemoryBufferHandle();
-@@ -852,7 +852,7 @@ scoped_refptr<VideoFrame> VideoFrame::WrapExternalGpuM
+@@ -687,7 +687,7 @@ scoped_refptr<VideoFrame> VideoFrame::WrapExternalYuva
+   return frame;
  }
- #endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  // static
  scoped_refptr<VideoFrame> VideoFrame::WrapExternalDmabufs(
      const VideoFrameLayout& layout,
-@@ -1539,7 +1539,7 @@ scoped_refptr<gpu::ClientSharedImage> VideoFrame::shar
+@@ -1403,7 +1403,7 @@ scoped_refptr<gpu::ClientSharedImage> VideoFrame::shar
    return wrapped_frame_ ? wrapped_frame_->shared_image() : shared_image_;
  }
  

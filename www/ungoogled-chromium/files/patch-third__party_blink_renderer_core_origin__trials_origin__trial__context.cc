@@ -1,11 +1,11 @@
---- third_party/blink/renderer/core/origin_trials/origin_trial_context.cc.orig	2025-11-01 06:40:37 UTC
+--- third_party/blink/renderer/core/origin_trials/origin_trial_context.cc.orig	2026-04-15 11:25:12 UTC
 +++ third_party/blink/renderer/core/origin_trials/origin_trial_context.cc
 @@ -559,7 +559,7 @@ bool OriginTrialContext::CanEnableTrialFromName(const 
-   }
  
-   if (trial_name == "TranslationAPI") {
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-     return base::FeatureList::IsEnabled(features::kTranslationAPI);
+   if (trial_name == "WebAppInstallation") {
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+     return base::FeatureList::IsEnabled(blink::features::kWebAppInstallation);
  #else
      return false;
