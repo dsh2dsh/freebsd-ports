@@ -1,6 +1,6 @@
 PORTNAME=	miniflux
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.3.19-136-gd1628c15
+DISTVERSION=	2.3.19-147-g06f3f1cd
 CATEGORIES=	www
 PKGNAMESUFFIX=	-${GH_ACCOUNT}
 
@@ -19,12 +19,12 @@ USE_RC_SUBR=	${PORTNAME}
 
 GO_MOD_DIST=	github
 GO_MODULE=	${PORTNAME}.app/v2
-_BUILD_COMMIT=	d1628c15
+_BUILD_COMMIT=	06f3f1cd
 _BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
 _BUILD_XFLAGS=	version.Version=${DISTVERSION} \
 		version.Commit=${_BUILD_COMMIT} \
 		version.BuildDate=${_BUILD_DATE:sh}
-GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S!^!-X miniflux.app/v2/internal/!}"
+GO_LDFLAGS=	${_BUILD_XFLAGS:S!^!-X miniflux.app/v2/internal/!}
 
 CONFLICTS_INSTALL=	${PORTNAME}
 
