@@ -36,6 +36,7 @@ share/syncthingconnector/translations/syncthingconnector_zh_CN.qm
 %%PLASMA%%share/syncthingfileitemaction/translations/syncthingfileitemaction_cs_CZ.qm
 %%PLASMA%%share/syncthingfileitemaction/translations/syncthingfileitemaction_de_DE.qm
 %%PLASMA%%share/syncthingfileitemaction/translations/syncthingfileitemaction_en_US.qm
+%%PLASMA%%share/syncthingfileitemaction/translations/syncthingfileitemaction_fr_FR.qm
 %%PLASMA%%share/syncthingfileitemaction/translations/syncthingfileitemaction_ru_RU.qm
 %%PLASMA%%share/syncthingfileitemaction/translations/syncthingfileitemaction_zh_CN.qm
 share/syncthingmodel/translations/syncthingmodel_cs_CZ.qm

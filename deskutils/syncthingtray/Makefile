@@ -26,7 +26,7 @@ GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:${PORTNA
 
 USE_GL=		opengl
 USE_PERL5=	build
-USE_QT=		base declarative positioning svg tools:build
+USE_QT=		base declarative svg tools:build
 USE_XORG=	x11
 
 CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
@@ -46,16 +46,16 @@ PATCH_WRKSRC=		${WRKDIR}
 
 OPTIONS_DEFINE=		PLASMA WEBENGINE
 OPTIONS_DEFAULT=	PLASMA WEBENGINE
-OPTIONS_SUB=	yes
+OPTIONS_SUB=		yes
 
-PLASMA_DESC=	Plasma integration (KF dependency)
+PLASMA_DESC=		Plasma integration (KF dependency)
 WEBENGINE_DESC=		Built-in web view (webengine dependency)
 
-PLASMA_USES=	kde:6
-PLASMA_USE=	KDE=ecm:build,libplasma:build
+PLASMA_USES=		kde:6
+PLASMA_USE=		KDE=ecm:build,libplasma:build
 PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
 
-WEBENGINE_USE=	QT=webchannel,webengine
+WEBENGINE_USE=		QT=positioning,webchannel,webengine
 WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
 WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
 
