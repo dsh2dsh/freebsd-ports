@@ -1,6 +1,6 @@
 PORTNAME=	adguardhome
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.107.75
+DISTVERSION=	0.107.76
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/${DISTVERSIONFULL}/
 DISTFILES=	${GH_PROJECT}_frontend${EXTRACT_SUFX}
@@ -22,7 +22,7 @@ GO_MODULE=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 GO_MOD_DIST=	github
 # workaround for https://github.com/AdguardTeam/AdGuardHome/issues/4774
 _BUILD_XFLAGS=	${GO_MODULE}/internal/version.version=${DISTVERSION}
-GO_LDFLAGS=	${_BUILD_XFLAGS:S!^!-X miniflux.app/v2/internal/!}
+GO_LDFLAGS=	${_BUILD_XFLAGS:S/^/-X /}
 
 USER=		root # it has to run as root because it listens on the privileged DNS port
 GROUP=		wheel
