@@ -1,6 +1,6 @@
 PORTNAME=	miniflux
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.4.0-51-g3ecabfa
+DISTVERSION=	2.4.0-57-g5dd9d1fb
 CATEGORIES=	www
 PKGNAMESUFFIX=	-${GH_ACCOUNT}
 
@@ -19,7 +19,7 @@ USE_RC_SUBR=	${PORTNAME}
 
 GO_MOD_DIST=	github
 GO_MODULE=	${PORTNAME}.app/v2
-_BUILD_COMMIT=	3ecabfa
+_BUILD_COMMIT=	5dd9d1fb
 _BUILD_DATE=	date -u "+%Y-%m-%dT%H:%M:%SZ"
 _BUILD_XFLAGS=	version.Version=${DISTVERSION} \
 		version.Commit=${_BUILD_COMMIT} \
