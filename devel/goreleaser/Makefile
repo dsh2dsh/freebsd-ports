@@ -16,7 +16,7 @@ GH_ACCOUNT=	${PORTNAME}
 USES=		go:modules
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}/v2
 GO_MOD_DIST=	github
-_BUILD_XFLAGS=	'main.builtBy=FreeBSD ports' \
+_BUILD_XFLAGS=	"main.builtBy=FreeBSD ports" \
 		main.version=${PKGVERSION}
 GO_LDFLAGS=	${_BUILD_XFLAGS:S/^/-X /}
 
