@@ -24,10 +24,6 @@ load_rc_config "$name"
 : "${adguardhome_svcj_options:=net_basic}"
 : "${adguardhome_extra:=}"
 
-# old values
-: "${adguardhome_config_old:=%%PREFIX%%/bin/AdGuardHome.yaml}"
-: "${adguardhome_work_dir_old:=%%PREFIX%%/bin}"
-
 adguardhome_command="%%PREFIX%%/bin/${name}"
 logfile="/var/log/${name}.log"
 pidfile="/var/run/${name}.pid"
@@ -41,35 +37,9 @@ reload_precmd="${name}_reload_precmd"
 extra_commands="reload"
 
 adguardhome_prestart() {
-    # check if the old config exists
-    if [ -f "$adguardhome_config_old" ] || [ -d "${adguardhome_work_dir_old}/data" ]; then
-        if ! [ -f "$adguardhome_config" ] && ! [ -d "${adguardhome_work_dir}/data" ]; then
-            # old config exists, new config doesn't exist
-            # move old config to new locations
-            if [ -f "$adguardhome_config_old" ]; then
-                echo "moving old config $adguardhome_config_old to the new location $adguardhome_config"
-                mv "$adguardhome_config_old" "$adguardhome_config"
-            fi
-            if [ -d "${adguardhome_work_dir_old}/data" ]; then
-                install -d -m 0750 -o "$adguardhome_user" \
-                        -g "$adguardhome_group" "$adguardhome_work_dir"
-                echo "moving old config ${adguardhome_work_dir_old}/data to the new location ${adguardhome_work_dir}/data"
-                mv "${adguardhome_work_dir_old}/data" "${adguardhome_work_dir}/data"
-            fi
-        else # both old and new config exist
-            echo "(!!!) WARNING =================================================================="
-            echo "(!!!) WARNING Both old and new configs exist"
-            echo "(!!!) WARNING Please choose which configs do you need and remove the old configs"
-            echo "(!!!) WARNING OLD config locations: $adguardhome_config_old ${adguardhome_work_dir_old}/data"
-            echo "(!!!) WARNING NEW config locations: $adguardhome_config ${adguardhome_work_dir}/data"
-            echo "(!!!) WARNING =================================================================="
-        fi
-    fi
-
-    # install dir
     if [ ! -d "$adguardhome_work_dir" ]; then
         install -d -m 0750 -o "$adguardhome_user" -g "$adguardhome_group" \
-                "$adguardhome_work_dir"
+            "$adguardhome_work_dir"
     fi
 }
 
@@ -78,9 +48,10 @@ adguardhome_reload_precmd() {
 }
 
 case $1 in
-    reload)
-        command="$adguardhome_command"
-        pidfile="$child_pidfile"
+reload)
+    command="$adguardhome_command"
+    pidfile="$child_pidfile"
+    ;;
 esac
 
 run_rc_command "$1"
