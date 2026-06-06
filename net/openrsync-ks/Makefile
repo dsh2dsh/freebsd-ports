@@ -28,7 +28,10 @@ PLIST_FILES=	bin/${PORTNAME} \
 		share/man/man5/${PORTNAME}d.5.gz \
 		share/man/man5/${PORTNAME}d.conf.5.gz
 
-OPTIONS_DEFINE=	TEST
+OPTIONS_DEFINE=	SYMLINK TEST
+
+SYMLINK_DESC=		Install rsync symbolic link for executable
+SYMLINK_CONFLICTS=	rsync
 
 TEST_TARGET=	run
 TEST_WRKSRC=	${WRKSRC}/tests/src
@@ -55,5 +58,9 @@ pre-build:
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+
+post-install-SYMLINK-on:
+	${RLN} ${STAGEDIR}${PREFIX}/bin/${PORTNAME} \
+		${STAGEDIR}${PREFIX}/bin/rsync
 
 .include <bsd.port.mk>
