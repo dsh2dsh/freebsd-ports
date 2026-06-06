@@ -1,5 +1,5 @@
 PORTNAME=	fcron
-DISTVERSION=	3.4.0
+DISTVERSION=	3.4.1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://fcron.free.fr/archives/ \
 		ftp://ftp.seul.org/pub/fcron/
