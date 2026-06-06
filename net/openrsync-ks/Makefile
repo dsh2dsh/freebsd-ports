@@ -32,6 +32,7 @@ OPTIONS_DEFINE=	SYMLINK TEST
 
 SYMLINK_DESC=		Install rsync symbolic link for executable
 SYMLINK_CONFLICTS=	rsync
+SYMLINK_PLIST_FILES=	bin/rsync
 
 TEST_TARGET=	run
 TEST_WRKSRC=	${WRKSRC}/tests/src
