@@ -20,6 +20,7 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		apps/example/go.mod:gomod \
 		apps/folder/go.mod:gomod \
 		apps/iam/go.mod:gomod \
+		apps/live/go.mod:gomod \
 		apps/logsdrilldown/go.mod:gomod \
 		apps/playlist/go.mod:gomod \
 		apps/plugins/go.mod:gomod \
