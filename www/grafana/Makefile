@@ -1,6 +1,6 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	13.0.1
+DISTVERSION=	13.0.2
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -20,7 +20,6 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		apps/example/go.mod:gomod \
 		apps/folder/go.mod:gomod \
 		apps/iam/go.mod:gomod \
-		apps/live/go.mod:gomod \
 		apps/logsdrilldown/go.mod:gomod \
 		apps/playlist/go.mod:gomod \
 		apps/plugins/go.mod:gomod \
@@ -33,7 +32,6 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		pkg/aggregator/go.mod:gomod \
 		pkg/apimachinery/go.mod:gomod \
 		pkg/apiserver/go.mod:gomod \
-		pkg/build/go.mod:gomod \
 		pkg/build/wire/go.mod:gomod \
 		pkg/codegen/go.mod:gomod \
 		pkg/infra/features/go.mod:gomod \
@@ -58,14 +56,14 @@ USES=		cpe go:modules
 USE_GITHUB=	yes
 USE_RC_SUBR=	${PORTNAME}
 
-_BUILD_COMMIT=	a100054
+_BUILD_COMMIT=	3fcdbc5
 _BUILD_XFLAGS=	main.version=${PORTVERSION} \
 		main.commit=${_BUILD_COMMIT}
 
 GO_MODULE=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 GO_MOD_DIST=	github
 GO_TARGET=	./pkg/cmd/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S/^/-X /}"
+GO_LDFLAGS=	${_BUILD_XFLAGS:S/^/-X /}
 
 CONFLICTS_INSTALL=	grafana*
 
