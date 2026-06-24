@@ -50,13 +50,6 @@ GN_ARGS+=	cc_wrapper="${CCACHE_BIN}"
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=274142
 .  if ${.CURDIR:M*/www/firefox}
 MAKE_ENV+=	CARGO_BUILD_JOBS=${MAKE_JOBS_NUMBER}
-
-# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=287447
-.  elif ${.CURDIR:M*/devel/llvm*}
-CMAKE_ARGS:=	${CMAKE_ARGS:S/-DLLVM_LINK_LLVM_DYLIB=ON/-DLLVM_LINK_LLVM_DYLIB=OFF/}
-
-.  elif ${.CURDIR:M*/graphics/mesa-libs}
-MESON_ARGS+=	-Dshared-llvm=disabled
 .  endif
 
 ccache-update-links:
