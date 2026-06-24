@@ -57,3 +57,7 @@ ccache-update-links:
 	ccache-update-links -v
 
 .endif # !defined(_DSH_OVERLAY_INCLUDED)
+
+.if ${.CURDIR:M*/graphics/nvidia-drm-kmod*}
+RUN_DEPENDS:=	${RUN_DEPENDS:Nnvidia-driver*}
+.  endif
