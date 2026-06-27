@@ -1,5 +1,5 @@
 PORTNAME=	goimapnotify
-DISTVERSION=	2.5.4
+DISTVERSION=	2.5.6
 CATEGORIES=	mail
 
 MAINTAINER=	dsh@bamus.cz
@@ -15,11 +15,12 @@ GL_ACCOUNT=	shackra
 
 GO_MOD_DIST=	gitlab
 GO_MODULE=	gitlab.com/${GL_ACCOUNT}/${PORTNAME}
-_BUILD_COMMIT=	0152e169
+_BUILD_COMMIT=	251292f1
 _BUILD_XFLAGS=	main.commit=${_BUILD_COMMIT} \
 		main.gittag=${DISTVERSIONFULL} \
 		main.branch=master
-GO_BUILDFLAGS=	-ldflags "${STRIP} ${_BUILD_XFLAGS:S!^!-X !}"
+GO_LDFLAGS=	${_BUILD_XFLAGS:S!^!-X !}
+GO_TARGET=	./cmd/${PORTNAME}
 
 PLIST_FILES=	bin/${PORTNAME}
 
