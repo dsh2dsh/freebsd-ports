@@ -1,6 +1,6 @@
 PORTNAME=	grafana
 DISTVERSIONPREFIX=	v
-DISTVERSION=	13.0.3
+DISTVERSION=	13.1.0
 CATEGORIES=	www
 MASTER_SITES=	https://dl.grafana.com/oss/release/ \
 		https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod
@@ -38,8 +38,9 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.linux-amd64${EXTRACT_SUFX} \
 		pkg/infra/features/go.mod:gomod \
 		pkg/plugins/go.mod:gomod \
 		pkg/plugins/codegen/go.mod:gomod \
-		pkg/semconv/go.mod:gomod \
-		pkg/storage/unified/resource/kv/go.mod:gomod
+		pkg/storage/unified/resource/kv/go.mod:gomod \
+		pkg/storage/unified/resourcepb/go.mod:gomod \
+		pkg/util/sqlite/go.mod:gomod
 EXTRACT_ONLY=	${DISTFILES:N*.mod\:*:N*.mod:C/:.*//:Ngo.work}
 
 MAINTAINER=	drtr0jan@yandex.ru
@@ -57,7 +58,7 @@ USES=		cpe go:modules
 USE_GITHUB=	yes
 USE_RC_SUBR=	${PORTNAME}
 
-_BUILD_COMMIT=	3ca0684
+_BUILD_COMMIT=	b309c9b
 _BUILD_XFLAGS=	main.version=${PORTVERSION} \
 		main.commit=${_BUILD_COMMIT}
 
