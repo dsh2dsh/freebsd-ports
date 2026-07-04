@@ -1,6 +1,6 @@
---- chrome/browser/ui/startup/startup_browser_creator_impl.cc.orig	2026-04-17 05:46:07 UTC
+--- chrome/browser/ui/startup/startup_browser_creator_impl.cc.orig	2026-06-05 13:45:06 UTC
 +++ chrome/browser/ui/startup/startup_browser_creator_impl.cc
-@@ -69,7 +69,7 @@
+@@ -66,7 +66,7 @@
  #include "content/public/browser/storage_partition.h"
  #include "content/public/common/content_switches.h"
  
@@ -9,7 +9,7 @@
  #include "ui/display/screen.h"
  #endif
  
-@@ -91,7 +91,7 @@
+@@ -88,7 +88,7 @@
  #include "chrome/browser/ui/browser_window/public/profile_browser_collection.h"
  #endif
  
