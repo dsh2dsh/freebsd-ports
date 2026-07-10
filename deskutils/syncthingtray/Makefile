@@ -54,6 +54,7 @@ WEBENGINE_DESC=		Built-in web view (webengine dependency)
 PLASMA_USES=		kde:6
 PLASMA_USE=		KDE=ecm:build,libplasma:build
 PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
+PLASMA_CMAKE_BOOL_ON=	QUICK_GUI
 
 WEBENGINE_USE=		QT=positioning,webchannel,webengine
 WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
