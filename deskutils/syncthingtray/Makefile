@@ -52,7 +52,7 @@ PLASMA_DESC=		Plasma integration (KF dependency)
 WEBENGINE_DESC=		Built-in web view (webengine dependency)
 
 PLASMA_USES=		kde:6
-PLASMA_USE=		KDE=ecm:build,libplasma:build
+PLASMA_USE=		KDE=bookmarks,completion,config,coreaddons,ecm:build,jobwidgets,itemviews,kio,libplasma,jobwidgets,kirigami2,service,solid,widgetsaddons
 PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
 # PLASMA option now requires `-DBUILD_SHARED_LIBS=ON`. See
 # https://github.com/Martchus/syncthingtray/issues/451
@@ -61,6 +61,8 @@ PLASMA_CMAKE_ON=	-DBUILD_SHARED_LIBS=ON
 WEBENGINE_USE=		QT=positioning,webchannel,webengine
 WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
 WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
+
+PLIST_SUB=	LIBVERSION=${PORTVERSION}
 
 post-install:
 	${RM} -r \
@@ -98,7 +100,6 @@ post-install:
 		${STAGEDIR}${PREFIX}/share/syncthingmodel/cmake \
 		${STAGEDIR}${PREFIX}/share/syncthingplasmoid/cmake \
 		${STAGEDIR}${PREFIX}/share/syncthingwidgets/cmake \
-		${STAGEDIR}${QT_PLUGINDIR} \
-		${STAGEDIR}${QT_LIBDIR}
+		${STAGEDIR}${QT_PLUGINDIR}/iconengines
 
 .include <bsd.port.mk>
