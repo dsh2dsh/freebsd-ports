@@ -32,7 +32,8 @@ USE_XORG=	x11
 CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
 		-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml \
 		-DKF_PACKAGE_PREFIX:STRING=KF6 \
-		-DQT_PACKAGE_PREFIX:STRING=Qt6
+		-DQT_PACKAGE_PREFIX:STRING=Qt6 \
+		-DQUICK_GUI=ON -DQUICK_GUI_CONTROLS_STYLE=dynamic
 CMAKE_ON=	NO_DOXYGEN
 CMAKE_OFF=	SYSTEMD_SUPPORT USE_STANDARD_FILESYSTEM
 CMAKE_SOURCE_PATH=	${WRKDIR}/subdirs/syncthingtray
@@ -80,6 +81,7 @@ post-install:
 		${STAGEDIR}${PREFIX}/lib/libsyncthingconnector.a \
 		${STAGEDIR}${PREFIX}/lib/libsyncthingmodel.a \
 		${STAGEDIR}${PREFIX}/lib/libsyncthingwidgets.a \
+		${STAGEDIR}${PREFIX}/lib/libsyncthingwidgetsplugin.a \
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig/c++utilities.pc \
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig/qtforkawesome.pc \
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig/qtforkawesomeiconengine.pc \
