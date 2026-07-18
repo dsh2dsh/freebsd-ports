@@ -1,6 +1,6 @@
 PORTNAME=	fzf
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.74.0
+DISTVERSION=	0.74.1
 CATEGORIES=	textproc
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -14,7 +14,7 @@ USES=		go:modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	junegunn
 
-_BUILD_COMMIT=	6765f46
+_BUILD_COMMIT=	eae8d9d
 _BUILD_XFLAGS=	main.revision=${COMMIT_ID} \
 		main.version=${DISTVERSION}
 
