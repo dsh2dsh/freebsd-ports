@@ -17,11 +17,10 @@ GH_ACCOUNT=	dsh2dsh
 GO_MOD_DIST=	github
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
 _BUILD_COMMIT=	95aef4f
-_BUILD_XFLAGS=	main.commit=${_BUILD_COMMIT} \
-		main.gittag=${DISTVERSIONFULL} \
-		main.branch=master
-GO_LDFLAGS=	${_BUILD_XFLAGS:S!^!-X !}
-GO_TARGET=	./cmd/${PORTNAME}
+_BUILD_XFLAGS=	cli.commit=${_BUILD_COMMIT} \
+		cli.gittag=${DISTVERSIONFULL} \
+		cli.branch=master
+GO_LDFLAGS=	${_BUILD_XFLAGS:S!^!-X ${GO_MODULE}/internal/!}
 
 PLIST_FILES=	bin/${PORTNAME}
 
