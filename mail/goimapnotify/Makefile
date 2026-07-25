@@ -1,6 +1,6 @@
 PORTNAME=	goimapnotify
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.5.4
+DISTVERSION=	2.5.6
 CATEGORIES=	mail
 
 MAINTAINER=	dsh@bamus.cz
@@ -21,7 +21,7 @@ _BUILD_XFLAGS=	main.commit=${_BUILD_COMMIT} \
 		main.gittag=${DISTVERSIONFULL} \
 		main.branch=master
 GO_LDFLAGS=	${_BUILD_XFLAGS:S!^!-X !}
-#GO_TARGET=	./cmd/${PORTNAME}
+GO_TARGET=	./cmd/${PORTNAME}
 
 PLIST_FILES=	bin/${PORTNAME}
 
