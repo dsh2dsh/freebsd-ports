@@ -1,4 +1,5 @@
 PORTNAME=	goimapnotify
+DISTVERSIONPREFIX=	v
 DISTVERSION=	2.5.4
 CATEGORIES=	mail
 
@@ -8,14 +9,14 @@ COMMENT=	Execute scripts on IMAP mailbox changes (new/deleted/updated messages) 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.26+,modules
 
-USE_GITLAB=	yes
-GL_ACCOUNT=	shackra
+USE_GITHUB=	yes
+GH_ACCOUNT=	dsh2dsh
 
-GO_MOD_DIST=	gitlab
-GO_MODULE=	gitlab.com/${GL_ACCOUNT}/${PORTNAME}
-_BUILD_COMMIT=	0152e169
+GO_MOD_DIST=	github
+GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
+_BUILD_COMMIT=	95aef4f
 _BUILD_XFLAGS=	main.commit=${_BUILD_COMMIT} \
 		main.gittag=${DISTVERSIONFULL} \
 		main.branch=master
