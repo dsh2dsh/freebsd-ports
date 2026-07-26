@@ -1,6 +1,6 @@
 PORTNAME=	monitoring-plugins
 PORTVERSION=	3.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://www.monitoring-plugins.org/download/ \
 		LOCAL/mat/${PORTNAME}
@@ -41,13 +41,14 @@ LIBS+=		-L${LOCALBASE}/lib
 
 CONFLICTS_INSTALL=	nagios-plugins
 
-OPTIONS_DEFINE=		DBI EXTRAOPTS FPING IPV6 LDAP MYSQL NETSNMP NLS PGSQL \
-			QSTAT RADIUS SSH_PORTABLE
+OPTIONS_DEFINE=		CURL DBI EXTRAOPTS FPING IPV6 LDAP MYSQL NETSNMP NLS \
+			PGSQL QSTAT RADIUS SSH_PORTABLE
 OPTIONS_DEFAULT=	DNS_BASE EXTRAOPTS
 OPTIONS_SINGLE=		DNS
 OPTIONS_SINGLE_DNS=	DNS_BASE DNS_BINDTOOLS
 OPTIONS_SUB=		yes
 
+CURL_DESC=		cURL support (check_curl)
 DBI_DESC=		Check database using DBI
 DNS_BASE_DESC=		Use drill for check_dig and no check_dns
 DNS_BINDTOOLS_DESC=	Use dig and nslookup from dns/bind-tools
@@ -61,6 +62,9 @@ PGSQL_DESC=		PostgreSQL support (check_pgsql)
 QSTAT_DESC=		Game server query support (check_game)
 RADIUS_DESC=		Radius support (check_radius)
 SSH_PORTABLE_DESC=	Build check_ssh with ports openssh (instead of base)
+
+CURL_LIB_DEPENDS=	libcurl.so:ftp/curl \
+			liburiparser.so:net/uriparser
 
 DBI_LIB_DEPENDS=	libdbi.so:databases/libdbi
 DBI_CONFIGURE_WITH=	dbi
