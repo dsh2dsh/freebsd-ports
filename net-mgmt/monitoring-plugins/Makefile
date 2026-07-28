@@ -1,11 +1,9 @@
 PORTNAME=	monitoring-plugins
-PORTVERSION=	3.0.1
-PORTREVISION=	2
+PORTVERSION=	3.0.2
 CATEGORIES=	net-mgmt
-MASTER_SITES=	https://www.monitoring-plugins.org/download/ \
-		LOCAL/mat/${PORTNAME}
+MASTER_SITES=	https://www.monitoring-plugins.org/download/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	dsh@bamus.cz
 COMMENT=	Monitoring Plugins for Nagios
 WWW=		https://www.monitoring-plugins.org/
 
