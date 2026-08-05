@@ -1,6 +1,6 @@
 PORTNAME=	goimapnotify
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.5.7-41-g2d3e756
+DISTVERSION=	2.5.7-42-ga2f3c1a
 CATEGORIES=	mail
 
 MAINTAINER=	dsh@bamus.cz
@@ -16,7 +16,7 @@ GH_ACCOUNT=	dsh2dsh
 
 GO_MOD_DIST=	github
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
-_BUILD_COMMIT=	2d3e756
+_BUILD_COMMIT=	a2f3c1a
 _BUILD_XFLAGS=	cli.commit=${_BUILD_COMMIT} \
 		cli.gittag=${DISTVERSIONFULL} \
 		cli.branch=master
