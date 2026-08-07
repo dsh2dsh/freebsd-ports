@@ -1,10 +1,9 @@
---- plugins-scripts/check_mailq.pl.orig	2025-11-08 16:31:19.283295000 +0100
-+++ plugins-scripts/check_mailq.pl	2025-11-08 16:39:40.042634000 +0100
-@@ -571,7 +571,39 @@ elsif ( $mailq eq "nullmailer" ) {
-         $state = $ERRORS{'CRITICAL'};
+--- plugins-scripts/check_mailq.pl.orig	2026-08-07 13:17:02 UTC
++++ plugins-scripts/check_mailq.pl
+@@ -574,6 +574,38 @@ elsif ( $mailq eq "nullmailer" ) {
      }
  } # end of ($mailq eq "nullmailer")
-+
+ 
 +elsif ( $mailq eq "opensmtp" ) {
 +       ## open mailq
 +       if ( defined $utils::PATH_TO_MAILQ && -x $utils::PATH_TO_MAILQ ) {
@@ -23,7 +22,7 @@
 +       }
 +
 +       $msg_q++ while (<MAILQ>);
- 
++
 +       close(MAILQ) ;
 +       if ($msg_q < $opt_w) {
 +               $msg = "OK: $mailq mailq ($msg_q) is below threshold ($opt_w/$opt_c)";
@@ -40,7 +39,7 @@
  # Perfdata support
  print "$msg|unsent=$msg_q;$opt_w;$opt_c;0\n";
  exit $state;
-@@ -635,7 +667,7 @@ sub process_arguments(){
+@@ -654,7 +686,7 @@ sub process_arguments(){
      }
  
      if (defined $opt_M) {

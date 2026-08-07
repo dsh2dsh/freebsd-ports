@@ -1,6 +1,6 @@
---- configure.orig	2026-07-01 12:04:19 UTC
+--- configure.orig	2026-08-07 13:20:56 UTC
 +++ configure
-@@ -20664,6 +20664,16 @@ printf '%s\n' "$ac_cv_ps_command" >&6; }
+@@ -20644,6 +20644,16 @@ printf '%s\n' "$ac_cv_ps_command" >&6; }
  	{ printf '%s\n' "$as_me:${as_lineno-$LINENO}: result: $ac_cv_ps_command" >&5
  printf '%s\n' "$ac_cv_ps_command" >&6; }
  
@@ -17,12 +17,3 @@
  elif ps -axwo 'stat comm vsz rss user uid pid ppid args' 2>/dev/null | \
  	grep -E -i "^ *STAT +[UCOMAND]+ +VSZ +RSS +USER +UID +PID +PPID +COMMAND" > /dev/null
  then
-@@ -22587,7 +22597,7 @@ then
- 
- 	if $PATH_TO_SWAPINFO -k 2>/dev/null | grep -E -i "^Device +1K-blocks +Used +Avail" >/dev/null
- 	then
--		ac_cv_swap_format="%*s %lu %*d %lu"
-+		ac_cv_swap_format="%*s %lf %*d %lf"
- 		ac_cv_swap_conv=1024
- 		{ printf '%s\n' "$as_me:${as_lineno-$LINENO}: result: using FreeBSD format swapinfo" >&5
- printf '%s\n' "using FreeBSD format swapinfo" >&6; }

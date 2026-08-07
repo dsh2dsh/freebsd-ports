@@ -1,5 +1,5 @@
 PORTNAME=	monitoring-plugins
-PORTVERSION=	3.0.2
+PORTVERSION=	3.0.3
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://www.monitoring-plugins.org/download/
 
