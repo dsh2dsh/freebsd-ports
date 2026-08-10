@@ -36,6 +36,7 @@ share/metainfo/io.github.martchus.syncthingtray.metainfo.xml
 %%PLASMA%%share/plasma/plasmoids/martchus.syncthingplasmoid/contents/ui/DevicesPage.qml
 %%PLASMA%%share/plasma/plasmoids/martchus.syncthingplasmoid/contents/ui/DirectoriesPage.qml
 %%PLASMA%%share/plasma/plasmoids/martchus.syncthingplasmoid/contents/ui/DownloadsPage.qml
+%%PLASMA%%share/plasma/plasmoids/martchus.syncthingplasmoid/contents/ui/FilterTextField.qml
 %%PLASMA%%share/plasma/plasmoids/martchus.syncthingplasmoid/contents/ui/FullRepresentation.qml
 %%PLASMA%%share/plasma/plasmoids/martchus.syncthingplasmoid/contents/ui/IconLabel.qml
 %%PLASMA%%share/plasma/plasmoids/martchus.syncthingplasmoid/contents/ui/RecentChangesPage.qml
