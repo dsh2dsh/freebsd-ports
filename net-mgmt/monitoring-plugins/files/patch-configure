@@ -1,8 +1,8 @@
---- configure.orig	2026-08-07 13:20:56 UTC
+--- configure.orig	2020-12-09 21:48:15 UTC
 +++ configure
-@@ -20644,6 +20644,16 @@ printf '%s\n' "$ac_cv_ps_command" >&6; }
- 	{ printf '%s\n' "$as_me:${as_lineno-$LINENO}: result: $ac_cv_ps_command" >&5
- printf '%s\n' "$ac_cv_ps_command" >&6; }
+@@ -17472,6 +17472,16 @@ then
+ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_ps_command" >&5
+ $as_echo "$ac_cv_ps_command" >&6; }
  
 +elif ps -axwo 'stat comm vsz rss user uid pid ppid args jid' 2>/dev/null | \
 +	egrep -i "^ *STAT +COMMAND +VSZ +RSS +USER +UID +PID +PPID +COMMAND +JID" > /dev/null
@@ -15,5 +15,5 @@
 +$as_echo "$ac_cv_ps_command" >&6; }
 +
  elif ps -axwo 'stat comm vsz rss user uid pid ppid args' 2>/dev/null | \
- 	grep -E -i "^ *STAT +[UCOMAND]+ +VSZ +RSS +USER +UID +PID +PPID +COMMAND" > /dev/null
+ 	egrep -i "^ *STAT +[UCOMAND]+ +VSZ +RSS +USER +UID +PID +PPID +COMMAND" > /dev/null
  then
