@@ -1,77 +1,70 @@
 PORTNAME=	syncthingtray
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.7.0
+DISTVERSION=	2.1.4
 CATEGORIES=	deskutils
 
 MAINTAINER=	dsh@bamus.cz
-COMMENT=	Qt ${FLAVOR:S/qt//}-based Syncthing tray application
-WWW=		https://github.com/Martchus/syncthingtray
+COMMENT=	Qt6-based Syncthing tray application
+WWW=		https://martchus.github.io/syncthingtray/
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKDIR}/syncthingtray/LICENSE
 
 BUILD_DEPENDS=	p5-YAML-LibYAML>0:textproc/p5-YAML-LibYAML
-LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
-		libboost_regex.so:devel/boost-libs
+LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs
 
-FLAVORS=	qt5 qt6
-FLAVOR?=	${FLAVORS:[1]}
-FLAVORS_SUB=	yes
-
-qt5_CONFLICTS_INSTALL=	${PORTNAME}-qt6
-qt6_PKGNAMESUFFIX=	-qt6
-qt6_CONFLICTS_INSTALL=	${PORTNAME}
-
-USES=		cmake:insource iconv perl5 xorg
-
-CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
-		-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml
-CMAKE_OFF=	SYSTEMD_SUPPORT USE_STANDARD_FILESYSTEM
-CMAKE_ON=	NO_DOXYGEN
-CMAKE_SOURCE_PATH=	${WRKDIR}/subdirs/syncthingtray
+USES=		cmake:insource gl iconv perl5 qt:6 xorg
 
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	Martchus
 GH_TUPLE:=	${GH_ACCOUNT}:${PORTNAME}:${DISTVERSIONPREFIX}${DISTVERSION}:${PORTNAME}/../${PORTNAME} \
-		${GH_ACCOUNT}:cpp-utilities:v5.27.1:cpputilities/../c++utilities \
-		${GH_ACCOUNT}:qtutilities:v6.14.5:qtutilities/../qtutilities \
-		${GH_ACCOUNT}:qtforkawesome:v0.2.3:qtforkawesome/../qtforkawesome \
+		${GH_ACCOUNT}:cpp-utilities:v5.35.0:cpputilities/../c++utilities \
+		${GH_ACCOUNT}:qtutilities:v6.22.0:qtutilities/../qtutilities \
+		${GH_ACCOUNT}:qtforkawesome:v0.3.4:qtforkawesome/../qtforkawesome \
 		ForkAwesome:Fork-Awesome:4fef70f:ForkAwesome/../forkawesome \
-		${GH_ACCOUNT}:subdirs:993f383:subdirs/../subdirs
+		${GH_ACCOUNT}:subdirs:b922c49:subdirs/../subdirs
 
-USE_KDE=	ecm:build
-USE_QT=		declarative svg
+USE_GL=		opengl
+USE_PERL5=	build
+USE_QT=		base declarative svg tools:build
 USE_XORG=	x11
 
-.if ${FLAVOR} == qt5
-USES+=		kde:5 qt:5
-USE_KDE+=	plasma-framework:build
-USE_QT+=	concurrent core dbus gui location network qdbus \
-		quickcontrols2:build widgets x11extras:build buildtools:build \
-		linguist:build qmake:build testlib:build
-WEBENGINE_USE=	QT=printsupport,webchannel,webengine
-.else
-CMAKE_ARGS+=	-DQT_PACKAGE_PREFIX:STRING=Qt6 -DKF_PACKAGE_PREFIX:STRING=KF6
-USES+=		gl kde:6 qt:6
-USE_GL=		opengl
-USE_KDE+=	libplasma:build
-USE_QT+=	base positioning
-WEBENGINE_USE=	QT=webchannel,webengine
-.endif
-
-OPTIONS_DEFINE=		WEBENGINE
-OPTIONS_DEFAULT=	WEBENGINE
-
-WEBENGINE_DESC=		Built-in web view (webengine dependency)
-WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
-WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
-
-USE_PERL5=	build
+CMAKE_ARGS=	-DFORK_AWESOME_FONT_FILE=${WRKDIR}/forkawesome/fonts/forkawesome-webfont.ttf \
+		-DFORK_AWESOME_ICON_DEFINITIONS=${WRKDIR}/forkawesome/src/icons/icons.yml \
+		-DKF_PACKAGE_PREFIX:STRING=KF6 \
+		-DQT_PACKAGE_PREFIX:STRING=Qt6 \
+		-DQUICK_GUI=ON -DQUICK_GUI_CONTROLS_STYLE=dynamic
+CMAKE_ON=	NO_DOXYGEN
+CMAKE_OFF=	SYSTEMD_SUPPORT USE_STANDARD_FILESYSTEM
+CMAKE_SOURCE_PATH=	${WRKDIR}/subdirs/syncthingtray
 
 BUILD_WRKSRC=		${WRKDIR}
 CONFIGURE_WRKSRC=	${WRKDIR}
 INSTALL_WRKSRC=		${WRKDIR}
 PATCH_WRKSRC=		${WRKDIR}
+
+PLIST_SUB=	LIBVERSION=${DISTVERSION}
+
+OPTIONS_DEFINE=		PLASMA WEBENGINE
+OPTIONS_DEFAULT=	PLASMA WEBENGINE
+OPTIONS_SUB=		yes
+
+PLASMA_DESC=		Plasma integration (KF dependency)
+WEBENGINE_DESC=		Built-in web view (webengine dependency)
+
+PLASMA_USES=		kde:6
+PLASMA_USE=		KDE=bookmarks,completion,config,coreaddons,ecm:build \
+			KDE=jobwidgets,itemviews,kio,libplasma,jobwidgets \
+			KDE=kirigami2,service,solid,widgetsaddons
+# PLASMA option now requires `-DBUILD_SHARED_LIBS=ON`. See
+# https://github.com/Martchus/syncthingtray/issues/451
+PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
+PLASMA_CMAKE_ON=	-DBUILD_SHARED_LIBS=ON
+PLASMA_CONFLICTS_INSTALL=	cpp-utilities qtutilities
+
+WEBENGINE_USE=		QT=positioning,webchannel,webengine
+WEBENGINE_CMAKE_ON=	-DWEBVIEW_PROVIDER:STRING=webengine
+WEBENGINE_CMAKE_OFF=	-DWEBVIEW_PROVIDER:STRING=none
 
 post-install:
 	${RM} -r \
@@ -89,6 +82,7 @@ post-install:
 		${STAGEDIR}${PREFIX}/lib/libsyncthingconnector.a \
 		${STAGEDIR}${PREFIX}/lib/libsyncthingmodel.a \
 		${STAGEDIR}${PREFIX}/lib/libsyncthingwidgets.a \
+		${STAGEDIR}${PREFIX}/lib/libsyncthingwidgetsplugin.a \
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig/c++utilities.pc \
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig/qtforkawesome.pc \
 		${STAGEDIR}${PREFIX}/libdata/pkgconfig/qtforkawesomeiconengine.pc \
@@ -109,7 +103,6 @@ post-install:
 		${STAGEDIR}${PREFIX}/share/syncthingmodel/cmake \
 		${STAGEDIR}${PREFIX}/share/syncthingplasmoid/cmake \
 		${STAGEDIR}${PREFIX}/share/syncthingwidgets/cmake \
-		${STAGEDIR}${QT_PLUGINDIR} \
-		${STAGEDIR}${QT_LIBDIR}
+		${STAGEDIR}${QT_PLUGINDIR}/iconengines
 
 .include <bsd.port.mk>
