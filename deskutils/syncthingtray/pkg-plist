@@ -1,7 +1,5 @@
 bin/syncthingctl
 bin/syncthingtray
-%%PLASMA%%%%QT_PLUGINDIR%%/kf6/kfileitemaction/libsyncthingfileitemaction.so
-%%PLASMA%%%%QT_PLUGINDIR%%/plasma/applets/martchus.syncthingplasmoid.so
 %%PLASMA%%lib/libc++utilities.so
 %%PLASMA%%lib/libc++utilities.so.5
 %%PLASMA%%lib/libc++utilities.so.5.35.0
@@ -23,6 +21,8 @@ bin/syncthingtray
 %%PLASMA%%lib/libsyncthingwidgets.so
 %%PLASMA%%lib/libsyncthingwidgets.so.%%LIBVERSION%%
 %%PLASMA%%lib/libsyncthingwidgets.so.39
+%%PLASMA%%%%QT_PLUGINDIR%%/kf6/kfileitemaction/libsyncthingfileitemaction.so
+%%PLASMA%%%%QT_PLUGINDIR%%/plasma/applets/martchus.syncthingplasmoid.so
 share/applications/syncthingtray.desktop
 share/bash-completion/completions/syncthingctl
 share/bash-completion/completions/syncthingtray

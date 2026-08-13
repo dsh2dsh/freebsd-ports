@@ -43,7 +43,7 @@ CONFIGURE_WRKSRC=	${WRKDIR}
 INSTALL_WRKSRC=		${WRKDIR}
 PATCH_WRKSRC=		${WRKDIR}
 
-PLIST_SUB=	LIBVERSION=${PORTVERSION}
+PLIST_SUB=	LIBVERSION=${DISTVERSION}
 
 OPTIONS_DEFINE=		PLASMA WEBENGINE
 OPTIONS_DEFAULT=	PLASMA WEBENGINE
@@ -53,10 +53,12 @@ PLASMA_DESC=		Plasma integration (KF dependency)
 WEBENGINE_DESC=		Built-in web view (webengine dependency)
 
 PLASMA_USES=		kde:6
-PLASMA_USE=		KDE=bookmarks,completion,config,coreaddons,ecm:build,jobwidgets,itemviews,kio,libplasma,jobwidgets,kirigami2,service,solid,widgetsaddons
-PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
+PLASMA_USE=		KDE=bookmarks,completion,config,coreaddons,ecm:build \
+			KDE=jobwidgets,itemviews,kio,libplasma,jobwidgets \
+			KDE=kirigami2,service,solid,widgetsaddons
 # PLASMA option now requires `-DBUILD_SHARED_LIBS=ON`. See
 # https://github.com/Martchus/syncthingtray/issues/451
+PLASMA_CMAKE_BOOL_OFF=	NO_FILE_ITEM_ACTION_PLUGIN NO_PLASMOID
 PLASMA_CMAKE_ON=	-DBUILD_SHARED_LIBS=ON
 PLASMA_CONFLICTS_INSTALL=	cpp-utilities qtutilities
 
