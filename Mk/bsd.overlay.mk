@@ -64,4 +64,7 @@ RUN_DEPENDS:=	${RUN_DEPENDS:Nnvidia-driver*}
 .elif ${.CURDIR:M*/www/py-aiohttp}
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=296622
 MAKE_ENV:=	${MAKE_ENV:NAIOHTTP_CYTHON_TRACE=1}
+
+.elif ${.CURDIR:M*/x11/plasma6-plasma}
+USE_KDE:=	${USE_KDE:Nspectacle}
 .endif
