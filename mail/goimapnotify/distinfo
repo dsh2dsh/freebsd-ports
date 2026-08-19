@@ -1,5 +1,5 @@
-TIMESTAMP = 1787069281
-SHA256 (go/mail_goimapnotify/dsh2dsh-goimapnotify-v2.6.1_GH0/go.mod) = 603bd37769bb0d0dfb7ff3e62495ef14f2ae9776ba48a86be4ae075b7fc7efaf
-SIZE (go/mail_goimapnotify/dsh2dsh-goimapnotify-v2.6.1_GH0/go.mod) = 1167
-SHA256 (go/mail_goimapnotify/dsh2dsh-goimapnotify-v2.6.1_GH0/dsh2dsh-goimapnotify-v2.6.1_GH0.tar.gz) = 98f10ab68c98081b5cb2bd5435bc25845aeb0b561e4c3198f5cc8f5a3484d292
-SIZE (go/mail_goimapnotify/dsh2dsh-goimapnotify-v2.6.1_GH0/dsh2dsh-goimapnotify-v2.6.1_GH0.tar.gz) = 58318
+TIMESTAMP = 1787166564
+SHA256 (go/mail_goimapnotify/dsh2dsh-goimapnotify-v2.6.1-2-g2480179_GH0/go.mod) = 603bd37769bb0d0dfb7ff3e62495ef14f2ae9776ba48a86be4ae075b7fc7efaf
+SIZE (go/mail_goimapnotify/dsh2dsh-goimapnotify-v2.6.1-2-g2480179_GH0/go.mod) = 1167
+SHA256 (go/mail_goimapnotify/dsh2dsh-goimapnotify-v2.6.1-2-g2480179_GH0/dsh2dsh-goimapnotify-v2.6.1-2-g2480179_GH0.tar.gz) = 08cabfd6983780441e6aef896c54168ceda061ce0d6a6043fd67d91bb275e275
+SIZE (go/mail_goimapnotify/dsh2dsh-goimapnotify-v2.6.1-2-g2480179_GH0/dsh2dsh-goimapnotify-v2.6.1-2-g2480179_GH0.tar.gz) = 57604
