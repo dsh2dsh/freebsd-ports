@@ -22,7 +22,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 IGNORE=		fails to build with qemu-user-static
 .endif
 
-ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 riscv64
+ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 # i386 riscv64
 
 BUILD_DEPENDS?=	bash:shells/bash
 RUN_DEPENDS=	${RUN_DEPENDS_${ARCH}}
