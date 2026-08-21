@@ -1,5 +1,5 @@
 PORTNAME=	nerd-font-symbols
-DISTVERSION=	3.5.0
+DISTVERSION=	3.5.1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://github.com/${GH_ACCOUNT}/nerd-fonts/releases/download/v${DISTVERSION}/
 DISTNAME=	NerdFontsSymbolsOnly
