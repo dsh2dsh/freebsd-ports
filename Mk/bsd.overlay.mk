@@ -65,6 +65,9 @@ RUN_DEPENDS:=	${RUN_DEPENDS:Nnvidia-driver*}
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=296622
 MAKE_ENV:=	${MAKE_ENV:NAIOHTTP_CYTHON_TRACE=1}
 
+.elif ${.CURDIR:M*/x11/kde}
+RUN_DEPENDS:=	${RUN_DEPENDS:N*\:graphics/plasma6-spectacle}
+
 .elif ${.CURDIR:M*/x11/plasma6-plasma}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:graphics/plasma6-spectacle}
 USE_KDE:=	${USE_KDE:Nspectacle}
