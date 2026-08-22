@@ -47,7 +47,7 @@ OPTIONS_SINGLE=		DNS
 OPTIONS_SINGLE_DNS=	DNS_BASE DNS_BINDTOOLS
 OPTIONS_SUB=		yes
 
-CURL_DESC=		cURL support (check_curl)
+CURL_DESC=		libcurl support (check_curl, replaces check_http)
 DBI_DESC=		Check database using DBI
 DNS_BASE_DESC=		Use drill for check_dig and no check_dns
 DNS_BINDTOOLS_DESC=	Use dig and nslookup from dns/bind-tools
