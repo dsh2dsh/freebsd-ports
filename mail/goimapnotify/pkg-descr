@@ -1,2 +1,1 @@
-Execute scripts on IMAP mailbox changes (new/deleted/updated messages) using
-IDLE.
+Execute scripts on IMAP or JMAP mailbox changes (new/deleted/updated messages).
