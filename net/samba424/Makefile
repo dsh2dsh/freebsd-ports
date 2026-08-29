@@ -396,9 +396,9 @@ post-patch:
 		${PATCH_WRKSRC}/dynconfig/wscript
 
 post-install:
-	${RM} -r ${STAGEDIR}${PYTHON_SITELIBDIR}/samba/third_party
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -type d -name __pycache__ \
-		-exec ${RM} -r {} +
+	@[ ! -d ${STAGEDIR}${PYTHON_SITELIBDIR} ] || \
+		(${RM} -r ${STAGEDIR}${PYTHON_SITELIBDIR}/samba/third_party && \
+		${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -type d -name __pycache__ -exec ${RM} -r {} +)
 	${FIND} ${STAGEDIR} -type f -empty -delete
 
 .for dir in ${_LOGDIR} ${_RUNDIR} ${_LOCKDIR} ${SAMBA_MODULESDIR}
