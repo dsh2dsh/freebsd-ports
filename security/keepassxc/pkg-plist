@@ -1,7 +1,6 @@
 bin/keepassxc
 bin/keepassxc-cli
 %%BROWSER%%bin/keepassxc-proxy
-%%AUTOTYPE%%lib/keepassxc/libkeepassxc-autotype-xcb.so
 share/man/man1/keepassxc-cli.1.gz
 share/man/man1/keepassxc.1.gz
 share/applications/org.keepassxc.KeePassXC.desktop
@@ -61,7 +60,6 @@ share/icons/hicolor/scalable/mimetypes/application-x-keepassxc.svg
 %%DATADIR%%/translations/keepassxc_th.qm
 %%DATADIR%%/translations/keepassxc_tr.qm
 %%DATADIR%%/translations/keepassxc_uk.qm
-%%DATADIR%%/translations/keepassxc_vi.qm
 %%DATADIR%%/translations/keepassxc_zh_CN.qm
 %%DATADIR%%/translations/keepassxc_zh_TW.qm
 %%DATADIR%%/wordlists/eff_large.wordlist
