@@ -1,9 +1,6 @@
 PORTNAME=	keepassxc
-DISTVERSION=	2.7.12
-PORTREVISION=	1
+DISTVERSION=	2.7.12-20260830
 CATEGORIES=	security
-MASTER_SITES=	https://github.com/keepassxreboot/keepassxc/releases/download/${DISTVERSION}/
-DISTNAME=	${PORTNAME}-${DISTVERSION}-src
 
 MAINTAINER=	lwhsu@FreeBSD.org
 COMMENT=	KeePass Cross-platform Community Edition
@@ -23,17 +20,19 @@ LIB_DEPENDS=	libargon2.so:security/libargon2 \
 		libqrencode.so:graphics/libqrencode
 
 USES=		cmake compiler:c++17-lang desktop-file-utils minizip \
-		pkgconfig qt:5 readline shared-mime-info tar:xz xorg
+		pkgconfig qt:6 readline shared-mime-info tar:xz xorg
 
-USE_QT=		concurrent core dbus gui network svg wayland widgets x11extras \
-		buildtools:build linguisttools:build qmake:build testlib:build
+USE_GITHUB=	yes
+GH_ACCOUNT=	keepassxreboot
+GH_PROJECT=	${PORTNAME}
+GH_TAGNAME=	79c3c37
+
+USE_QT=		base svg
 USE_XORG=	x11
 
 CMAKE_OFF=	WITH_XC_UPDATECHECK
 
 CONFLICTS_INSTALL=	keepassx keepassx-0.* keepassx2 keepassxc276
-
-WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 
 OPTIONS_DEFINE=		AUTOTYPE BROWSER FDOSECRETS KEESHARE NETWORKING \
 			PASSKEYS SSHAGENT TEST YUBIKEY
