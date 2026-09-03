@@ -1,2 +1,2 @@
 Execute scripts on IMAP or JMAP mailbox changes (new/deleted/updated messages).
-This is a fork with more features like desktop notifications and JMAP support.
+This is a fork with more features like desktop notifications or JMAP support.
