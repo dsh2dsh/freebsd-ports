@@ -1,4 +1,4 @@
-DISTVERSION=	1.27.0
-BOOTSTRAP_VER=	1.26.6
+DISTVERSION=	1.27.1
+BOOTSTRAP_VER=	1.26.8
 
 .include "${.CURDIR}/../go/bsd.go.mk"
