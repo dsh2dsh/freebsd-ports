@@ -1,6 +1,6 @@
 PORTNAME=	goimapnotify
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.7.0
+DISTVERSION=	2.7.0-1-g33aa870
 CATEGORIES=	mail
 
 MAINTAINER=	dsh@bamus.cz
@@ -16,12 +16,17 @@ GH_ACCOUNT=	dsh2dsh
 
 GO_MOD_DIST=	github
 GO_MODULE=	github.com/${GH_ACCOUNT}/${PORTNAME}
-_BUILD_COMMIT=	b1a81fa
+_BUILD_COMMIT=	33aa870
 _BUILD_XFLAGS=	cli.commit=${_BUILD_COMMIT} \
 		cli.gittag=${DISTVERSIONFULL} \
 		cli.branch=master
 GO_LDFLAGS=	${_BUILD_XFLAGS:S!^!-X ${GO_MODULE}/internal/!}
 
-PLIST_FILES=	bin/${PORTNAME}
+PLIST_FILES=	bin/${PORTNAME} \
+		share/applications/${PORTNAME}.desktop
+
+post-install:
+	${MKDIR} ${STAGEDIR}${DESKTOPDIR}
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop ${STAGEDIR}${DESKTOPDIR}
 
 .include <bsd.port.mk>
