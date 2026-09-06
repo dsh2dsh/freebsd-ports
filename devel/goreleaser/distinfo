@@ -1,5 +1,5 @@
-TIMESTAMP = 1785159493
-SHA256 (go/devel_goreleaser/goreleaser-goreleaser-v2.17.1_GH0/go.mod) = 7286c4cfae5e69841df7d2849ece3de36bfd3eb45dbee07f3ef8f4f3ee11613d
-SIZE (go/devel_goreleaser/goreleaser-goreleaser-v2.17.1_GH0/go.mod) = 20573
-SHA256 (go/devel_goreleaser/goreleaser-goreleaser-v2.17.1_GH0/goreleaser-goreleaser-v2.17.1_GH0.tar.gz) = 7570a245c67cbf3f468d698b410fed1755525bb48624ed4198babb372c15ca76
-SIZE (go/devel_goreleaser/goreleaser-goreleaser-v2.17.1_GH0/goreleaser-goreleaser-v2.17.1_GH0.tar.gz) = 2660235
+TIMESTAMP = 1788697650
+SHA256 (go/devel_goreleaser/goreleaser-goreleaser-v2.18.1_GH0/go.mod) = 98fd1fed8635dead53c0423f3c1634e72a7758651df44744735e9c934f508284
+SIZE (go/devel_goreleaser/goreleaser-goreleaser-v2.18.1_GH0/go.mod) = 20422
+SHA256 (go/devel_goreleaser/goreleaser-goreleaser-v2.18.1_GH0/goreleaser-goreleaser-v2.18.1_GH0.tar.gz) = 5f47712f272842b1b51f599403a266e1a304b9689cfb31da22bd279c79af5afc
+SIZE (go/devel_goreleaser/goreleaser-goreleaser-v2.18.1_GH0/goreleaser-goreleaser-v2.18.1_GH0.tar.gz) = 2718396
