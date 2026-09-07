@@ -3,6 +3,9 @@ DISTVERSION=	5.2.3
 CATEGORIES=	net-p2p
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	e154c1a811021ab0bd6e6f9595c2b3c6518aaea3.patch:-p1 # https://github.com/qbittorrent/qBittorrent/pull/23953
+
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Bittorrent client using Qt6 and libtorrent-rasterbar
 WWW=		https://www.qbittorrent.org/
