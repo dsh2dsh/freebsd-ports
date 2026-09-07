@@ -19,36 +19,35 @@ LIB_DEPENDS=	libboost_chrono.so:devel/boost-libs \
 
 USES=		cmake:testing compiler:c++11-lib iconv:wchar_t \
 		localbase:ldflags pathfix pkgconfig python:test shebangfix ssl
-USE_LDCONFIG=	yes
-
-SHEBANG_GLOB=	*.py
+USE_CXXSTD=	c++17 # prevent boost-related SEGV, see bug#264278
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	arvidn
 GH_PROJECT=	libtorrent
 GH_TUPLE=	paullouisageneau:boost-asio-gnutls:a57d4d3:asio/deps/asio-gnutls \
-		paullouisageneau:libdatachannel:a02b751:libdatachannel/deps/libdatachannel \
 		arvidn:try_signal:105cce5:try_signal/deps/try_signal
 
-USE_CXXSTD=	c++17 # prevent boost-related SEGV, see bug#264278
+USE_LDCONFIG=	yes
+SHEBANG_GLOB=	*.py
+
+CMAKE_OFF=	build_examples webtorrent
+CMAKE_TESTING_ON=	build_tests
 
 LDFLAGS+=	${ICONV_LIB}
 
+CONFLICTS_INSTALL=	${PORTNAME}
+
 DOCFILES=	AUTHORS ChangeLog
+
+PLIST_SUB=	PORTVERSION=${PORTVERSION} SOVERSION=${PORTVERSION:R}
 PORTDOCS=	${DOCFILES} docs/*
-PORTEXAMPLES=	*.cpp
 
-CMAKE_TESTING_ON=	build_tests
-
-OPTIONS_DEFINE=		DOCS EXAMPLES LOGGING
+OPTIONS_DEFINE=		DOCS LOGGING
 OPTIONS_DEFAULT=	LOGGING
 OPTIONS_SUB=		yes
 LOGGING_DESC=		Enable logging to disk
 
-EXAMPLES_CMAKE_BOOL=	build_examples
 LOGGING_CMAKE_BOOL=	logging
-
-CONFLICTS_INSTALL=	libtorrent-rasterbar
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|"python3"|"${PYTHON_CMD:T}"|' \
@@ -59,11 +58,6 @@ post-install-DOCS-on:
 	${INSTALL_DATA} ${DOCFILES:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${COPYTREE_SHARE} docs ${STAGEDIR}${DOCSDIR}
 	${RM} ${STAGEDIR}${DOCSDIR}/docs/._*
-
-post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/${PORTEXAMPLES} \
-		${STAGEDIR}${EXAMPLESDIR}
 
 # tests as of 2.0.11: 99% tests passed, 1 tests failed out of 106, see https://github.com/arvidn/libtorrent/issues/7837
 
