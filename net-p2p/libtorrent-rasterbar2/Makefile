@@ -25,12 +25,18 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	arvidn
 GH_PROJECT=	libtorrent
 GH_TUPLE=	paullouisageneau:boost-asio-gnutls:a57d4d3:asio/deps/asio-gnutls \
-		arvidn:try_signal:105cce5:try_signal/deps/try_signal
+		paullouisageneau:libdatachannel:a02b751:libdatachannel/deps/libdatachannel \
+		arvidn:try_signal:105cce5:try_signal/deps/try_signal \
+		nlohmann:json:55f9368:json/deps/libdatachannel/deps/json \
+		paullouisageneau:libjuice:5948a41:libjuice/deps/libdatachannel/deps/libjuice \
+		cisco:libsrtp:ee1a77c:libsrtp/deps/libdatachannel/deps/libsrtp \
+		SergiusTheBest:plog:94899e0:plog/deps/libdatachannel/deps/plog \
+		paullouisageneau:usrsctp:fec583d:usrsctp/deps/libdatachannel/deps/usrsctp
 
 USE_LDCONFIG=	yes
 SHEBANG_GLOB=	*.py
 
-CMAKE_OFF=	build_examples webtorrent
+CMAKE_OFF=	build_examples
 CMAKE_TESTING_ON=	build_tests
 
 LDFLAGS+=	${ICONV_LIB}
