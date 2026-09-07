@@ -1,10 +1,7 @@
 PORTNAME=	qbittorrent
-DISTVERSION=	5.3.0beta1
+DISTVERSION=	5.2.3
 CATEGORIES=	net-p2p
-MASTER_SITES=	https://github.com/${PORTNAME}/qBittorrent/archive/refs/tags/
-DISTNAME=	qBittorrent-release-${DISTVERSION}
-DISTFILES=	release-${DISTVERSION}${EXTRACT_SUFX}
-DIST_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Bittorrent client using Qt6 and libtorrent-rasterbar
@@ -20,7 +17,7 @@ FLAVOR?=	${FLAVORS:[1]}
 nox_PKGNAMESUFFIX=	-nox
 nox_PLIST=		${MASTERDIR}/pkg-plist-nox
 
-USES=			compiler:c++14-lang cpe pkgconfig cmake localbase qt:6 ssl
+USES=			compiler:c++14-lang cpe pkgconfig cmake localbase qt:6 ssl tar:xz
 USE_QT=			base translations
 USE_CXXSTD=		c++17 # prevent boost-related SEGV, see bug#264278
 

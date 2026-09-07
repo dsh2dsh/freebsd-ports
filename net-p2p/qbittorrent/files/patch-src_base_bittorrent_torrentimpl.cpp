@@ -1,6 +1,6 @@
---- src/base/bittorrent/torrentimpl.cpp.orig	2026-09-05 18:26:33 UTC
+--- src/base/bittorrent/torrentimpl.cpp.orig	2026-07-06 21:07:34 UTC
 +++ src/base/bittorrent/torrentimpl.cpp
-@@ -1358,7 +1358,10 @@ bool TorrentImpl::hasError() const
+@@ -1300,7 +1300,10 @@ bool TorrentImpl::hasError() const
  
  bool TorrentImpl::hasError() const
  {
@@ -12,10 +12,10 @@
  }
  
  int TorrentImpl::queuePosition() const
-@@ -1385,6 +1388,18 @@ QString TorrentImpl::error() const
- #else
+@@ -1317,6 +1320,18 @@ QString TorrentImpl::error() const
+     {
+         return tr("Couldn't write to file. Reason: \"%1\". Torrent is now in \"upload only\" mode.")
              .arg(Utils::String::fromLocal8Bit(m_lastFileError.error.message()));
- #endif
 +    }
 +
 +    const TorrentAnnounceStatus st = announceStatus();
