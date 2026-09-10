@@ -51,21 +51,20 @@ OPTIONS_EXCLUDE=	DBUS
 
 OPTIONS_DEFINE=			DBUS PYTHON DEBUG
 OPTIONS_RADIO=			LIBTORRENT
-OPTIONS_RADIO_LIBTORRENT=	LIBTORRENT1 LIBTORRENT2
-OPTIONS_DEFAULT=		DBUS PYTHON LIBTORRENT2
+OPTIONS_RADIO_LIBTORRENT=	LIBTORRENT1 LIBTORRENT20
+OPTIONS_DEFAULT=		DBUS PYTHON LIBTORRENT20
 
 LIBTORRENT_DESC=	libtorrent version number to use
-LIBTORRENT1_DESC=	Version 1.x (default)
-LIBTORRENT2_DESC=	Version 2.x (experimental)
+LIBTORRENT1_DESC=	Version 1.x (deprecated)
+LIBTORRENT20_DESC=	Version 2.0.x
 
 DEBUG_CMAKE_BOOL=	debug
 DBUS_CMAKE_BOOL=	DBUS
 
 LIBTORRENT1_BUILD_DEPENDS=	libtorrent-rasterbar>0:net-p2p/libtorrent-rasterbar
 LIBTORRENT1_RUN_DEPENDS=	libtorrent-rasterbar>0:net-p2p/libtorrent-rasterbar
-LIBTORRENT2_BUILD_DEPENDS=	libtorrent-rasterbar2>0:net-p2p/libtorrent-rasterbar2
-LIBTORRENT2_RUN_DEPENDS=	libtorrent-rasterbar2>0:net-p2p/libtorrent-rasterbar2
-LIBTORRENT2_EXTRA_PATCHES=	${FILESDIR}/extrapatch-libtorrent-rasterbar2-settings
+LIBTORRENT20_LIB_DEPENDS=	libtorrent-rasterbar.so.2.0:net-p2p/libtorrent-rasterbar20
+LIBTORRENT20_EXTRA_PATCHES=	${FILESDIR}/extrapatch-libtorrent-rasterbar2-settings
 
 PYTHON_DESC=		Install Python to support some plugin functionality
 PYTHON_USES=		python:run
