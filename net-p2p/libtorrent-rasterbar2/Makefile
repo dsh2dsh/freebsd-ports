@@ -34,14 +34,12 @@ PLIST_SUB+=	SHLIB_VER="${DISTVERSION:R}" SO_VER="${DISTVERSION}"
 
 DOCFILES=	AUTHORS ChangeLog
 PORTDOCS=	${DOCFILES} docs/*
-PORTEXAMPLES=	*.cpp
 
-OPTIONS_DEFINE=		DOCS EXAMPLES LOGGING
+OPTIONS_DEFINE=		DOCS LOGGING
 OPTIONS_DEFAULT=	LOGGING
 OPTIONS_SUB=		yes
 LOGGING_DESC=		Enable logging to disk
 
-EXAMPLES_CMAKE_BOOL=	build_examples
 LOGGING_CMAKE_BOOL=	logging
 
 post-patch:
@@ -53,11 +51,6 @@ post-install-DOCS-on:
 	${INSTALL_DATA} ${DOCFILES:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${COPYTREE_SHARE} docs ${STAGEDIR}${DOCSDIR}
 	${RM} ${STAGEDIR}${DOCSDIR}/docs/._*
-
-post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/${PORTEXAMPLES} \
-		${STAGEDIR}${EXAMPLESDIR}
 
 # tests as of 2.0.11: 99% tests passed, 1 tests failed out of 106, see https://github.com/arvidn/libtorrent/issues/7837
 
