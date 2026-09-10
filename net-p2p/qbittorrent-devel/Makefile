@@ -1,7 +1,6 @@
-PORTNAME=	qbittorrent
+PORTNAME=	qbittorrent-devel
 PORTVERSION=	20260910
 CATEGORIES=	net-p2p
-PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Bittorrent client using Qt6 and libtorrent-rasterbar
@@ -35,18 +34,18 @@ CMAKE_OFF=		WEBUI
 
 .if ${FLAVOR} == nox
 COMMENT+=		(web UI version)
-USE_RC_SUBR=		${PORTNAME}
+USE_RC_SUBR=		qbittorrent
 CMAKE_OFF=		GUI
 SUB_LIST=		USER=${USERS} GROUP=${GROUPS}
 PLIST_SUB=		USER=${USERS} GROUP=${GROUPS}
 OPTIONS_EXCLUDE=	DBUS
-USERS=			${PORTNAME}
-GROUPS=			${PORTNAME}
+USERS=			qbittorrent
+GROUPS=			qbittorrent
 .endif
 
 CXXFLAGS+=	-DBOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED # error: "Boost.Stacktrace requires `_Unwind_Backtrace` function. Define `_GNU_SOURCE` macro or `BOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED` if _Unwind_Backtrace is available without `_GNU_SOURCE`."
 
-CONFLICTS_INSTALL=	${PORTNAME}
+CONFLICTS_INSTALL=	qbittorrent
 
 OPTIONS_DEFINE=			DBUS PYTHON DEBUG
 OPTIONS_DEFAULT=		DBUS PYTHON
