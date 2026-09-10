@@ -1,8 +1,8 @@
 PORTNAME=	libtorrent-rasterbar
-DISTVERSION=	2.0.14
+DISTVERSION=	2.1.1
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://github.com/arvidn/libtorrent/releases/download/v${DISTVERSION}/
-PKGNAMESUFFIX=	20
+PKGNAMESUFFIX=	2
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	C++ library implementing a BitTorrent client
@@ -28,7 +28,7 @@ CMAKE_TESTING_ON=	build_tests
 
 LDFLAGS+=	${ICONV_LIB}
 
-CONFLICTS_INSTALL=	libtorrent-rasterbar libtorrent-rasterbar2
+CONFLICTS_INSTALL=	libtorrent-rasterbar libtorrent-rasterbar20
 
 PLIST_SUB+=	SHLIB_VER="${DISTVERSION:R}" SO_VER="${DISTVERSION}"
 
