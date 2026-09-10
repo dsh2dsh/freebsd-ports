@@ -1,5 +1,5 @@
 PORTNAME=	libtorrent-rasterbar
-DISTVERSION=	2.0.13
+DISTVERSION=	2.0.14
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://github.com/arvidn/libtorrent/releases/download/v${DISTVERSION}/
 PKGNAMESUFFIX=	20
@@ -29,6 +29,8 @@ CMAKE_TESTING_ON=	build_tests
 LDFLAGS+=	${ICONV_LIB}
 
 CONFLICTS_INSTALL=	libtorrent-rasterbar libtorrent-rasterbar2
+
+PLIST_SUB+=	SHLIB_VER="${DISTVERSION:R}" SO_VER="${DISTVERSION}"
 
 DOCFILES=	AUTHORS ChangeLog
 PORTDOCS=	${DOCFILES} docs/*
