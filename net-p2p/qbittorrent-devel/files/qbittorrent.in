@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=SC2034
 
 # PROVIDE: qbittorrent
 # REQUIRE: DAEMON
@@ -20,26 +21,32 @@
 #			     For example, --webui-port={port}.
 #
 
+qbittorrent_enable="NO"
+qbittorrent_flags=""
+
+# shellcheck disable=SC1094
 . /etc/rc.subr
 
-name=qbittorrent
-rcvar=qbittorrent_enable
+name="qbittorrent"
+rcvar="${name}_enable"
+load_rc_config "$name"
 
-load_rc_config $name
-
-: ${qbittorrent_enable="NO"}
-: ${qbittorrent_conf_dir="/var/db/qbittorrent/conf"}
-: ${qbittorrent_download_dir="/var/db/qbittorrent/Downloads"}
-: ${qbittorrent_user=%%USER%%}
-: ${qbittorrent_group=%%GROUP%%}
-: ${qbittorrent_flags=""}
-
-command="%%PREFIX%%/bin/qbittorrent-nox"
-command_args="--daemon"
+: "${qbittorrent_conf_dir:=/var/db/$name/conf}"
+: "${qbittorrent_download_dir:=/var/db/$name/Downloads}"
 
 qbittorrent_flags=" \
-	${qbittorrent_conf_dir:+--profile=${qbittorrent_conf_dir}} \
-	${qbittorrent_download_dir:+--save-path=${qbittorrent_download_dir}} \
-	${qbittorrent_flags}"
+  ${qbittorrent_conf_dir:+--profile=\"${qbittorrent_conf_dir}\"} \
+  ${qbittorrent_download_dir:+--save-path=\"${qbittorrent_download_dir}\"} \
+  ${qbittorrent_flags}"
 
-run_rc_command $1
+pidfile="/var/run/${name}.daemon.pid"
+command="/usr/sbin/daemon"
+command_args="-fHr \
+  -p \"/var/run/$name.pid\" \
+  -P \"$pidfile\" \
+  -u \"%%USER%%\" \
+  -o \"/var/log/$name.log\" \
+  -- \"%%PREFIX%%/bin/${name}-nox\" $qbittorrent_flags"
+
+unset qbittorrent_flags
+run_rc_command "$1"
