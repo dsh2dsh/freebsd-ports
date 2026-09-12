@@ -22,6 +22,7 @@
 #
 
 qbittorrent_enable="NO"
+qbittorrent_daemon_flags=""
 qbittorrent_flags=""
 
 # shellcheck disable=SC1094
@@ -46,7 +47,16 @@ command_args="-fHr \
   -P \"$pidfile\" \
   -u \"%%USER%%\" \
   -o \"/var/log/$name.log\" \
+  $qbittorrent_daemon_flags \
   -- \"%%PREFIX%%/bin/${name}-nox\" $qbittorrent_flags"
+
+start_precmd="qbittorrent_precmd"
+
+qbittorrent_precmd() {
+    rundir="/var/db/$name"
+    [ -d "$rundir" ] || install -d -o "%%USER%%" -g "%%GROUP%%" "$rundir"
+    cd "$rundir" || exit
+}
 
 unset qbittorrent_flags
 run_rc_command "$1"
