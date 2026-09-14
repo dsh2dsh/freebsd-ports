@@ -1,30 +1,18 @@
 --- syncthingtray/syncthingconnector/runtimecondition.cpp.orig	2026-09-13 15:05:04 UTC
 +++ syncthingtray/syncthingconnector/runtimecondition.cpp
-@@ -119,9 +119,11 @@ class BatteryMonitorBase { (public)
-      */
-     void queryState(const RuntimeCondition *instance) const
-     {
-+#ifdef SYNCTHINGCONNECTION_SUPPORT_BATTERY_MONITORING
-         instance->m_onBattery = m_onBattery;
-         instance->m_batteryLevel = m_batteryLevel;
-         instance->m_batterySaving = m_batterySaving;
-+#endif
-     }
+@@ -108,6 +108,7 @@ static std::pair<const QNetworkInformation *, bool> lo
+ }
+ #endif
  
- protected:
-@@ -130,6 +132,7 @@ class BatteryMonitorBase { (public)
-      */
-     void updateInstances()
-     {
 +#ifdef SYNCTHINGCONNECTION_SUPPORT_BATTERY_MONITORING
-         for (auto *const instance : RuntimeCondition::s_instances) {
-             instance->m_updating = true;
-             const auto batteryInfoChanged = instance->setBatteryInfo(m_onBattery, m_batteryLevel);
-@@ -139,6 +142,7 @@ class BatteryMonitorBase { (public)
-                 instance->updateSupposedToRun();
-             }
-         }
+ /*!
+  * \brief The BatteryMonitorBase class is a base class for battery monitoring,
+  * providing the capability to query and update battery states across all runtime condition instances.
+@@ -145,6 +146,7 @@ class BatteryMonitorBase { (protected)
+     std::optional<int> m_batteryLevel; /*!< The current battery level percentage (0-100). */
+     std::optional<bool> m_batterySaving; /*!< Whether battery saving mode is enabled. */
+ };
 +#endif
-     }
  
-     std::optional<bool> m_onBattery; /*!< Whether the system is running on battery. */
+ #if defined(Q_OS_ANDROID)
+ /*!
