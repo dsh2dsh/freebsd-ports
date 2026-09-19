@@ -9,7 +9,7 @@
          {
 +          qWarning() << "Caught exception in " << Q_FUNC_INFO << ": " << QString::fromStdString(e.what());
 +          LogMsg(tr("Caught exception: %s")
-+            .arg(QString::fromStdString(err.what())), Log::CRITICAL);
++            .arg(QString::fromStdString(e.what())), Log::CRITICAL);
          }
      });
  }
