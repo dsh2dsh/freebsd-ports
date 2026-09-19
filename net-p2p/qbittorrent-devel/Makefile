@@ -1,5 +1,6 @@
 PORTNAME=	qbittorrent-devel
 PORTVERSION=	20260910
+PORTREVISION=	1
 CATEGORIES=	net-p2p
 
 MAINTAINER=	yuri@FreeBSD.org
