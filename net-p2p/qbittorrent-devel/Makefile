@@ -1,6 +1,5 @@
 PORTNAME=	qbittorrent-devel
-PORTVERSION=	20260910
-PORTREVISION=	5
+PORTVERSION=	20260916
 CATEGORIES=	net-p2p
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -24,7 +23,7 @@ USE_CXXSTD=	c++17 # prevent boost-related SEGV, see bug#264278
 USE_GITHUB=	yes
 GH_ACCOUNT=	qBittorrent
 GH_PROJECT=	qBittorrent
-GH_TAGNAME=	3c4409d
+GH_TAGNAME=	9b0e931
 
 .if ${FLAVOR} == default
 USES+=			desktop-file-utils gl
