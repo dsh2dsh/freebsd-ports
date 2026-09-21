@@ -19,7 +19,6 @@ LIB_DEPENDS=	libboost_chrono.so:devel/boost-libs \
 USES=		cmake:testing compiler:c++11-lib iconv:wchar_t \
 		localbase:ldflags pathfix pkgconfig python:test shebangfix ssl
 
-USE_CXXSTD=	c++17 # prevent boost-related SEGV, see bug#264278
 USE_LDCONFIG=	yes
 
 SHEBANG_GLOB=	*.py
