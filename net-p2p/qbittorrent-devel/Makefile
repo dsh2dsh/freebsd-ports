@@ -18,7 +18,6 @@ nox_PLIST=	${MASTERDIR}/pkg-plist-nox
 
 USES=		compiler:c++14-lang cpe pkgconfig cmake localbase qt:6 ssl
 USE_QT=		base translations
-USE_CXXSTD=	c++17 # prevent boost-related SEGV, see bug#264278
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	qBittorrent
@@ -43,7 +42,10 @@ USERS=			qbittorrent
 GROUPS=			qbittorrent
 .endif
 
-CXXFLAGS+=	-DBOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED # error: "Boost.Stacktrace requires `_Unwind_Backtrace` function. Define `_GNU_SOURCE` macro or `BOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED` if _Unwind_Backtrace is available without `_GNU_SOURCE`."
+# error: "Boost.Stacktrace requires `_Unwind_Backtrace` function. Define
+# `_GNU_SOURCE` macro or `BOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED` if
+# _Unwind_Backtrace is available without `_GNU_SOURCE`."
+CXXFLAGS+=	-DBOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED
 
 CONFLICTS_INSTALL=	qbittorrent
 
@@ -65,9 +67,10 @@ post-patch-PYTHON-on:
 		-e 's|"python3"|"${PYTHON_CMD}"|' \
 		${WRKSRC}/src/base/utils/foreignapps.cpp
 
-post-install:
 .if ${FLAVOR} == nox
-	@${MKDIR} ${STAGEDIR}/var/db/qbittorrent/conf \
+post-install:
+	${MKDIR} \
+		${STAGEDIR}/var/db/qbittorrent/conf \
 		${STAGEDIR}/var/db/qbittorrent/Downloads
 .endif
 
