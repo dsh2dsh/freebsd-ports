@@ -24,12 +24,6 @@ PATH:=	${CCACHE_PKG_PREFIX}/bin:${PATH}
 CCACHE_DIR:=	${CCACHE_DIR}/${CCACHE_SUBDIR}
 .    endif # defined(WITH_CCACHE_SUBDIR)
 
-# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=246245
-MAKE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
-TEST_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
-CONFIGURE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NOHASHDIR=yes
-CFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
-CXXFLAGS+=	-fdebug-prefix-map=${WRKSRC}=.
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=284893
 CMAKE_ARGS+=	-DCMAKE_C_COMPILER_LAUNCHER="${CCACHE_BIN}" \
 		-DCMAKE_CXX_COMPILER_LAUNCHER="${CCACHE_BIN}"
