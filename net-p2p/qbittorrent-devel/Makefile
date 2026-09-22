@@ -16,7 +16,7 @@ FLAVOR?=	${FLAVORS:[1]}
 nox_PKGNAMESUFFIX=	-nox
 nox_PLIST=	${MASTERDIR}/pkg-plist-nox
 
-USES=		compiler:c++14-lang cpe pkgconfig cmake localbase qt:6 ssl
+USES=		cpe pkgconfig cmake llvm localbase qt:6 ssl
 USE_QT=		base translations
 
 USE_GITHUB=	yes
