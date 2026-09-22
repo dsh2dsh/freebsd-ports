@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKDIR}/syncthingtray/LICENSE
 BUILD_DEPENDS=	p5-YAML-LibYAML>0:textproc/p5-YAML-LibYAML
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs
 
-USES=		cmake:insource gl iconv perl5 qt:6 xorg
+USES=		cmake:insource gl iconv llvm perl5 qt:6 xorg
 
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	Martchus
