@@ -16,8 +16,8 @@ LIB_DEPENDS=	libboost_chrono.so:devel/boost-libs \
 		libboost_random.so:devel/boost-libs \
 		libboost_thread.so:devel/boost-libs
 
-USES=		cmake:testing compiler:c++11-lib iconv:wchar_t llvm \
-		localbase:ldflags pathfix pkgconfig python:test shebangfix ssl
+USES=		cmake:testing iconv:wchar_t llvm localbase:ldflags pathfix \
+		pkgconfig python:test shebangfix ssl
 
 USE_LDCONFIG=	yes
 
