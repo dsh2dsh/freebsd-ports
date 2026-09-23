@@ -1,6 +1,8 @@
 PORTNAME=	keepassxc
-DISTVERSION=	2.7.12-20260830
+DISTVERSION=	2.8.0-beta1
 CATEGORIES=	security
+MASTER_SITES=	https://github.com/keepassxreboot/keepassxc/releases/download/${DISTVERSION}/
+DISTNAME=	${PORTNAME}-v${DISTVERSION}-src
 
 MAINTAINER=	lwhsu@FreeBSD.org
 COMMENT=	KeePass Cross-platform Community Edition
@@ -21,13 +23,8 @@ LIB_DEPENDS=	libargon2.so:security/libargon2 \
 		libqrencode.so:graphics/libqrencode \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake compiler:c++17-lang desktop-file-utils minizip \
-		pkgconfig qt:6 readline shared-mime-info tar:xz xorg
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	keepassxreboot
-GH_PROJECT=	${PORTNAME}
-GH_TAGNAME=	79c3c37
+USES=		cmake desktop-file-utils llvm minizip pkgconfig qt:6 readline \
+		shared-mime-info tar:xz xorg
 
 USE_QT=		base svg tools:build
 USE_XORG=	x11 xtst
