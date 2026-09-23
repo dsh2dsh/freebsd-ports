@@ -34,12 +34,14 @@ share/icons/hicolor/scalable/mimetypes/application-x-keepassxc.svg
 %%DATADIR%%/translations/keepassxc_fil.qm
 %%DATADIR%%/translations/keepassxc_fr.qm
 %%DATADIR%%/translations/keepassxc_fr_CA.qm
+%%DATADIR%%/translations/keepassxc_gl.qm
 %%DATADIR%%/translations/keepassxc_he.qm
 %%DATADIR%%/translations/keepassxc_hr.qm
 %%DATADIR%%/translations/keepassxc_hu.qm
 %%DATADIR%%/translations/keepassxc_id.qm
 %%DATADIR%%/translations/keepassxc_it.qm
 %%DATADIR%%/translations/keepassxc_ja.qm
+%%DATADIR%%/translations/keepassxc_kab.qm
 %%DATADIR%%/translations/keepassxc_km.qm
 %%DATADIR%%/translations/keepassxc_ko.qm
 %%DATADIR%%/translations/keepassxc_lt.qm
@@ -60,6 +62,7 @@ share/icons/hicolor/scalable/mimetypes/application-x-keepassxc.svg
 %%DATADIR%%/translations/keepassxc_th.qm
 %%DATADIR%%/translations/keepassxc_tr.qm
 %%DATADIR%%/translations/keepassxc_uk.qm
+%%DATADIR%%/translations/keepassxc_vi.qm
 %%DATADIR%%/translations/keepassxc_zh_CN.qm
 %%DATADIR%%/translations/keepassxc_zh_TW.qm
 %%DATADIR%%/wordlists/eff_large.wordlist
