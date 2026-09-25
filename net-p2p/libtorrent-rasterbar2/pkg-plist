@@ -78,6 +78,7 @@ include/libtorrent/aux_/keepalive.hpp
 include/libtorrent/aux_/link.hpp
 include/libtorrent/aux_/listen_socket_handle.hpp
 include/libtorrent/aux_/lsd.hpp
+include/libtorrent/aux_/merge_block_requests.hpp
 include/libtorrent/aux_/merkle.hpp
 include/libtorrent/aux_/merkle_tree.hpp
 include/libtorrent/aux_/mmap.hpp
