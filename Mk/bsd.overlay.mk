@@ -26,7 +26,7 @@ CCACHE_DIR:=	${CCACHE_DIR}/${CCACHE_SUBDIR}
 
 MAKE_ENV+=	CCACHE_BASEDIR="${WRKSRC}" CCACHE_NAMESPACE="${PKGORIGIN}"
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=284893
-.    if !defined(CCACHE_NO_LAUNCHER)
+.    if !defined(CCACHE_NO_LAUNCHER) && (${CC:M/*} || ${CXX:M/*})
 CMAKE_ARGS+=	-DCMAKE_C_COMPILER_LAUNCHER="${CCACHE_BIN}" \
 		-DCMAKE_CXX_COMPILER_LAUNCHER="${CCACHE_BIN}"
 .    endif # !defined(CCACHE_NO_LAUNCHER)
