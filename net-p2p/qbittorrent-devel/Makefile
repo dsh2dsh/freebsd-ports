@@ -1,5 +1,5 @@
 PORTNAME=	qbittorrent-devel
-PORTVERSION=	20260916
+PORTVERSION=	20260930
 CATEGORIES=	net-p2p
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -22,7 +22,7 @@ USE_QT=		base translations
 USE_GITHUB=	yes
 GH_ACCOUNT=	qBittorrent
 GH_PROJECT=	qBittorrent
-GH_TAGNAME=	9b0e931
+GH_TAGNAME=	d402f87
 
 .if ${FLAVOR} == default
 USES+=			desktop-file-utils gl

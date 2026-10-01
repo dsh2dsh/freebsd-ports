@@ -21,10 +21,6 @@
 #			     For example, --webui-port={port}.
 #
 
-qbittorrent_enable="NO"
-qbittorrent_daemon_flags=""
-qbittorrent_flags=""
-
 # shellcheck disable=SC1094
 . /etc/rc.subr
 
@@ -32,8 +28,11 @@ name="qbittorrent"
 rcvar="${name}_enable"
 load_rc_config "$name"
 
+: "${qbittorrent_enable:=NO}"
 : "${qbittorrent_conf_dir:=/var/db/$name/conf}"
 : "${qbittorrent_download_dir:=/var/db/$name/Downloads}"
+: "${qbittorrent_daemon_flags:=}"
+: "${qbittorrent_flags:=}"
 
 qbittorrent_flags=" \
   ${qbittorrent_conf_dir:+--profile=\"${qbittorrent_conf_dir}\"} \
