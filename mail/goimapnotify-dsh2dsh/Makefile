@@ -2,6 +2,7 @@ PORTNAME=	goimapnotify
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.8.0
 CATEGORIES=	mail
+PKGNAMESUFFIX=	-${GH_ACCOUNT}
 
 MAINTAINER=	dsh@bamus.cz
 COMMENT=	Execute scripts on IMAP or JMAP mailbox changes
@@ -21,6 +22,8 @@ _BUILD_XFLAGS=	cli.commit=${_BUILD_COMMIT} \
 		cli.gittag=${DISTVERSIONFULL} \
 		cli.branch=master
 GO_LDFLAGS=	${_BUILD_XFLAGS:S!^!-X ${GO_MODULE}/internal/!}
+
+CONFLICTS_INSTALL=	${PORTNAME}
 
 PLIST_FILES=	bin/${PORTNAME} \
 		share/applications/${PORTNAME}.desktop
