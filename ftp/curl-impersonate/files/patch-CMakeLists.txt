@@ -1,6 +1,6 @@
---- CMakeLists.txt.orig	2026-08-01 23:39:17 UTC
+--- CMakeLists.txt.orig	2026-09-01 10:24:43 UTC
 +++ CMakeLists.txt
-@@ -195,6 +195,7 @@ ExternalProject_Add(zlib
+@@ -198,6 +198,7 @@ ExternalProject_Add(zlib
      -DBUILD_SHARED_LIBS=OFF
      -DZLIB_BUILD_EXAMPLES=OFF
    BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --parallel ${SUBJOBS}
@@ -8,7 +8,7 @@
  )
  
  # zstd
-@@ -214,6 +215,7 @@ ExternalProject_Add(zstd
+@@ -217,6 +218,7 @@ ExternalProject_Add(zstd
      -DZSTD_BUILD_CONTRIB=OFF
      -DZSTD_BUILD_TESTS=OFF
    BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --parallel ${SUBJOBS}
@@ -16,7 +16,7 @@
  )
  
  # brotli
-@@ -234,7 +236,7 @@ ExternalProject_Add(brotli
+@@ -237,7 +239,7 @@ ExternalProject_Add(brotli
      -DBROTLI_BUILD_TOOLS=OFF
      -DCMAKE_MACOSX_BUNDLE=OFF
    BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --parallel ${SUBJOBS}
@@ -25,7 +25,7 @@
  )
  
  # boringssl
-@@ -270,7 +272,7 @@ ExternalProject_Add(boringssl
+@@ -273,7 +275,7 @@ ExternalProject_Add(boringssl
    PATCH_COMMAND ${PATCH_EXE} -p1 -i "${_boringssl_patch_file}"
    CMAKE_ARGS ${_boringssl_cmake_args}
    BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --target ssl crypto --parallel ${SUBJOBS}
@@ -34,7 +34,7 @@
  )
  
  ExternalProject_Get_Property(boringssl source_dir binary_dir)
-@@ -308,7 +310,7 @@ ExternalProject_Add(nghttp2
+@@ -311,7 +313,7 @@ ExternalProject_Add(nghttp2
      -DENABLE_DOC=OFF
      -DBUILD_TESTING=OFF
    BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --parallel ${SUBJOBS}
@@ -43,7 +43,7 @@
  )
  
  # nghttp3
-@@ -330,7 +332,7 @@ ExternalProject_Add(nghttp3
+@@ -333,7 +335,7 @@ ExternalProject_Add(nghttp3
      -DBUILD_TESTING=OFF
    BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --parallel ${SUBJOBS}
    INSTALL_COMMAND
@@ -52,7 +52,7 @@
      COMMAND ${CMAKE_COMMAND} -E copy_if_different
        <SOURCE_DIR>/lib/includes/nghttp3/nghttp3.h
        <INSTALL_DIR>/include/nghttp3/nghttp3.h
-@@ -370,7 +372,7 @@ ExternalProject_Add(ngtcp2
+@@ -373,7 +375,7 @@ ExternalProject_Add(ngtcp2
      -DBORINGSSL_INCLUDE_DIR=${BORINGSSL_INCLUDE_DIR}
      ${_ngtcp2_boringssl_libs_arg}
    BUILD_COMMAND ${CMAKE_COMMAND} --build <BINARY_DIR> --config Release --parallel ${SUBJOBS}
@@ -61,3 +61,16 @@
  )
  
  # libidn2
+@@ -647,12 +649,6 @@ endif()
+       PATTERN "libcurl-impersonate*.dylib*"
+   )
+ endif()
+-install(
+-  DIRECTORY "${DEPS_SRC_DIR}/curl/include/curl"
+-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+-  FILES_MATCHING
+-    PATTERN "*.h"
+-)
+ if(WIN32)
+   file(GLOB _curl_wrapper_scripts CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/win/bin/curl_*.bat")
+ else()
