@@ -58,17 +58,21 @@ ccache-update-links:
 .if ${.CURDIR:M*/graphics/nvidia-drm-kmod*}
 RUN_DEPENDS:=	${RUN_DEPENDS:Nnvidia-driver*}
 
+.elif ${.CURDIR:M*/sysutils/plasma6-libksysguard}
+USE_QT:=	${USE_QT:Nwebengine}
+
 .elif ${.CURDIR:M*/www/py-aiohttp}
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=296622
 MAKE_ENV:=	${MAKE_ENV:NAIOHTTP_CYTHON_TRACE=1}
 
 .elif ${.CURDIR:M*/x11/kde}
+LIB_DEPENDS:=	${LIB_DEPENDS:N*\:x11-toolkits/plasma6-kdeplasma-addons}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:graphics/plasma6-spectacle}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:sysutils/plasma6-discover}
-RUN_DEPENDS:=	${RUN_DEPENDS:N*\:x11-toolkits/plasma6-kdeplasma-addons}
 
 .elif ${.CURDIR:M*/x11/plasma6-plasma}
+BUILD_DEPENDS:=	${BUILD_DEPENDS:N*\:sysutils/plasma6-discover}
+LIB_DEPENDS:=	${LIB_DEPENDS:N*\:x11-toolkits/plasma6-kdeplasma-addons}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:graphics/plasma6-spectacle}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:sysutils/plasma6-discover}
-RUN_DEPENDS:=	${RUN_DEPENDS:N*\:x11-toolkits/plasma6-kdeplasma-addons}
 .endif
