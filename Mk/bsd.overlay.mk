@@ -65,9 +65,10 @@ MAKE_ENV:=	${MAKE_ENV:NAIOHTTP_CYTHON_TRACE=1}
 .elif ${.CURDIR:M*/x11/kde}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:graphics/plasma6-spectacle}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:sysutils/plasma6-discover}
+RUN_DEPENDS:=	${RUN_DEPENDS:N*\:x11-toolkits/plasma6-kdeplasma-addons}
 
 .elif ${.CURDIR:M*/x11/plasma6-plasma}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:graphics/plasma6-spectacle}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:sysutils/plasma6-discover}
-USE_KDE:=	${USE_KDE:Nspectacle}
+RUN_DEPENDS:=	${RUN_DEPENDS:N*\:x11-toolkits/plasma6-kdeplasma-addons}
 .endif
