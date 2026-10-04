@@ -70,6 +70,10 @@ LIB_DEPENDS:=	${LIB_DEPENDS:N*\:x11-toolkits/plasma6-kdeplasma-addons}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:graphics/plasma6-spectacle}
 RUN_DEPENDS:=	${RUN_DEPENDS:N*\:sysutils/plasma6-discover}
 
+.elif ${.CURDIR:M*/x11/kde-baseapps}
+RUN_DEPENDS:=	${RUN_DEPENDS:N*\:sysutils/khelpcenter}
+RUN_DEPENDS:=	${RUN_DEPENDS:N*\:x11-fm/konqueror}
+
 .elif ${.CURDIR:M*/x11/plasma6-plasma}
 BUILD_DEPENDS:=	${BUILD_DEPENDS:N*\:sysutils/plasma6-discover}
 LIB_DEPENDS:=	${LIB_DEPENDS:N*\:x11-toolkits/plasma6-kdeplasma-addons}
