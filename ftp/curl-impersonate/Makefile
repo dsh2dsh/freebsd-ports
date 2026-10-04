@@ -31,7 +31,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_i386=	compilation fails: x86 assembly requires SSE2
 
-USES=		cmake localbase:ldflags pkgconfig ssl
+USES=		cmake localbase:ldflags pkgconfig
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	lexiforest
@@ -67,5 +67,7 @@ pre-configure:
 post-install:
 	@${RM} -r ${STAGEDIR}${PREFIX}/lib/CMakeFiles
 	@${RM} ${STAGEDIR}${PREFIX}/LICENSE*
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/curl-impersonate \
+		${STAGEDIR}${PREFIX}/lib/libcurl-impersonate.so.4.*
 
 .include <bsd.port.mk>
