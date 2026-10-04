@@ -1,9 +1,10 @@
 PORTNAME=	curl-impersonate
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.2
+DISTVERSION=	2.2.3
 CATEGORIES=	ftp
 MASTER_SITES=	https://github.com/google/boringssl/archive/:boringssl \
 		https://github.com/google/brotli/archive/refs/tags/:brotli \
+		https://github.com/c-ares/c-ares/releases/download/v1.34.8/:cares \
 		https://github.com/curl/curl/archive/:curl \
 		https://github.com/nghttp2/nghttp2/releases/download/v1.63.0/:nghttp2 \
 		https://github.com/ngtcp2/ngtcp2/releases/download/v1.20.0/:ngtcp2 \
@@ -11,7 +12,8 @@ MASTER_SITES=	https://github.com/google/boringssl/archive/:boringssl \
 		https://github.com/madler/zlib/releases/download/v1.3.1/:zlib \
 		https://github.com/facebook/zstd/releases/download/v1.5.7/:zstd
 DISTFILES=	${BORING_SSL_COMMIT}.zip:boringssl \
-		curl-8_21_0.tar.gz:curl \
+		c-ares-1.34.8.tar.gz:cares \
+		curl-8_22_0.tar.gz:curl \
 		v1.2.0.tar.gz:brotli \
 		nghttp2-1.63.0.tar.bz2:nghttp2 \
 		ngtcp2-1.20.0.tar.bz2:ngtcp2 \
@@ -45,7 +47,8 @@ MAKE_JOBS_UNSAFE=	yes
 post-patch:
 	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/${BORING_SSL_COMMIT}.zip ${WRKSRC}/${BORING_SSL_COMMIT}.zip
 	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/v1.2.0.tar.gz ${WRKSRC}/brotli-1.2.0.tar.gz
-	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/curl-8_21_0.tar.gz ${WRKSRC}/curl-8_21_0.tar.gz
+	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/c-ares-1.34.8.tar.gz ${WRKSRC}/c-ares-1.34.8.tar.gz
+	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/curl-8_22_0.tar.gz ${WRKSRC}/curl-8_22_0.tar.gz
 	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/nghttp2-1.63.0.tar.bz2 ${WRKSRC}/nghttp2-1.63.0.tar.bz2
 	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/ngtcp2-1.20.0.tar.bz2 ${WRKSRC}/ngtcp2-1.20.0.tar.bz2
 	@${RLN} ${DISTDIR}/${DIST_SUBDIR}/nghttp3-1.15.0.tar.bz2 ${WRKSRC}/nghttp3-1.15.0.tar.bz2
@@ -62,6 +65,7 @@ pre-configure:
 		-e 's|https://github.com/ngtcp2/ngtcp2/releases/download/v$${NGTCP2_VERSION}/ngtcp2-$${NGTCP2_VERSION}.tar.bz2|file://$${CMAKE_SOURCE_DIR}/ngtcp2-$${NGTCP2_VERSION}.tar.bz2|' \
 		-e 's|https://github.com/ngtcp2/nghttp3/releases/download/v$${NGHTTP3_VERSION}/nghttp3-$${NGHTTP3_VERSION}.tar.bz2|file://$${CMAKE_SOURCE_DIR}/nghttp3-$${NGHTTP3_VERSION}.tar.bz2|' \
 		-e 's|https://github.com/curl/curl/archive/$${CURL_VERSION}.tar.gz|file://$${CMAKE_SOURCE_DIR}/$${CURL_VERSION}.tar.gz|' \
+		-e 's|https://github.com/c-ares/c-ares/releases/download/v$${CARES_VERSION}/c-ares-$${CARES_VERSION}.tar.gz|file://$${CMAKE_SOURCE_DIR}/c-ares-$${CARES_VERSION}.tar.gz|'
 		${WRKSRC}/CMakeLists.txt
 
 post-install:
