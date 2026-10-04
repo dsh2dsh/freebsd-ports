@@ -65,7 +65,7 @@ pre-configure:
 		-e 's|https://github.com/ngtcp2/ngtcp2/releases/download/v$${NGTCP2_VERSION}/ngtcp2-$${NGTCP2_VERSION}.tar.bz2|file://$${CMAKE_SOURCE_DIR}/ngtcp2-$${NGTCP2_VERSION}.tar.bz2|' \
 		-e 's|https://github.com/ngtcp2/nghttp3/releases/download/v$${NGHTTP3_VERSION}/nghttp3-$${NGHTTP3_VERSION}.tar.bz2|file://$${CMAKE_SOURCE_DIR}/nghttp3-$${NGHTTP3_VERSION}.tar.bz2|' \
 		-e 's|https://github.com/curl/curl/archive/$${CURL_VERSION}.tar.gz|file://$${CMAKE_SOURCE_DIR}/$${CURL_VERSION}.tar.gz|' \
-		-e 's|https://github.com/c-ares/c-ares/releases/download/v$${CARES_VERSION}/c-ares-$${CARES_VERSION}.tar.gz|file://$${CMAKE_SOURCE_DIR}/c-ares-$${CARES_VERSION}.tar.gz|'
+		-e 's|https://github.com/c-ares/c-ares/releases/download/v$${CARES_VERSION}/c-ares-$${CARES_VERSION}.tar.gz|file://$${CMAKE_SOURCE_DIR}/c-ares-$${CARES_VERSION}.tar.gz|' \
 		${WRKSRC}/CMakeLists.txt
 
 post-install:
