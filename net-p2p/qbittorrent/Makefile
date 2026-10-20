@@ -1,6 +1,7 @@
-PORTNAME=	qbittorrent-devel
-PORTVERSION=	20261011
+PORTNAME=	qbittorrent
+DISTVERSION=	5.3.0
 CATEGORIES=	net-p2p
+MASTER_SITES=	https://github.com/qbittorrent/qBittorrent/releases/download/release-${DISTVERSION}/
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Bittorrent client using Qt6 and libtorrent-rasterbar
@@ -16,13 +17,8 @@ FLAVOR?=	${FLAVORS:[1]}
 nox_PKGNAMESUFFIX=	-nox
 nox_PLIST=	${MASTERDIR}/pkg-plist-nox
 
-USES=		cmake compiler:c++20-lang cpe llvm localbase pkgconfig qt:6 ssl
+USES=		cmake compiler:c++20-lang cpe llvm localbase pkgconfig qt:6 ssl tar:xz
 USE_QT=		base translations
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	qBittorrent
-GH_PROJECT=	qBittorrent
-GH_TAGNAME=	df402f9
 
 .if ${FLAVOR} == default
 USES+=			desktop-file-utils gl
