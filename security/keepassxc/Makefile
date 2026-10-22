@@ -23,8 +23,8 @@ LIB_DEPENDS=	libargon2.so:security/libargon2 \
 		libqrencode.so:graphics/libqrencode \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		cmake desktop-file-utils llvm minizip pkgconfig qt:6 readline \
-		shared-mime-info tar:xz xorg
+USES=		cmake compiler:c++20-lang desktop-file-utils minizip pkgconfig \
+		qt:6 readline shared-mime-info tar:xz xorg
 
 USE_QT=		base svg tools:build
 USE_XORG=	x11 xtst
