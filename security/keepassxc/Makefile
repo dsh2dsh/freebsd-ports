@@ -1,6 +1,5 @@
 PORTNAME=	keepassxc
-DISTVERSIONPREFIX=	v
-DISTVERSION=	2.8.0-beta1
+DISTVERSION=	2.8.0
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/keepassxreboot/keepassxc/releases/download/${DISTVERSION}/
 DISTFILES=	${DISTNAME}-src${EXTRACT_SUFX}
