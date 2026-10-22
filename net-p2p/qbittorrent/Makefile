@@ -17,7 +17,8 @@ FLAVOR?=	${FLAVORS:[1]}
 nox_PKGNAMESUFFIX=	-nox
 nox_PLIST=	${MASTERDIR}/pkg-plist-nox
 
-USES=		cmake compiler:c++20-lang cpe llvm localbase pkgconfig qt:6 ssl tar:xz
+USES=		cmake compiler:c++20-lang cpe localbase pkgconfig qt:6 ssl \
+		tar:xz
 USE_QT=		base translations
 
 .if ${FLAVOR} == default
