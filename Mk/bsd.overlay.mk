@@ -58,9 +58,6 @@ ccache-update-links:
 .if ${.CURDIR:M*/graphics/nvidia-drm-kmod*}
 RUN_DEPENDS:=	${RUN_DEPENDS:Nnvidia-driver*}
 
-.elif ${.CURDIR:M*/sysutils/plasma6-libksysguard}
-USE_QT:=	${USE_QT:Nwebengine}
-
 .elif ${.CURDIR:M*/www/py-aiohttp}
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=296622
 MAKE_ENV:=	${MAKE_ENV:NAIOHTTP_CYTHON_TRACE=1}
