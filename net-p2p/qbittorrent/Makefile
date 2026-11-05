@@ -19,7 +19,7 @@ nox_PLIST=	${MASTERDIR}/pkg-plist-nox
 
 USES=		cmake compiler:c++20-lang cpe localbase pkgconfig qt:6 ssl \
 		tar:xz
-USE_QT=		base translations
+USE_QT=		base translations tools:build
 
 .if ${FLAVOR} == default
 USES+=			desktop-file-utils gl
