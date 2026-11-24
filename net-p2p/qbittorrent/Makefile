@@ -1,5 +1,5 @@
 PORTNAME=	qbittorrent
-DISTVERSION=	5.3.0
+DISTVERSION=	5.3.1
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://github.com/qbittorrent/qBittorrent/releases/download/release-${DISTVERSION}/
 
